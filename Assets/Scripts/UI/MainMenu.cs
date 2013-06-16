@@ -5,8 +5,11 @@ public class MainMenu : MonoBehaviour {
 
     private bool m_display = true;
 
+    public GUISkin skin;
     public GUIStyle m_titleStyle;
     public GUIStyle m_buttonStyle;
+
+    private GUIStyleState state;
     private Rect m_titleRect;
     private Rect m_startRect;
     private float screenWidth, screenHeight;
@@ -19,6 +22,7 @@ public class MainMenu : MonoBehaviour {
         m_titleRect = new Rect(Screen.width / 2 - 200, 100, 400, 100);
         screenHeight = Screen.height;
         screenWidth = Screen.width;
+
 	}
 	
 	// Update is called once per frame
@@ -36,8 +40,13 @@ public class MainMenu : MonoBehaviour {
     {
         if (m_display)
         {
+            GUI.skin = skin;
             GUI.Label(m_titleRect, "JACKED", m_titleStyle);
-            if (GUI.Button(m_startRect, "START", m_buttonStyle))
+            if (m_startRect.Contains(Input.mousePosition)) {
+                //Debug.Log("CONTAINS");
+                //m_buttonStyle.hover = GUIStyleState.hover;
+            }
+            if (GUI.Button(m_startRect, "START", skin.GetStyle("Button")))
             {
                 //Start the game
                 hudController.Display(true);

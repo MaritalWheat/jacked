@@ -3115,6 +3115,23 @@ Prefab:
       propertyPath: PowerupNotification
       value: 
       objectReference: {fileID: 100000, guid: 59741be5ec492a349995dc0b7b397396, type: 2}
+    - target: {fileID: 11400002, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_buttonStyle.m_Hover.m_TextColor.r
+      value: .947761178
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_buttonStyle.m_Hover.m_TextColor.g
+      value: .0636556074
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_buttonStyle.m_Hover.m_TextColor.b
+      value: .0636556074
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: skin
+      value: 
+      objectReference: {fileID: 11400000, guid: bc3b78920294a7e49a405b3a62e719d6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
   m_RootGameObject: {fileID: 1975723940}
@@ -6501,6 +6518,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e6f824beb6be4d47876cde39e3675f1, type: 3}
   m_Name: 
+  skin: {fileID: 11400000, guid: bc3b78920294a7e49a405b3a62e719d6, type: 2}
   m_titleStyle:
     m_Name: 
     m_Normal:
@@ -6567,7 +6585,7 @@ MonoBehaviour:
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_TextColor: {r: .947761178, g: .0636556074, b: .0636556074, a: 1}
     m_Active:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}

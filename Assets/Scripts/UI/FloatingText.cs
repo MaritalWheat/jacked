@@ -29,10 +29,8 @@ public class FloatingText : MonoBehaviour {
             {
                 Destroy(this.gameObject);
             }
-            m_notificationRect.x += Time.deltaTime*4.0f;
-            m_notificationRect.y -= Time.deltaTime*4.0f;
-            m_notificationRect.width += Time.deltaTime*4.0f;
-            m_notificationRect.height += Time.deltaTime*4.0f;
+            m_notificationRect.y -= Time.deltaTime*250.0f;
+            m_style.normal.textColor = new Color(m_style.normal.textColor.r, m_style.normal.textColor.g, m_style.normal.textColor.b, m_style.normal.textColor.a - Time.deltaTime * 1.0f);
 
         }
 	}
