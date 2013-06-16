@@ -3793,6 +3793,7 @@ MonoBehaviour:
   laserGun: {fileID: 8300000, guid: f57283c93bf01c74c9d0141b8a955b29, type: 3}
   triGun: {fileID: 8300000, guid: 6d8f043b1abb56c4b8d06e6e8a1a06a0, type: 3}
   test1: {fileID: 0}
+  jackedIntro: {fileID: 8300000, guid: 06d50cd7436de6e4ea5e0b829067266a, type: 3}
 --- !u!82 &1160615470
 AudioSource:
   m_ObjectHideFlags: 0

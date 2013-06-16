@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour {
     private Rect m_startRect;
     private float screenWidth, screenHeight;
     private HudController hudController;
+    private bool playedIntroSound = false;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,10 @@ public class MainMenu : MonoBehaviour {
     {
         if (m_display)
         {
+            if (!playedIntroSound) {
+                AudioManager.m_singleton.PlayIntroScreen();
+                playedIntroSound = true;
+            }
             GUI.skin = skin;
             GUI.Label(m_titleRect, "JACKED", m_titleStyle);
             if (m_startRect.Contains(Input.mousePosition)) {

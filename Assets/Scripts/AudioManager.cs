@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour {
     public AudioClip laserGun;
     public AudioClip triGun;
     public AudioClip test1;
+    public AudioClip jackedIntro;
     private AudioSource heart;
 
     public static AudioManager m_singleton;
@@ -30,7 +31,7 @@ public class AudioManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        
 	}
 
     public void PlayTest()
@@ -73,6 +74,10 @@ public class AudioManager : MonoBehaviour {
     public void TriShotGun()
     {
         source.PlayOneShot(triGun);
+    }
+
+    public void PlayIntroScreen() {
+        source.PlayOneShot(jackedIntro);
     }
 
 }
