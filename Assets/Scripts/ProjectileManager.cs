@@ -56,36 +56,11 @@ public class ProjectileManager : MonoBehaviour
         int layerMask = 1 << (int)enemyMask;
         RaycastHit[] hits = Physics.RaycastAll(position, aimDirection, Mathf.Infinity, layerMask);
         foreach (RaycastHit hit in hits) {
-            SquirrelBehavior squirrel = hit.transform.gameObject.GetComponent<SquirrelBehavior>();
-            if (squirrel != null) {
-                squirrel.getDamaged(damage);
+            EnemyBehavior enemy = hit.transform.gameObject.GetComponent<EnemyBehavior>();
+            if (enemy != null) {
+                enemy.GetDamaged(damage);
                 return;
             }
-
-            PenguinBehavior penguin = hit.transform.gameObject.GetComponent<PenguinBehavior>();
-            if (penguin != null) {
-                penguin.getDamaged(damage);
-                return;
-            }
-
-            RabbitBehavior rabbit = hit.transform.gameObject.GetComponent<RabbitBehavior>();
-            if (rabbit != null) {
-                rabbit.getDamaged(damage);
-                return;
-            }
-
-            RabbitBehavior babyRabbit = hit.transform.gameObject.GetComponent<RabbitBehavior>();
-            if (babyRabbit != null) {
-                babyRabbit.getDamaged(damage);
-                return;
-            }
-
-            CatBehavior cat = hit.transform.gameObject.GetComponent<CatBehavior>();
-            if (cat != null) {
-                cat.getDamaged(damage);
-                return;
-            }
-
         }
     }
 }

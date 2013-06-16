@@ -56,38 +56,9 @@ public class Projectile : MonoBehaviour
             int layerMask = 1 << (int)enemyMask;
 
             foreach (RaycastHit hit in  Physics.CapsuleCastAll(gameObject.transform.position, gameObject.transform.position, 5.0f, transform.forward, layerMask)) {
-                SquirrelBehavior squirrel = hit.transform.gameObject.GetComponent<SquirrelBehavior>();
-                if (squirrel != null)
-                {
-                    squirrel.getDamaged(damage);
-                    return;
-                }
-
-                PenguinBehavior penguin = hit.transform.gameObject.GetComponent<PenguinBehavior>();
-                if (penguin != null)
-                {
-                    penguin.getDamaged(damage);
-                    return;
-                }
-
-                RabbitBehavior rabbit = hit.transform.gameObject.GetComponent<RabbitBehavior>();
-                if (rabbit != null)
-                {
-                    rabbit.getDamaged(damage);
-                    return;
-                }
-
-                RabbitBehavior babyRabbit = hit.transform.gameObject.GetComponent<RabbitBehavior>();
-                if (babyRabbit != null)
-                {
-                    babyRabbit.getDamaged(damage);
-                    return;
-                }
-
-                CatBehavior cat = hit.transform.gameObject.GetComponent<CatBehavior>();
-                if (cat != null)
-                {
-                    cat.getDamaged(damage);
+                EnemyBehavior enemy = hit.transform.gameObject.GetComponent<EnemyBehavior>();
+                if (enemy != null) {
+                    enemy.GetDamaged(damage);
                     return;
                 }
             }
