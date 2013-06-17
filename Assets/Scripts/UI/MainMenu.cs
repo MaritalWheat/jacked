@@ -16,11 +16,10 @@ public class MainMenu : MonoBehaviour {
     private HudController hudController;
     private bool playedIntroSound = false;
 
-	// Use this for initialization
 	void Start () {
         hudController = this.gameObject.GetComponent<HudController>();
-        m_startRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 25, 200, 50);
-        m_titleRect = new Rect(Screen.width / 2 - 200, 100, 400, 100);
+        m_startRect = new Rect(Screen.width + 100, Screen.height / 2 - 25, 200, 50);
+        m_titleRect = new Rect(0 - 400, 100, 400, 100);
         screenHeight = Screen.height;
         screenWidth = Screen.width;
 
@@ -45,6 +44,10 @@ public class MainMenu : MonoBehaviour {
                 AudioManager.m_singleton.PlayIntroScreen();
                 playedIntroSound = true;
             }
+            SlideDisplay();
+
+
+
             GUI.skin = skin;
             GUI.Label(m_titleRect, "JACKED", m_titleStyle);
             if (m_startRect.Contains(Input.mousePosition)) {
@@ -64,6 +67,19 @@ public class MainMenu : MonoBehaviour {
             }
         }
 
+    }
+
+    void SlideDisplay() { //MAKE THIS MORE REUSABLE AND LESS SPECIFIC
+        float middleX = Screen.width / 2 - m_titleRect.width / 2;
+        m_titleRect.x += 25;
+        m_startRect.x -= 25;
+        if (middleX - m_titleRect.x <= 0) {
+            m_titleRect.x = middleX;
+        }      
+        middleX = Screen.width / 2 - m_startRect.width / 2;
+        if (m_startRect.x - middleX <= 0) {
+            m_startRect.x = middleX;
+        }
     }
 
     public void Display(bool display)

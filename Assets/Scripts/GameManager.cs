@@ -30,10 +30,17 @@ public class GameManager : MonoBehaviour {
     private int m_enemiesLeftToSpawn = 0;
     private const int MAX_ENEMIES_ON_SCREEN = 6;
 
+    private bool onSpree = false;
+    private bool killingSpree = false;
+    private bool monsterSpree = false;
+    private int spreeCount = 0;
+    private int startOfSpreeCount;
+    private static int KILLING_SPREE = 5;
+    private static int MONSTER_SPREE = 10;
+    private static int GLORY_SPREE = 15;
 
 	// Use this for initialization
 	void Start () {
-
         if (!s_singleton)
         {
             s_singleton = this;
@@ -47,7 +54,33 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (onSpree) {
+            Debug.Log("On Spree");
+            if (spreeCount == 0) {
+                startOfSpreeCount = (int)m_creaturesKilled;
+                spreeCount++;
+            }
+            else if (spreeCount == KILLING_SPREE && !killingSpree) {
+                AudioManager.m_singleton.PlayKillingSpree();
+                killingSpree = true;
+            }
+            else if (spreeCount == MONSTER_SPREE && !monsterSpree) {
+                AudioManager.m_singleton.PlayMonsterSpree();
+                monsterSpree = true;               
+            }
+            else if (spreeCount >= GLORY_SPREE) {
+                AudioManager.m_singleton.PlayGlorySpree();
+                spreeCount = 0;
+                onSpree = false;
+                killingSpree = false;
+                monsterSpree = false;
+            }
+            else {
+                spreeCount = (int)(m_creaturesKilled - startOfSpreeCount);
+                Debug.Log("Spree Count: " + spreeCount);
+            }
+            Debug.Log("Spree Count End: " + spreeCount);
+        }
         if (!m_enabled)
         {
             return;
@@ -110,7 +143,7 @@ public class GameManager : MonoBehaviour {
         m_enemiesLeftToSpawn = NumberOfEnemies();//Mathf.Max(NumberOfEnemies() - MAX_ENEMIES_ON_SCREEN, 0);
         m_currentWaveFinished = false;
     }
-
+    
     private GameObject Spawn(GameObject prefab)
     {
         Vector3 spawnPos = new Vector3();
@@ -207,5 +240,14 @@ public class GameManager : MonoBehaviour {
         m_currentWaveNumber = 1;
         m_score = 0;
         m_creaturesKilled = 0;
+    }
+
+    public void SetSpreeStatus(bool status) {
+        if (status == false) {
+            spreeCount = 0;
+            killingSpree = false;
+            monsterSpree = false;
+        }
+        onSpree = status;
     }
 }

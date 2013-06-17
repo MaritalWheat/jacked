@@ -112,6 +112,7 @@ public class PlayerCharacter : MonoBehaviour
     public void Damage(int damageAmount)
     {
         IncreaseHeartRate(damageAmount);
+        GameManager.s_singleton.SetSpreeStatus(false);
     }
 
     public void PlayerDied()

@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour {
     public AudioClip triGun;
     public AudioClip test1;
     public AudioClip jackedIntro;
+    public AudioClip killingSpree;
+    public AudioClip monsterSpree;
+    public AudioClip glorySpree;
     private AudioSource heart;
 
     public static AudioManager m_singleton;
@@ -78,6 +81,18 @@ public class AudioManager : MonoBehaviour {
 
     public void PlayIntroScreen() {
         source.PlayOneShot(jackedIntro);
+    }
+
+    public void PlayKillingSpree() {
+        source.PlayOneShot(killingSpree);
+    }
+
+    public void PlayMonsterSpree() {
+        source.PlayOneShot(monsterSpree);
+    }
+
+    public void PlayGlorySpree() {
+        source.PlayOneShot(glorySpree);
     }
 
 }

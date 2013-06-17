@@ -3794,6 +3794,9 @@ MonoBehaviour:
   triGun: {fileID: 8300000, guid: 6d8f043b1abb56c4b8d06e6e8a1a06a0, type: 3}
   test1: {fileID: 0}
   jackedIntro: {fileID: 8300000, guid: 06d50cd7436de6e4ea5e0b829067266a, type: 3}
+  killingSpree: {fileID: 8300000, guid: 214910958bedc4e4384188ae0674dec2, type: 3}
+  monsterSpree: {fileID: 8300000, guid: f13fe6f7353f84c4faf9b99a2dd91068, type: 3}
+  glorySpree: {fileID: 8300000, guid: ba277abef48a17d43a84ca2ddd008ce8, type: 3}
 --- !u!82 &1160615470
 AudioSource:
   m_ObjectHideFlags: 0

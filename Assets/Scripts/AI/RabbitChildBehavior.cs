@@ -43,7 +43,6 @@ public class RabbitChildBehavior : EnemyBehavior {
         base.GetDamaged(damage);
         if (m_health <= 0)
         {
-            GameManager.s_singleton.m_creaturesKilled++;
             GameManager.s_singleton.m_score += 50;
             GameManager.s_singleton.SpawnDeathObject(transform.position);
 			Destroy(gameObject);
