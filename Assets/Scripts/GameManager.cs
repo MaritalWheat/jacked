@@ -39,8 +39,13 @@ public class GameManager : MonoBehaviour {
     private static int MONSTER_SPREE = 10;
     private static int GLORY_SPREE = 15;
 
+    private bool slowMoOn = false;
+    private float slowMoTime = 0;
+    private static float MAX_SLOW_MO = .2f;
+
 	// Use this for initialization
 	void Start () {
+        
         if (!s_singleton)
         {
             s_singleton = this;
@@ -54,6 +59,14 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (slowMoOn) {
+            Time.timeScale = 0.1f;
+            slowMoOn = SlowMo();
+        }
+        else {
+            Time.timeScale = 1;
+        }
+
         if (onSpree) {
             Debug.Log("On Spree");
             if (spreeCount == 0) {
@@ -63,10 +76,12 @@ public class GameManager : MonoBehaviour {
             else if (spreeCount == KILLING_SPREE && !killingSpree) {
                 AudioManager.m_singleton.PlayKillingSpree();
                 killingSpree = true;
+                slowMoOn = SlowMo();
             }
             else if (spreeCount == MONSTER_SPREE && !monsterSpree) {
                 AudioManager.m_singleton.PlayMonsterSpree();
-                monsterSpree = true;               
+                monsterSpree = true;
+                slowMoOn = SlowMo();
             }
             else if (spreeCount >= GLORY_SPREE) {
                 AudioManager.m_singleton.PlayGlorySpree();
@@ -74,6 +89,8 @@ public class GameManager : MonoBehaviour {
                 onSpree = false;
                 killingSpree = false;
                 monsterSpree = false;
+                Time.timeScale = 0.25f;
+                slowMoOn = SlowMo();
             }
             else {
                 spreeCount = (int)(m_creaturesKilled - startOfSpreeCount);
@@ -123,6 +140,17 @@ public class GameManager : MonoBehaviour {
 
         
 	}
+
+    private bool SlowMo() {
+        if (slowMoTime <= MAX_SLOW_MO) {
+            slowMoTime += Time.deltaTime;
+            return true;
+        } 
+        else {
+            slowMoTime = 0;
+            return false;
+        }
+    }
 
     private void StartWave()
     {
