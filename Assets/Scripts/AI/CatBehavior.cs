@@ -57,7 +57,7 @@ public class CatBehavior : EnemyBehavior {
 		Vector3 direction = m_playerCharacter.transform.position - transform.position;
 		direction.Normalize();
 		direction.y = 0;
-		m_characterController.Move(direction * m_speed);
+		m_characterController.Move(direction * m_speed * Time.deltaTime);
 	}
 	
 	public override void GetDamaged(int damage){

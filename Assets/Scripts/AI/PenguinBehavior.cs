@@ -134,7 +134,7 @@ public class PenguinBehavior : EnemyBehavior {
 		Vector3 direction = m_playerCharacter.transform.position - transform.position;
 		direction.Normalize();
 		direction.y = 0;
-		m_characterController.Move(direction * m_speed);
+        m_characterController.Move(direction * m_speed * Time.deltaTime);
 		switchSlideFlag(false);
 	}
 	
@@ -143,7 +143,7 @@ public class PenguinBehavior : EnemyBehavior {
 		direction.Normalize();
 		direction.y = 0;*/
 		slideTime += Time.deltaTime;
-		m_characterController.Move(direction * m_slideSpeed);
+        m_characterController.Move(direction * m_slideSpeed * Time.deltaTime);
 	}
 	
 	void MoveFromPlayer(){
@@ -152,7 +152,7 @@ public class PenguinBehavior : EnemyBehavior {
 		direction.y = 0;
 		direction.x = -direction.x;
 		direction.z = -direction.z;
-		m_characterController.Move(direction * m_speed);
+        m_characterController.Move(direction * m_speed * Time.deltaTime);
 	}
 	
 	public override void GetDamaged(int damage){
