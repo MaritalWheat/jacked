@@ -3,7 +3,8 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-    private bool m_display = true;
+    public static MainMenu m_singleton;
+    public bool m_display = true;
 
     public GUISkin skin;
     public GUIStyle m_titleStyle;
@@ -17,6 +18,10 @@ public class MainMenu : MonoBehaviour {
     private bool playedIntroSound = false;
 
 	void Start () {
+        if (m_singleton == null)
+        {
+            m_singleton = this;
+        }
         hudController = this.gameObject.GetComponent<HudController>();
         m_startRect = new Rect(Screen.width + 100, Screen.height / 2 - 25, 200, 50);
         m_titleRect = new Rect(0 - 400, 100, 400, 100);

@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            GameManager.s_singleton.Pause( !(GameManager.s_singleton.IsPaused()));
+            GameManager.s_singleton.Pause( !(GameManager.s_singleton.IsPaused()));       
         }
         
         //Check to see if the player fired
