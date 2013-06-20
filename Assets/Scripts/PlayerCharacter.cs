@@ -17,7 +17,7 @@ public enum PlayerWeapon
 public class PlayerCharacter : MonoBehaviour
 {
     public static PlayerCharacter s_singleton;
-
+    public bool gamePad;
     public float m_characterSpeed;
     public float m_maxCharacterSpeed;
     public int m_heartRate;
@@ -74,7 +74,12 @@ public class PlayerCharacter : MonoBehaviour
 
         m_decreaseHeartRate -= Time.deltaTime;
         gameObject.GetComponent<AudioSource>().pitch = Mathf.Max(.85f, m_heartRate / 100.0f);
-        Vector2 aimDirection2D = m_inputManager.PlayerToMouse();
+        Vector2 aimDirection2D;
+        if (!gamePad) {
+            aimDirection2D = m_inputManager.PlayerToMouse();
+        } else {
+            aimDirection2D = new Vector2(Input.GetAxis("Horizontal2"), Input.GetAxis("Vertical2"));
+        }
         m_aimDirection = new Vector3(aimDirection2D.x, 0, aimDirection2D.y);
 
         SpriteAnimation animationToPlay = m_playerAnimations.GetSpriteAnimation(m_playerState, m_aimDirection);

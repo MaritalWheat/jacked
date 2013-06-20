@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfc96e0f81f2cf642a8218d81012d570, type: 3}
   m_Name: 
-  m_speed: 15
+  m_speed: 20
   m_damage: 5
   m_health: 10
   m_idleLeftAnimation: {fileID: 11400000, guid: ef7b0c38927efd4489adee58e9f81dec,

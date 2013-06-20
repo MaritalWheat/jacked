@@ -21,14 +21,14 @@ public class GameManager : MonoBehaviour {
     private GameObject m_enemies;
     private GameObject m_deathDecalsHolder;
     private bool m_currentWaveFinished = true;
-    private int m_currentWaveNumber = 1;
+    private int m_currentWaveNumber = 20;
     private bool m_enabled = false;
     private float m_timeUntilNextWave = 5.0f;
     private bool m_paused = false;
     private GameObject[] m_enemiesList;
 
     private int m_enemiesLeftToSpawn = 0;
-    private const int MAX_ENEMIES_ON_SCREEN = 6;
+    private const int MAX_ENEMIES_ON_SCREEN = 20;
 
     private bool onSpree = false;
     private bool killingSpree = false;

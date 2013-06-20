@@ -52,6 +52,11 @@ public class CameraController : MonoBehaviour {
             m_motionBlur.enabled = false;
             m_vignette.enabled = false;
         }
+
+        Vector3 pos = this.transform.position;
+        pos.x = m_player.transform.position.x;
+        pos.z = m_player.transform.position.z;
+        this.transform.position = pos;
 	}
 
 
