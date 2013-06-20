@@ -255,6 +255,17 @@ public class GameManager : MonoBehaviour {
 
     public void Pause(bool enable)
     {
+        MainMenu.m_singleton.m_display = enable;
+        if (enable)
+        {
+            
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
         m_paused = enable;
     }
     public void Reset()
