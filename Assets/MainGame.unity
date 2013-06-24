@@ -879,7 +879,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29fa675ebd8c5434b82a2ad93748d17a, type: 3}
   m_Name: 
-  gamePad: 0
+  gamePad: 1
   m_characterSpeed: 50
   m_maxCharacterSpeed: 40
   m_heartRate: 100
@@ -3834,6 +3834,7 @@ MonoBehaviour:
   killingSpree: {fileID: 8300000, guid: 214910958bedc4e4384188ae0674dec2, type: 3}
   monsterSpree: {fileID: 8300000, guid: f13fe6f7353f84c4faf9b99a2dd91068, type: 3}
   glorySpree: {fileID: 8300000, guid: ba277abef48a17d43a84ca2ddd008ce8, type: 3}
+  UI: {fileID: 0}
 --- !u!82 &1160615470
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6548,6 +6549,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e6f824beb6be4d47876cde39e3675f1, type: 3}
   m_Name: 
+  m_display: 0
+  m_displayTitleScreen: 1
   skin: {fileID: 11400000, guid: bc3b78920294a7e49a405b3a62e719d6, type: 2}
   m_titleStyle:
     m_Name: 

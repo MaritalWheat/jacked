@@ -35,13 +35,13 @@ public class GameManager : MonoBehaviour {
     private bool monsterSpree = false;
     private int spreeCount = 0;
     private int startOfSpreeCount;
-    private static int KILLING_SPREE = 5;
-    private static int MONSTER_SPREE = 10;
-    private static int GLORY_SPREE = 15;
+    private const int k_killingSpree = 5;
+    private const int k_monsterSpree = 10;
+    private const int k_glorySpree = 15;
 
-    private bool slowMoOn = false;
-    private float slowMoTime = 0;
-    private static float MAX_SLOW_MO = .2f;
+    private bool m_slowMoOn = false;
+    private float m_slowMoTime = 0;
+    private const float k_maxSlowMoTime = .2f;
 
 	// Use this for initialization
 	void Start () {
@@ -59,12 +59,13 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (slowMoOn) {
+        if (m_paused) {
+            Time.timeScale = 0f;
+        } else if (m_slowMoOn) {
             Time.timeScale = 0.1f;
-            slowMoOn = SlowMo();
-        }
-        else {
-            Time.timeScale = 1;
+            m_slowMoOn = SlowMo();
+        } else {
+            Time.timeScale = 1f;
         }
 
         if (onSpree) {
@@ -73,24 +74,24 @@ public class GameManager : MonoBehaviour {
                 startOfSpreeCount = (int)m_creaturesKilled;
                 spreeCount++;
             }
-            else if (spreeCount == KILLING_SPREE && !killingSpree) {
+            else if (spreeCount == k_killingSpree && !killingSpree) {
                 AudioManager.m_singleton.PlayKillingSpree();
                 killingSpree = true;
-                slowMoOn = SlowMo();
+                m_slowMoOn = SlowMo();
             }
-            else if (spreeCount == MONSTER_SPREE && !monsterSpree) {
+            else if (spreeCount == k_monsterSpree && !monsterSpree) {
                 AudioManager.m_singleton.PlayMonsterSpree();
                 monsterSpree = true;
-                slowMoOn = SlowMo();
+                m_slowMoOn = SlowMo();
             }
-            else if (spreeCount >= GLORY_SPREE) {
+            else if (spreeCount >= k_glorySpree) {
                 AudioManager.m_singleton.PlayGlorySpree();
                 spreeCount = 0;
                 onSpree = false;
                 killingSpree = false;
                 monsterSpree = false;
                 Time.timeScale = 0.25f;
-                slowMoOn = SlowMo();
+                m_slowMoOn = SlowMo();
             }
             else {
                 spreeCount = (int)(m_creaturesKilled - startOfSpreeCount);
@@ -142,12 +143,12 @@ public class GameManager : MonoBehaviour {
 	}
 
     private bool SlowMo() {
-        if (slowMoTime <= MAX_SLOW_MO) {
-            slowMoTime += Time.deltaTime;
+        if (m_slowMoTime <= k_maxSlowMoTime) {
+            m_slowMoTime += Time.deltaTime;
             return true;
         } 
         else {
-            slowMoTime = 0;
+            m_slowMoTime = 0;
             return false;
         }
     }
@@ -256,18 +257,14 @@ public class GameManager : MonoBehaviour {
     public void Pause(bool enable)
     {
         MainMenu.m_singleton.m_display = enable;
-        if (enable)
-        {
-            
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
-
         m_paused = enable;
     }
+
+    public void Resume()
+    {
+        MainMenu.m_singleton.m_display = false;
+    }
+
     public void Reset()
     {
         foreach (Transform child in m_enemies.transform)

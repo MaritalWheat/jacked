@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour {
     public AudioClip killingSpree;
     public AudioClip monsterSpree;
     public AudioClip glorySpree;
+    public AudioClip UI;
     private AudioSource heart;
 
     public static AudioManager m_singleton;
@@ -93,6 +94,11 @@ public class AudioManager : MonoBehaviour {
 
     public void PlayGlorySpree() {
         source.PlayOneShot(glorySpree);
+    }
+
+    public void PlayUISound()
+    {
+        source.PlayOneShot(UI);
     }
 
 }

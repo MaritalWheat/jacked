@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424dae110108a7942b53a6d33d9ffc83, type: 3}
   m_Name: 
   m_damage: 10
-  m_speed: 50
+  m_speed: 5000
   m_duration: 10
   m_explodes: 0
   m_destructionDuration: .5

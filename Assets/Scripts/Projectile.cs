@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Vector3 velocity = transform.forward * m_speed;
+            Vector3 velocity = transform.forward * m_speed * Time.deltaTime;
             m_characterController.SimpleMove(velocity);
         }
 	}

@@ -52,8 +52,12 @@ public class InputManager : MonoBehaviour
             m_inputVelocity = new Vector2(Input.GetAxis("Horizontal") * 2, Input.GetAxis("Vertical") * 2);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            GameManager.s_singleton.Pause( !(GameManager.s_singleton.IsPaused()));       
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) {
+            if (!GameManager.s_singleton.IsPaused()) {
+                GameManager.s_singleton.Pause(!(GameManager.s_singleton.IsPaused()));
+            } else {
+                GameManager.s_singleton.Resume();
+            }
         }
         
         //Check to see if the player fired

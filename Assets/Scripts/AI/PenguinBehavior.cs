@@ -59,7 +59,7 @@ public class PenguinBehavior : EnemyBehavior {
                 else {
                     m_animationManager.SetSpriteAnimation(m_slideRightAnimation);
                 }
-                Debug.Log(m_slideStarted);
+                //Debug.Log(m_slideStarted);
                 Vector3 direction = m_playerCharacter.transform.position - transform.position;
                 direction.Normalize();
                 direction.y = 0;
