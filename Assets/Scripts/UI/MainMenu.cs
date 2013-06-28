@@ -69,6 +69,9 @@ public class MainMenu : MonoBehaviour {
         } else {
             m_isSelectButtonPressed = false;
         }
+        if (menuButtons[currentButtonIndex].Equals("Resume") && Input.GetButtonDown("ButtonA")) {
+            GameManager.s_singleton.Resume();
+        }
 	}
 
     void OnGUI()
@@ -107,7 +110,7 @@ public class MainMenu : MonoBehaviour {
         
         GUI.BeginGroup(new Rect(m_positionButtonsGroupOne, Screen.height / 3, 200, 400));
         GUI.SetNextControlName("Resume");
-        GUI.Button(m_resumeRect, "RESUME", skin.GetStyle("Button"));
+        if (GUI.Button(m_resumeRect, "RESUME", skin.GetStyle("Button"))) GameManager.s_singleton.Resume();
         GUI.SetNextControlName("Button1");
         GUI.Button(m_button3Rect, "BUTTON", skin.GetStyle("Button"));
         GUI.EndGroup();
@@ -157,7 +160,15 @@ public class MainMenu : MonoBehaviour {
             }
             GUI.FocusControl(menuButtons[currentButtonIndex]);
             m_menuButtonSwitchTimeBuffer = 0;
-        }
+        } else if (Input.GetAxis("VerticalGamepad") == -1 && m_menuButtonSwitchTimeBuffer > k_menuButtonMinSwitchTime) {
+            if (currentButtonIndex == 0) {
+                currentButtonIndex = menuButtons.Count - 1;
+            } else { 
+                currentButtonIndex--;
+            }
+            GUI.FocusControl(menuButtons[currentButtonIndex]);
+            m_menuButtonSwitchTimeBuffer = 0;
+        }  
     }
 
 
