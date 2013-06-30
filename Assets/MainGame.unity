@@ -825,7 +825,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.06863022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 556608612}
   m_Father: {fileID: 0}
 --- !u!23 &364618462
 Renderer:
@@ -879,7 +880,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29fa675ebd8c5434b82a2ad93748d17a, type: 3}
   m_Name: 
-  gamePad: 1
+  gamePad: 0
   m_characterSpeed: 50
   m_maxCharacterSpeed: 40
   m_heartRate: 100
@@ -1753,6 +1754,68 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 518646278}
   m_Mesh: {fileID: 4300000, guid: 9248df708eb855e4192701a55943a201, type: 2}
+--- !u!1 &556608610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 556608612}
+  - 108: {fileID: 556608611}
+  m_Layer: 0
+  m_Name: Spotlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &556608611
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556608610}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 5.57999992
+  m_Range: 40
+  m_SpotAngle: 63
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
+--- !u!4 &556608612
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556608610}
+  m_LocalRotation: {x: .347586811, y: 0, z: 0, w: .937647879}
+  m_LocalPosition: {x: .527547836, y: 12.7785568, z: .908002377}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 364618461}
 --- !u!1 &571462545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,6 +2577,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 819919759}
   - 108: {fileID: 819919760}
+  - 114: {fileID: 819919761}
   m_Layer: 0
   m_Name: Directional light
   m_TagString: Untagged
@@ -2527,7 +2591,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 819919758}
-  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381661, w: .875426114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 90, z: -1.1920929e-06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2567,6 +2631,20 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &819919761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 819919758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694f49b7469ea4a13a6dcc48f54431a3, type: 3}
+  m_Name: 
+  day: 1
+  night: 0
+  dayRot: {x: 25, y: 0, z: 25}
+  nightRot: {x: 0, y: 0, z: 0}
 --- !u!1 &824432248
 GameObject:
   m_ObjectHideFlags: 0
@@ -6386,6 +6464,8 @@ GameObject:
   - 114: {fileID: 1975723942}
   - 114: {fileID: 1975723943}
   - 114: {fileID: 1975723944}
+  - 114: {fileID: 1975723946}
+  - 111: {fileID: 1975723945}
   m_Layer: 0
   m_Name: GUIController
   m_TagString: Untagged
@@ -6798,6 +6878,39 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+--- !u!111 &1975723945
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1975723940}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 18a21ff205c1342a98ddfa2bb1f9deb8, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 18a21ff205c1342a98ddfa2bb1f9deb8, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+  m_UserAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+--- !u!114 &1975723946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1975723940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d88937948854b998ddc8f262c27762, type: 3}
+  m_Name: 
+  m_skin: {fileID: 11400000, guid: bc3b78920294a7e49a405b3a62e719d6, type: 2}
+  m_triShotSprite: {fileID: 2800000, guid: 75e61a190aac24d49a38ae498f8dddc3, type: 3}
+  m_circleBackground: {fileID: 2800000, guid: 134f3e4ac17a54cdc96e2e0029c8388f, type: 3}
+  m_blurOverlay: {fileID: 0}
+  speed: 5
 --- !u!1 &1997320115
 GameObject:
   m_ObjectHideFlags: 0

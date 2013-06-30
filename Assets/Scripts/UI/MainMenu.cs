@@ -96,7 +96,9 @@ public class MainMenu : MonoBehaviour {
         GUI.skin = skin;
         GUI.Label(m_titleRect, "JACKED", m_titleStyle);
         GUI.SetNextControlName("Start");
-        GUI.FocusControl("Start");
+		if (PlayerCharacter.s_singleton.gamePad) {
+        	GUI.FocusControl("Start");
+		}
         if (GUI.Button(m_startRect, "START", skin.GetStyle("Button")) || (GUI.GetNameOfFocusedControl().Equals("Start") && m_isSelectButtonPressed)) {
             hudController.Display(true);
             InputManager.Enable(true);
@@ -149,26 +151,28 @@ public class MainMenu : MonoBehaviour {
                 GameManager.s_singleton.Pause(false);
             }
         }
-
-        GUI.FocusControl(menuButtons[currentButtonIndex]);
-        m_menuButtonSwitchTimeBuffer += 1;
-        if (Input.GetAxis("VerticalGamepad") == 1 && m_menuButtonSwitchTimeBuffer > k_menuButtonMinSwitchTime) {
-            if (currentButtonIndex == menuButtons.Count - 1) {
-                currentButtonIndex = 0;
-            } else {
-                currentButtonIndex++;
-            }
-            GUI.FocusControl(menuButtons[currentButtonIndex]);
-            m_menuButtonSwitchTimeBuffer = 0;
-        } else if (Input.GetAxis("VerticalGamepad") == -1 && m_menuButtonSwitchTimeBuffer > k_menuButtonMinSwitchTime) {
-            if (currentButtonIndex == 0) {
-                currentButtonIndex = menuButtons.Count - 1;
-            } else { 
-                currentButtonIndex--;
-            }
-            GUI.FocusControl(menuButtons[currentButtonIndex]);
-            m_menuButtonSwitchTimeBuffer = 0;
-        }  
+		
+		if (PlayerCharacter.s_singleton.gamePad) {
+	        GUI.FocusControl(menuButtons[currentButtonIndex]);
+	        m_menuButtonSwitchTimeBuffer += 1;
+	        if (Input.GetAxis("VerticalGamepad") == 1 && m_menuButtonSwitchTimeBuffer > k_menuButtonMinSwitchTime) {
+	            if (currentButtonIndex == menuButtons.Count - 1) {
+	                currentButtonIndex = 0;
+	            } else {
+	                currentButtonIndex++;
+	            }
+	            GUI.FocusControl(menuButtons[currentButtonIndex]);
+	            m_menuButtonSwitchTimeBuffer = 0;
+	        } else if (Input.GetAxis("VerticalGamepad") == -1 && m_menuButtonSwitchTimeBuffer > k_menuButtonMinSwitchTime) {
+	            if (currentButtonIndex == 0) {
+	                currentButtonIndex = menuButtons.Count - 1;
+	            } else { 
+	                currentButtonIndex--;
+	            }
+	            GUI.FocusControl(menuButtons[currentButtonIndex]);
+	            m_menuButtonSwitchTimeBuffer = 0;
+	        }  
+		}
     }
 
 

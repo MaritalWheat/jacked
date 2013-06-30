@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour {
     private bool m_slowMoOn = false;
     private float m_slowMoTime = 0;
     private const float k_maxSlowMoTime = .2f;
+	
+	private bool m_displayWeaponWheel = false;
 
 	// Use this for initialization
 	void Start () {
@@ -64,7 +66,9 @@ public class GameManager : MonoBehaviour {
         } else if (m_slowMoOn) {
             Time.timeScale = 0.1f;
             m_slowMoOn = SlowMo();
-        } else {
+        } else if (m_displayWeaponWheel) {
+			Time.timeScale = 0.1f;
+		} else {
             Time.timeScale = 1f;
         }
 
@@ -286,4 +290,8 @@ public class GameManager : MonoBehaviour {
         }
         onSpree = status;
     }
+	
+	public static void DisplayWeaponWheel(bool display) {
+		GameManager.s_singleton.m_displayWeaponWheel = display;
+	}
 }

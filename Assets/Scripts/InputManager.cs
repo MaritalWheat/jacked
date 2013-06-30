@@ -27,18 +27,14 @@ public class InputManager : MonoBehaviour
     {
         GetMouseWorldPosition();
 
-        if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("Zero");
-        }
-        if (Input.GetMouseButtonDown(1)) {
-            Debug.Log("One");
-        }
-        if (Input.GetMouseButtonDown(2)) {
-            Debug.Log("Two");
-        }
-        if (Input.GetMouseButtonDown(3)) {
-            Debug.Log("Three");
-        }
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+			WeaponWheel.DisplayWeaponWheel(!WeaponWheel.GetWeaponWheelDisplayStatus());
+			if (WeaponWheel.GetWeaponWheelDisplayStatus()) {
+				GameManager.DisplayWeaponWheel(true);
+			} else {
+				GameManager.DisplayWeaponWheel(false);
+			}
+		}
 
         if (!m_enabled) {
             return;
