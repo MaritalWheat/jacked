@@ -6,6 +6,7 @@ public class WeaponManager : MonoBehaviour {
 	
 	public static WeaponManager m_singleton;	
 	public List<Weapon> m_weapons;
+	public Weapon m_noWeapon;
 	private Dictionary<string, Weapon> m_weaponsDict;
 	
 	void Start () {
@@ -30,5 +31,7 @@ public class WeaponManager : MonoBehaviour {
 		WeaponManager.m_singleton.m_weaponsDict.TryGetValue(name, out value);
 		return value;
 	}
-		
+	
+	//need a list of active weapons
+	//need to have interface for choosing weapons		
 }

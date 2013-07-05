@@ -78,11 +78,15 @@ public class WeaponWheel : MonoBehaviour {
 			Vector2 pointToMoveTo = PointOnCircle(radius, property, origin);
 			currentContainer.x = pointToMoveTo.x;
 			currentContainer.y = pointToMoveTo.y;
-			if (GUI.Button(currentContainer, "", GUI.skin.GetStyle("TriShotWeaponButton"))) {
-				PlayerCharacter.SetPlayerWeapon(WeaponManager.GetWeapon("TriShot"));
-				WeaponWheel.DisplayWeaponWheel(false);
-				//nextStopPoint += 45f; //ROTATION IMPLEMENTATION
-			}
+			if (index < WeaponManager.m_singleton.m_weapons.Count) {
+				if (GUI.Button(currentContainer, "", WeaponManager.m_singleton.m_weapons[index].m_style)) {
+					PlayerCharacter.SetPlayerWeapon(WeaponManager.GetWeapon(WeaponManager.m_singleton.m_weapons[index].m_name));
+					WeaponWheel.DisplayWeaponWheel(false);
+					//nextStopPoint += 45f; //ROTATION IMPLEMENTATION
+				}
+			} else {
+				GUI.Button(currentContainer, "", WeaponManager.m_singleton.m_noWeapon.m_style);
+			}				
 			index++;
 		}
 	}

@@ -1883,6 +1883,11 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 34f433b36bcda44939e745667a15128d,
         type: 2}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_noWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: fce46b79c86694315b17497b2eb2f521,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
   m_RootGameObject: {fileID: 1320429791}
@@ -5051,6 +5056,7 @@ MonoBehaviour:
   m_weapons:
   - {fileID: 11400000, guid: 3f883740327434e1c96d96868e4f91b8, type: 2}
   - {fileID: 11400000, guid: 34f433b36bcda44939e745667a15128d, type: 2}
+  m_noWeapon: {fileID: 11400000, guid: fce46b79c86694315b17497b2eb2f521, type: 2}
 --- !u!1 &1334230081
 GameObject:
   m_ObjectHideFlags: 0
