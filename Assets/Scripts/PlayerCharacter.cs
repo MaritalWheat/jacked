@@ -87,7 +87,11 @@ public class PlayerCharacter : MonoBehaviour
             SetAnimation(animationToPlay);
         }
 	}
-
+	
+	public static Vector3 GetAimDirection() {
+		return PlayerCharacter.s_singleton.m_aimDirection;
+	}
+		
     public void SetAnimation(SpriteAnimation animation)
     {
         m_spriteAnimationManager.SetSpriteAnimation(animation);

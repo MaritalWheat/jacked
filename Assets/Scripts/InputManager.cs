@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour
 {
     private CharacterController m_characterController;
     private PlayerCharacter m_playerCharacter;
-
+	public static InputManager s_singleton;
     private Vector2 m_inputVelocity;
 
     private Vector3 m_lastMouseWorldPos = new Vector3(0, 0, 0);
@@ -18,6 +18,9 @@ public class InputManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+		if (s_singleton == null) {
+			s_singleton = this;
+		}
         m_characterController = gameObject.GetComponent<CharacterController>();
         m_playerCharacter = gameObject.GetComponent<PlayerCharacter>();
 	}
