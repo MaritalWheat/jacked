@@ -13,6 +13,7 @@ public class WeaponWheel : MonoBehaviour {
 	
 	private List<float> m_itemContainerAngle; 
 	private List<Rect> m_itemContainers;
+	private List<Weapon> m_item;
 	private Rect m_screen;
 	private const int k_numberOfItems = 8;
 	private float butW = 75f;
@@ -46,6 +47,12 @@ public class WeaponWheel : MonoBehaviour {
 				m_itemContainerAngle[i] += 5;
 			}
 		}	
+		
+		if (WeaponWheel.GetWeaponWheelDisplayStatus()) {
+				GameManager.DisplayWeaponWheel(true);
+			} else {
+				GameManager.DisplayWeaponWheel(false);
+		}
 	}
 	
 	void OnGUI() {
@@ -65,15 +72,16 @@ public class WeaponWheel : MonoBehaviour {
 		
 		GUI.skin = m_skin;
 		int index = 0;
-		GUI.DrawTexture(m_screen, m_blurOverlay);
 		GUI.DrawTexture(new Rect(Screen.width / 2 - radius, Screen.height / 2 - radius, radius * 2, radius * 2), m_circleBackground);
 		foreach (float property in m_itemContainerAngle) {
 			Rect currentContainer = m_itemContainers[index];
 			Vector2 pointToMoveTo = PointOnCircle(radius, property, origin);
 			currentContainer.x = pointToMoveTo.x;
 			currentContainer.y = pointToMoveTo.y;
-			if (GUI.Button(currentContainer, "", GUI.skin.GetStyle("TriShot"))) {
-				nextStopPoint += 45f; //ROTATION IMPLEMENTATION
+			if (GUI.Button(currentContainer, "", GUI.skin.GetStyle("TriShotWeaponButton"))) {
+				PlayerCharacter.SetPlayerWeapon(WeaponManager.GetWeapon("TriShot"));
+				WeaponWheel.DisplayWeaponWheel(false);
+				//nextStopPoint += 45f; //ROTATION IMPLEMENTATION
 			}
 			index++;
 		}

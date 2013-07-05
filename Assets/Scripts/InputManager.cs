@@ -32,11 +32,6 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
 			WeaponWheel.DisplayWeaponWheel(!WeaponWheel.GetWeaponWheelDisplayStatus());
-			if (WeaponWheel.GetWeaponWheelDisplayStatus()) {
-				GameManager.DisplayWeaponWheel(true);
-			} else {
-				GameManager.DisplayWeaponWheel(false);
-			}
 		}
 
         if (!m_enabled) {

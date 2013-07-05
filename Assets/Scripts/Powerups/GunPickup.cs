@@ -4,7 +4,7 @@ using System.Collections;
 public class GunPickup : MonoBehaviour
 {
 
-    public PlayerWeapon m_weapon;
+    public Weapon m_weapon;
 
 
     private SpriteAnimation m_anim;

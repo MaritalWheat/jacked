@@ -7,13 +7,6 @@ public enum PlayerState
     Move,
 }
 
-public enum PlayerWeapon
-{
-    Default,
-    TriShot,
-    Laser
-}
-
 public class PlayerCharacter : MonoBehaviour
 {
     public static PlayerCharacter s_singleton;
@@ -24,7 +17,7 @@ public class PlayerCharacter : MonoBehaviour
     public Vector2 m_orient;
     public Vector3 m_aimDirection;
     public PlayerState m_playerState;
-    public PlayerWeapon m_playerWeapon = PlayerWeapon.Default;
+    public Weapon m_playerWeapon; // = PlayerWeapon.Default;
 
     private float m_damageMod;
     private bool m_enabled = false;
@@ -52,7 +45,6 @@ public class PlayerCharacter : MonoBehaviour
         m_spriteAnimationManager = gameObject.GetComponent<SpriteAnimationManager>();
         m_playerAnimations = gameObject.GetComponent<PlayerAnimations>();
         m_inputManager = gameObject.GetComponent<InputManager>();
-
         SetAnimation(m_playerAnimations.m_playerMoveDown);
 	}
 
@@ -134,37 +126,29 @@ public class PlayerCharacter : MonoBehaviour
 
     public void FireWeapon()
     {
-        switch (m_playerWeapon) {
-            default:    // Fall-through
-            case PlayerWeapon.Default:
-                AudioManager.m_singleton.DefaultGun();
-                Quaternion startingRotation = Quaternion.LookRotation(m_aimDirection);
-                Projectile newProjectile = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_defaultProjectilePrefab, transform.position, startingRotation);
-                break;
+    	if (m_playerWeapon.m_name.Equals("Default")) {
+            AudioManager.m_singleton.DefaultGun();
+            Quaternion startingRotation = Quaternion.LookRotation(m_aimDirection);
+            Projectile newProjectile = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_defaultProjectilePrefab, transform.position, startingRotation);
+		}
 
-            //case PlayerWeapon.RocketLauncher:
-            //    Quaternion startingRotationRL = Quaternion.LookRotation(m_aimDirection);
-            //    Projectile newRLProjectile = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_rocketLauncherPrefab, transform.position, startingRotationRL);
+        if (m_playerWeapon.m_name.Equals("TriShot")) {
+            AudioManager.m_singleton.TriShotGun();
+            Quaternion startingRotation1 = Quaternion.LookRotation(m_aimDirection);
+            Projectile newTriProjectile1 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation1);
 
-            //   break;
+            
+            Vector3 leftDirection = Quaternion.Euler(0, -25, 0) * m_aimDirection;
+            Vector3 RightDirection = Quaternion.Euler(0, 25, 0) * m_aimDirection;
 
-            case PlayerWeapon.TriShot:
-                AudioManager.m_singleton.TriShotGun();
-                Quaternion startingRotation1 = Quaternion.LookRotation(m_aimDirection);
-                Projectile newTriProjectile1 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation1);
- 
-                
-                Vector3 leftDirection = Quaternion.Euler(0, -25, 0) * m_aimDirection;
-                Vector3 RightDirection = Quaternion.Euler(0, 25, 0) * m_aimDirection;
+            Quaternion startingRotation2 = Quaternion.LookRotation(leftDirection);
+            Projectile newTriProjectile2 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation2);
 
-                Quaternion startingRotation2 = Quaternion.LookRotation(leftDirection);
-                Projectile newTriProjectile2 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation2);
+            Quaternion startingRotation3 = Quaternion.LookRotation(RightDirection);
+            Projectile newTriProjectile3 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation3);
 
-                Quaternion startingRotation3 = Quaternion.LookRotation(RightDirection);
-                Projectile newTriProjectile3 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation3);
- 
-                break;
-
+		}
+		/*
             case PlayerWeapon.Laser:
                 AudioManager.m_singleton.LaserGun();
                 Vector3 aimDirectionNormalized = new Vector3(m_aimDirection.x, m_aimDirection.y, m_aimDirection.z);
@@ -172,7 +156,7 @@ public class PlayerCharacter : MonoBehaviour
                 ProjectileManager.s_singleton.SpawnLaser(ProjectileManager.s_singleton.m_laserPrefab, transform.position, aimDirectionNormalized);
                 break;
 
-        }
+        }*/
     }
 
     public int GetMaxHeartRate()
@@ -198,4 +182,9 @@ public class PlayerCharacter : MonoBehaviour
     {
         m_enabled = true;
     }
+	
+	public static void SetPlayerWeapon (Weapon weapon) 
+	{
+		PlayerCharacter.s_singleton.m_playerWeapon = weapon;
+	}
 }
