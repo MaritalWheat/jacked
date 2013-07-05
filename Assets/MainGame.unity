@@ -1825,7 +1825,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
       propertyPath: m_weapons.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
       propertyPath: m_weaponPrefabs.Array.size
@@ -1877,6 +1877,11 @@ Prefab:
       propertyPath: m_weaponPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 3f883740327434e1c96d96868e4f91b8,
+        type: 2}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 34f433b36bcda44939e745667a15128d,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
@@ -5043,8 +5048,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88564a884c4434489ac482fc370a71f5, type: 3}
   m_Name: 
-  m_weaponPrefabs:
+  m_weapons:
   - {fileID: 11400000, guid: 3f883740327434e1c96d96868e4f91b8, type: 2}
+  - {fileID: 11400000, guid: 34f433b36bcda44939e745667a15128d, type: 2}
 --- !u!1 &1334230081
 GameObject:
   m_ObjectHideFlags: 0

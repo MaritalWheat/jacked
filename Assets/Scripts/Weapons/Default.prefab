@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: TriShot
+  m_Name: Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6341ae2779f0a4a2dbf541340bb27aa7, type: 3}
   m_Name: 
   m_skin: {fileID: 11400000, guid: bc3b78920294a7e49a405b3a62e719d6, type: 2}
-  m_name: TriShot
+  m_name: Default
   m_style:
     m_Name: 
     m_Normal:
