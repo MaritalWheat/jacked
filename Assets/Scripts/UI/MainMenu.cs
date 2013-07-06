@@ -25,14 +25,12 @@ public class MainMenu : MonoBehaviour {
     private float screenWidth, screenHeight;
     private HudController hudController;
     private bool playedIntroSound = false;
-    private bool m_menuInPosition = false;
     private List<string> menuButtons = new List<string>() {"Resume", "Options", "Skills", "Quit"};
     private int currentButtonIndex = 0;
     private float m_menuButtonSwitchTimeBuffer = 0f;
     private const float k_menuButtonMinSwitchTime = 25;
 
     private bool m_isSelectButtonPressed;
-    private bool m_resumeGame = false;
     
 	void Start () {
         if (m_singleton == null)
@@ -87,7 +85,6 @@ public class MainMenu : MonoBehaviour {
 
     void DisplayTitleScreen() {
         
-        GUIElement start = new GUIElement();
         if (!playedIntroSound) {
             AudioManager.m_singleton.PlayIntroScreen();
             playedIntroSound = true;

@@ -949,7 +949,7 @@ MonoBehaviour:
   m_orient: {x: 0, y: 0}
   m_aimDirection: {x: 0, y: 0, z: 0}
   m_playerState: 0
-  m_playerWeapon: 0
+  m_playerWeapon: {fileID: 0}
 --- !u!114 &364618466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,6 +1816,83 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 518646278}
   m_Mesh: {fileID: 4300000, guid: 9248df708eb855e4192701a55943a201, type: 2}
+--- !u!1001 &531710524
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1160615467}
+    m_Modifications:
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_weapons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_weaponPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_assignableWeapons.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.45733356e-05
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 91.019989
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.10008621
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f883740327434e1c96d96868e4f91b8,
+        type: 2}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_assignableWeapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f883740327434e1c96d96868e4f91b8,
+        type: 2}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_weaponPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f883740327434e1c96d96868e4f91b8,
+        type: 2}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 34f433b36bcda44939e745667a15128d,
+        type: 2}
+    - target: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+      propertyPath: m_noWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: fce46b79c86694315b17497b2eb2f521,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+  m_RootGameObject: {fileID: 1320429791}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &556608610
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,6 +4216,7 @@ Transform:
   m_Children:
   - {fileID: 1738968851}
   - {fileID: 231239954}
+  - {fileID: 1320429792}
   m_Father: {fileID: 0}
 --- !u!114 &1160615468
 MonoBehaviour:
@@ -4251,8 +4329,6 @@ MonoBehaviour:
   CatPrefab: {fileID: 100000, guid: aa180d26ccbe59b47a73a45d12f88b03, type: 2}
   m_powerups:
   - {fileID: 100000, guid: 40c111911d9462c4bafc455a5ce0c69a, type: 2}
-  - {fileID: 100000, guid: 94ba5498e0443354489c4c230890baca, type: 2}
-  - {fileID: 100000, guid: 66a6379716072a1429141adf0cd434bb, type: 2}
   m_deathDecalPrefab: {fileID: 100000, guid: b4b4126f44a0b9840a94308908b0d7dd, type: 2}
   m_creaturesKilled: 0
   m_catsKilled: 0
@@ -4939,6 +5015,48 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1320429791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+  m_PrefabInternal: {fileID: 531710524}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1320429792}
+  - 114: {fileID: 1320429793}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1320429792
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7, type: 2}
+  m_PrefabInternal: {fileID: 531710524}
+  m_GameObject: {fileID: 1320429791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.45733356e-05, y: 91.019989, z: -1.10008621}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1160615467}
+--- !u!114 &1320429793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 1f0c3bd4a407146e28a1bd1d8be73ac7,
+    type: 2}
+  m_PrefabInternal: {fileID: 531710524}
+  m_GameObject: {fileID: 1320429791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88564a884c4434489ac482fc370a71f5, type: 3}
+  m_Name: 
+  m_weapons:
+  - {fileID: 11400000, guid: 3f883740327434e1c96d96868e4f91b8, type: 2}
+  - {fileID: 11400000, guid: 34f433b36bcda44939e745667a15128d, type: 2}
+  m_noWeapon: {fileID: 11400000, guid: fce46b79c86694315b17497b2eb2f521, type: 2}
 --- !u!1 &1334230081
 GameObject:
   m_ObjectHideFlags: 0

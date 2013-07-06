@@ -26,7 +26,7 @@ public class HudController : MonoBehaviour {
     //Placeholders for real values
     private int heartRate = 100;
     private int score = 100000;
-    private float heartScale = 1f;
+    //private float heartScale = 1f;
 
     private float m_lastBeat = 0.0f;
     private bool beatHeartUp = true;
@@ -69,7 +69,7 @@ public class HudController : MonoBehaviour {
         {
             score = (int)GameManager.s_singleton.m_score;
             heartRate = PlayerCharacter.s_singleton.m_heartRate;
-            heartScale = (heartRate * 1.0f) / 300.0f;
+            //heartScale = (heartRate * 1.0f) / 300.0f;
             BeatHeart();
         }
 	}

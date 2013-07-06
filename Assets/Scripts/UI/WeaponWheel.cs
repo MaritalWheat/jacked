@@ -13,7 +13,7 @@ public class WeaponWheel : MonoBehaviour {
 	
 	private List<float> m_itemContainerAngle; 
 	private List<Rect> m_itemContainers;
-	private Rect m_screen;
+	private List<Weapon> m_item;
 	private const int k_numberOfItems = 8;
 	private float butW = 75f;
 	private float butH = 75f;	
@@ -22,7 +22,7 @@ public class WeaponWheel : MonoBehaviour {
 	private float nextStopPoint = 0f;
 	private bool m_display;
 	private bool m_startedDisplay = false;
-	private bool m_finishedStartingDisplay = false;
+	//private bool m_finishedStartingDisplay = false;
 	
 	
 	
@@ -30,7 +30,6 @@ public class WeaponWheel : MonoBehaviour {
 		if (m_singleton == null) {
 			m_singleton = this;
 		}
-		m_screen = new Rect(0, 0, Screen.width, Screen.height);
 		m_itemContainerAngle = new List<float>();
 		m_itemContainers = new List<Rect>();
 		for (int i = 0; i < k_numberOfItems; i++) {
@@ -46,6 +45,12 @@ public class WeaponWheel : MonoBehaviour {
 				m_itemContainerAngle[i] += 5;
 			}
 		}	
+		
+		if (WeaponWheel.GetWeaponWheelDisplayStatus()) {
+				GameManager.DisplayWeaponWheel(true);
+			} else {
+				GameManager.DisplayWeaponWheel(false);
+		}
 	}
 	
 	void OnGUI() {
@@ -65,16 +70,21 @@ public class WeaponWheel : MonoBehaviour {
 		
 		GUI.skin = m_skin;
 		int index = 0;
-		GUI.DrawTexture(m_screen, m_blurOverlay);
 		GUI.DrawTexture(new Rect(Screen.width / 2 - radius, Screen.height / 2 - radius, radius * 2, radius * 2), m_circleBackground);
 		foreach (float property in m_itemContainerAngle) {
 			Rect currentContainer = m_itemContainers[index];
 			Vector2 pointToMoveTo = PointOnCircle(radius, property, origin);
 			currentContainer.x = pointToMoveTo.x;
 			currentContainer.y = pointToMoveTo.y;
-			if (GUI.Button(currentContainer, "", GUI.skin.GetStyle("TriShot"))) {
-				nextStopPoint += 45f; //ROTATION IMPLEMENTATION
-			}
+			if (index < WeaponManager.m_singleton.m_weapons.Count) {
+				if (GUI.Button(currentContainer, "", WeaponManager.m_singleton.m_weapons[index].m_style)) {
+					PlayerCharacter.SetPlayerWeapon(WeaponManager.GetWeapon(WeaponManager.m_singleton.m_weapons[index].m_name));
+					WeaponWheel.DisplayWeaponWheel(false);
+					//nextStopPoint += 45f; //ROTATION IMPLEMENTATION
+				}
+			} else {
+				GUI.Button(currentContainer, "", WeaponManager.m_singleton.m_noWeapon.m_style);
+			}				
 			index++;
 		}
 	}
@@ -90,7 +100,7 @@ public class WeaponWheel : MonoBehaviour {
 	
 	public static void DisplayWeaponWheel(bool display) {
 		m_singleton.m_display = display;
-		if (display = true) {
+		if (display == true) {
 			m_singleton.m_startedDisplay = true;
 		}
 	}
