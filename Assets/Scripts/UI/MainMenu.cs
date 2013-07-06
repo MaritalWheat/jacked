@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour {
     private HudController hudController;
     private bool playedIntroSound = false;
     private bool m_menuInPosition = false;
-    private List<string> menuButtons = new List<string>() {"Resume", "Options", "Button1", "Quit"};
+    private List<string> menuButtons = new List<string>() {"Resume", "Options", "Skills", "Quit"};
     private int currentButtonIndex = 0;
     private float m_menuButtonSwitchTimeBuffer = 0f;
     private const float k_menuButtonMinSwitchTime = 25;

@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour {
         }
 
         if (onSpree) {
-            Debug.Log("On Spree");
+            //Debug.Log("On Spree");
             if (spreeCount == 0) {
                 startOfSpreeCount = (int)m_creaturesKilled;
                 spreeCount++;
@@ -99,9 +99,9 @@ public class GameManager : MonoBehaviour {
             }
             else {
                 spreeCount = (int)(m_creaturesKilled - startOfSpreeCount);
-                Debug.Log("Spree Count: " + spreeCount);
+                //Debug.Log("Spree Count: " + spreeCount);
             }
-            Debug.Log("Spree Count End: " + spreeCount);
+            //Debug.Log("Spree Count End: " + spreeCount);
         }
         if (!m_enabled)
         {

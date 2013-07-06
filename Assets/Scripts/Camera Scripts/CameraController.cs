@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour
         floor = GameObject.Find("Level").transform.FindChild("Floor").gameObject;
         maxXFromCenter = floor.transform.GetComponent<BoxCollider>().bounds.extents.x * .575f;
         maxYFromCenter = floor.transform.GetComponent<BoxCollider>().bounds.extents.z * .505f;
-        Debug.Log(floor.transform.GetComponent<BoxCollider>().bounds.extents);
     }
 
     // Update is called once per frame
