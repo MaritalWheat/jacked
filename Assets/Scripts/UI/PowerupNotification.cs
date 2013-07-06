@@ -10,7 +10,7 @@ public class PowerupNotification : MonoBehaviour {
     private string m_message;
     private Rect m_notificationRect;
     private float m_duration;
-    private float m_startTime;
+    //private float m_startTime;
     private bool m_display = false;
 
 
@@ -62,7 +62,7 @@ public class PowerupNotification : MonoBehaviour {
         Vector2 size = m_style.CalcSize(new GUIContent(message));
         m_notificationRect = new Rect(Screen.width/2 - (size.x/2), Screen.height, size.x, size.y);
         m_duration = duration;
-        m_startTime = Time.time;
+        //m_startTime = Time.time;
         m_display = true;
     }
 
@@ -73,7 +73,7 @@ public class PowerupNotification : MonoBehaviour {
         Vector2 size = m_style.CalcSize(new GUIContent(message));
         m_notificationRect = new Rect(Screen.width / 2 - (size.x / 2), Screen.height, size.x, size.y);
         m_duration = duration;
-        m_startTime = Time.time;
+        //m_startTime = Time.time;
         m_display = true;
     }
 
@@ -84,7 +84,7 @@ public class PowerupNotification : MonoBehaviour {
         Vector2 size = m_style.CalcSize(new GUIContent(message));
         m_notificationRect = new Rect(Screen.width / 2 - (size.x / 2), Screen.height, size.x, size.y);
         m_duration = duration;
-        m_startTime = Time.time;
+        //m_startTime = Time.time;
         m_display = true;
     }
 }

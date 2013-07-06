@@ -129,23 +129,23 @@ public class PlayerCharacter : MonoBehaviour
     	if (m_playerWeapon.m_name.Equals("Default")) {
             AudioManager.m_singleton.DefaultGun();
             Quaternion startingRotation = Quaternion.LookRotation(m_aimDirection);
-            Projectile newProjectile = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_defaultProjectilePrefab, transform.position, startingRotation);
+            ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_defaultProjectilePrefab, transform.position, startingRotation);
 		}
 
         if (m_playerWeapon.m_name.Equals("TriShot")) {
             AudioManager.m_singleton.TriShotGun();
             Quaternion startingRotation1 = Quaternion.LookRotation(m_aimDirection);
-            Projectile newTriProjectile1 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation1);
+            ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation1);
 
             
             Vector3 leftDirection = Quaternion.Euler(0, -25, 0) * m_aimDirection;
             Vector3 RightDirection = Quaternion.Euler(0, 25, 0) * m_aimDirection;
 
             Quaternion startingRotation2 = Quaternion.LookRotation(leftDirection);
-            Projectile newTriProjectile2 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation2);
+            ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation2);
 
             Quaternion startingRotation3 = Quaternion.LookRotation(RightDirection);
-            Projectile newTriProjectile3 = ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation3);
+            ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_triShotProjectilePrefab, transform.position, startingRotation3);
 
 		}
 		/*

@@ -14,7 +14,6 @@ public class WeaponWheel : MonoBehaviour {
 	private List<float> m_itemContainerAngle; 
 	private List<Rect> m_itemContainers;
 	private List<Weapon> m_item;
-	private Rect m_screen;
 	private const int k_numberOfItems = 8;
 	private float butW = 75f;
 	private float butH = 75f;	
@@ -23,7 +22,7 @@ public class WeaponWheel : MonoBehaviour {
 	private float nextStopPoint = 0f;
 	private bool m_display;
 	private bool m_startedDisplay = false;
-	private bool m_finishedStartingDisplay = false;
+	//private bool m_finishedStartingDisplay = false;
 	
 	
 	
@@ -31,7 +30,6 @@ public class WeaponWheel : MonoBehaviour {
 		if (m_singleton == null) {
 			m_singleton = this;
 		}
-		m_screen = new Rect(0, 0, Screen.width, Screen.height);
 		m_itemContainerAngle = new List<float>();
 		m_itemContainers = new List<Rect>();
 		for (int i = 0; i < k_numberOfItems; i++) {
@@ -102,7 +100,7 @@ public class WeaponWheel : MonoBehaviour {
 	
 	public static void DisplayWeaponWheel(bool display) {
 		m_singleton.m_display = display;
-		if (display = true) {
+		if (display == true) {
 			m_singleton.m_startedDisplay = true;
 		}
 	}

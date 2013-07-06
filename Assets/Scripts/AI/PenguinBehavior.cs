@@ -12,7 +12,7 @@ public class PenguinBehavior : EnemyBehavior {
 	private Vector3 target;
     private bool m_slideStarted;
 	private float slideTime;
-    private SpriteAnimation m_idleAnimation;
+    //private SpriteAnimation m_idleAnimation;
 
 	
 	void LateUpdate(){
@@ -22,7 +22,7 @@ public class PenguinBehavior : EnemyBehavior {
 
     public override void OnStart() {
  	    base.OnStart();
-        m_idleAnimation = m_idleLeftAnimation;
+        //m_idleAnimation = m_idleLeftAnimation;
     }
 
     public override void OnUpdate() {
