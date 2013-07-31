@@ -22,6 +22,7 @@ public class PenguinBehavior : EnemyBehavior {
 
     public override void OnStart() {
  	    base.OnStart();
+        //m_experiencePoints = 4;
         //m_idleAnimation = m_idleLeftAnimation;
     }
 

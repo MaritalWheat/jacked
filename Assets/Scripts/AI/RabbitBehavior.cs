@@ -68,7 +68,7 @@ public class RabbitBehavior : EnemyBehavior {
 
     public override void GetDamaged(int damage) {
         base.GetDamaged(damage);
-        if (m_health < 0) {
+        if (m_health <= 0) {
             GameManager.s_singleton.m_score += 100;
             DieandMultiply();
         }

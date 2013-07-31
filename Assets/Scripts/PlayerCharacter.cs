@@ -19,6 +19,8 @@ public class PlayerCharacter : MonoBehaviour
     public PlayerState m_playerState;
     public Weapon m_playerWeapon; // = PlayerWeapon.Default;
 
+    public int experiencePoints { set; get; }
+
     private float m_damageMod;
     private bool m_enabled = false;
     

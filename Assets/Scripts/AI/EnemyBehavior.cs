@@ -8,6 +8,7 @@ public class EnemyBehavior : MonoBehaviour {
     protected bool m_isHit;
     protected float m_timeBuffer;
     protected float starting_y;
+    protected int m_experiencePoints = 1;
     
     public float m_speed;
     public int m_damage;
@@ -71,11 +72,13 @@ public class EnemyBehavior : MonoBehaviour {
     }
 
     public virtual void GetDamaged(int damage){
+        //Debug.Log("Health is " + m_health + ", Damage is " + damage);
         m_health -= damage;
         GameObject notification = (GameObject)Instantiate(HudController.s_singleton.NotificationPrefab);
         Vector3 notificationPos = Camera.main.WorldToScreenPoint(transform.position);
         notification.GetComponent<FloatingText>().Display(damage.ToString(), new Vector2(notificationPos.x, Screen.height - notificationPos.y), 3.0f);
         if (m_health <= 0) {
+            m_playerCharacter.experiencePoints += m_experiencePoints;
             GameManager.s_singleton.m_creaturesKilled++;
             GameManager.s_singleton.SetSpreeStatus(true);
         }

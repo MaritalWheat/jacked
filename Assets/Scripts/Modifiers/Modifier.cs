@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Modifier : MonoBehaviour {
 
+    public bool isReversable;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -13,8 +15,7 @@ public class Modifier : MonoBehaviour {
 	
 	}
 
-    public virtual void Execute()
-    {
+    public virtual void Execute() {}
 
-    }
+    public virtual void Reverse() { }
 }

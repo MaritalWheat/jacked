@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
     private GameObject m_enemies;
     private GameObject m_deathDecalsHolder;
     private bool m_currentWaveFinished = true;
-    private int m_currentWaveNumber = 20;
+    private int m_currentWaveNumber = 10;
     private bool m_enabled = false;
     private float m_timeUntilNextWave = 5.0f;
     private bool m_paused = false;
@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour {
             StartWave();
         }
 
-        if (Random.value > .999)
+        if (Random.value > .99)
         {
             SpawnPowerup();
         }

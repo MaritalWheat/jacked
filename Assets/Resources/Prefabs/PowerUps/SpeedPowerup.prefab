@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 114: {fileID: 11400000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: SpeedPowerup
   m_TagString: Untagged
@@ -77,10 +77,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8511fa0811dba34b8f6399b8f2fb57b, type: 3}
+  m_Script: {fileID: 11500000, guid: d9ae15aa3e9d4b942a33c18067b177a5, type: 3}
   m_Name: 
-  m_speedIncrease: 10
+  Modifiers:
+  - {fileID: 11400000, guid: bc92fbdfa1ca47046bc332d53aa90dc5, type: 2}
+  - {fileID: 11400000, guid: fe147cd64e27b30429db4bc67604399c, type: 2}
+  timeOnscreen: 10
+  notificationMessage: Speed Increase
   m_effectDuration: 15
+  reverseOnComplete: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
