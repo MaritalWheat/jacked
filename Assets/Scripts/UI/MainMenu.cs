@@ -76,14 +76,14 @@ public class MainMenu : MonoBehaviour {
     {
         if (m_displayTitleScreen)
         {
-            DisplayTitleScreen();
+            DrawTitleScreen();
         } else {
-            Display();
+            DrawMainMenu();
         }
 
     }
 
-    void DisplayTitleScreen() {
+    void DrawTitleScreen() {
         
         if (!playedIntroSound) {
             AudioManager.m_singleton.PlayIntroScreen();
@@ -104,7 +104,7 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    void Display()
+    void DrawMainMenu()
     {
         
         GUI.BeginGroup(new Rect(m_positionButtonsGroupOne, Screen.height / 3, 200, 400));
@@ -186,13 +186,13 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    public void Display(bool display)
+    public static void DisplayMainMenu(bool display)
     {
-        m_display = display;
+        MainMenu.m_singleton.m_display = display;
     }
 
-    public void DisplayTitleScreen(bool display) 
+    public static void DisplayTitleScreen(bool display) 
     {
-        m_displayTitleScreen = display;
+        MainMenu.m_singleton.m_displayTitleScreen = display;
     }
 }

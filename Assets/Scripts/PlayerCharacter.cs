@@ -17,15 +17,15 @@ public class PlayerCharacter : MonoBehaviour
     public Vector2 m_orient;
     public Vector3 m_aimDirection;
     public PlayerState m_playerState;
-    public Weapon m_playerWeapon; // = PlayerWeapon.Default;
+    public Weapon m_playerWeapon;
 
     private float m_damageMod;
     private bool m_enabled = false;
     
     private SpriteAnimation m_currentAnimation;
 
-    private const int PLAYER_MAX_HEARTRATE = 225;
-    private const int PLAYER_MIN_HEARTRATE = 0;
+    private const int k_maxPlayerHeartRate = 225;
+    private const int k_minPlayerHeartRate = 0;
 
     //private SpriteAnimations
     private PlayerAnimations m_playerAnimations;
@@ -34,7 +34,6 @@ public class PlayerCharacter : MonoBehaviour
     //Decrease heart rate when it reaches 0, then reset
     private float m_decreaseHeartRate;
 
-	// Use this for initialization
 	void Start ()
     {
         if (s_singleton == null)
@@ -48,7 +47,6 @@ public class PlayerCharacter : MonoBehaviour
         SetAnimation(m_playerAnimations.m_playerMoveDown);
 	}
 
-	// Update is called once per frame
 	void Update () {
         if (!m_enabled)
         {
@@ -60,8 +58,8 @@ public class PlayerCharacter : MonoBehaviour
             m_decreaseHeartRate = .7f;
         }
 
-        m_characterSpeed = m_maxCharacterSpeed * (((float)(m_heartRate +  PLAYER_MIN_HEARTRATE)) / (float)(PLAYER_MAX_HEARTRATE - PLAYER_MIN_HEARTRATE));
-        m_damageMod = 2.0f*(((float)(PLAYER_MAX_HEARTRATE - (m_heartRate + PLAYER_MIN_HEARTRATE))) / (float)(PLAYER_MAX_HEARTRATE - PLAYER_MIN_HEARTRATE));
+        m_characterSpeed = m_maxCharacterSpeed * (((float)(m_heartRate +  k_minPlayerHeartRate)) / (float)(k_maxPlayerHeartRate - k_minPlayerHeartRate));
+        m_damageMod = 2.0f*(((float)(k_maxPlayerHeartRate - (m_heartRate + k_minPlayerHeartRate))) / (float)(k_maxPlayerHeartRate - k_minPlayerHeartRate));
 
 
         m_decreaseHeartRate -= Time.deltaTime;
@@ -94,7 +92,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         m_heartRate -= amountToSlow;
 
-        if (m_heartRate < PLAYER_MIN_HEARTRATE)
+        if (m_heartRate < k_minPlayerHeartRate)
         {
             PlayerDied();
         }
@@ -104,7 +102,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         m_heartRate += amountToIncrease;
 
-        if (m_heartRate > PLAYER_MAX_HEARTRATE)
+        if (m_heartRate > k_maxPlayerHeartRate)
         {
             PlayerDied();
         }
@@ -161,12 +159,12 @@ public class PlayerCharacter : MonoBehaviour
 
     public int GetMaxHeartRate()
     {
-        return PLAYER_MAX_HEARTRATE;
+        return k_maxPlayerHeartRate;
     }
 
     public int GetMinHeartRate()
     {
-        return PLAYER_MIN_HEARTRATE;
+        return k_minPlayerHeartRate;
     }
 
     public float GetDamageMod()
