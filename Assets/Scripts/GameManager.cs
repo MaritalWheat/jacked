@@ -260,13 +260,13 @@ public class GameManager : MonoBehaviour {
 
     public void Pause(bool enable)
     {
-        MainMenu.m_singleton.m_display = enable;
+        MainMenu.DisplayMainMenu(enable);
         m_paused = enable;
     }
 
     public void Resume()
     {
-        MainMenu.m_singleton.m_display = false;
+        MainMenu.DisplayMainMenu(false);
     }
 
     public void Reset()
