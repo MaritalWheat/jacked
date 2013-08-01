@@ -18,7 +18,7 @@ public class ScrollingText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameManager.s_singleton.IsPaused())
+        if (GameManager.IsPaused())
         {
             return;
         }
@@ -34,7 +34,7 @@ public class ScrollingText : MonoBehaviour {
 
     void OnGUI()
     {
-        if (GameManager.s_singleton.IsPaused())
+        if (GameManager.IsPaused())
         {
             return;
         }

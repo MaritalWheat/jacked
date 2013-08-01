@@ -253,18 +253,18 @@ public class GameManager : MonoBehaviour {
         return m_currentWaveNumber;
     }
 
-    public bool IsPaused()
+    public static bool IsPaused()
     {
-        return m_paused;
+        return GameManager.s_singleton.m_paused;
     }
 
-    public void Pause(bool enable)
+    public static void Pause(bool enable)
     {
         MainMenu.DisplayMainMenu(enable);
-        m_paused = enable;
+        GameManager.s_singleton.m_paused = enable;
     }
 
-    public void Resume()
+    public static void Resume()
     {
         MainMenu.DisplayMainMenu(false);
     }

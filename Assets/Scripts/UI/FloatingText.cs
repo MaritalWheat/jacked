@@ -19,7 +19,7 @@ public class FloatingText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameManager.s_singleton.IsPaused())
+        if (GameManager.IsPaused())
         {
             return;
         }
@@ -37,7 +37,7 @@ public class FloatingText : MonoBehaviour {
 
     void OnGUI()
     {
-        if (GameManager.s_singleton.IsPaused())
+        if (GameManager.IsPaused())
         {
             return;
         }

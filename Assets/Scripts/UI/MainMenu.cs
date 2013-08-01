@@ -68,7 +68,7 @@ public class MainMenu : MonoBehaviour {
             m_isSelectButtonPressed = false;
         }
         if (menuButtons[currentButtonIndex].Equals("Resume") && Input.GetButtonDown("ButtonA")) {
-            GameManager.s_singleton.Resume();
+            GameManager.Resume();
         }
 	}
 
@@ -109,7 +109,7 @@ public class MainMenu : MonoBehaviour {
         
         GUI.BeginGroup(new Rect(m_positionButtonsGroupOne, Screen.height / 3, 200, 400));
         GUI.SetNextControlName("Resume");
-        if (GUI.Button(m_resumeRect, "RESUME", skin.GetStyle("Button"))) GameManager.s_singleton.Resume();
+        if (GUI.Button(m_resumeRect, "RESUME", skin.GetStyle("Button"))) GameManager.Resume();
         GUI.SetNextControlName("Button1");
         GUI.Button(m_button3Rect, "BUTTON", skin.GetStyle("Button"));
         GUI.EndGroup();
@@ -124,7 +124,7 @@ public class MainMenu : MonoBehaviour {
                 m_positionButtonsGroupOne -= Screen.width / 35;
             } else if (m_positionButtonsGroupOne <= 0 - 200) {
                 m_positionButtonsGroupOne = 0 - 200; 
-                GameManager.s_singleton.Pause(false);
+                GameManager.Pause(false);
             }
         }
 
@@ -145,7 +145,7 @@ public class MainMenu : MonoBehaviour {
                 m_positionButtonsGroupTwo += Screen.width / 30;
             } else if (m_positionButtonsGroupTwo >= Screen.width) {
                 m_positionButtonsGroupTwo = Screen.width;
-                GameManager.s_singleton.Pause(false);
+                GameManager.Pause(false);
             }
         }
 		

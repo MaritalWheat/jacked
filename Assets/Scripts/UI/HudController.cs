@@ -60,7 +60,7 @@ public class HudController : MonoBehaviour {
         }
 
         //Everything after this will not be executed if the game is paused
-        if (GameManager.s_singleton.IsPaused())
+        if (GameManager.IsPaused())
         {
             return;
         }
