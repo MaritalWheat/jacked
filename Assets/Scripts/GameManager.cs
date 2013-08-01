@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour {
     private const float k_maxSlowMoTime = .2f;
 	
 	private bool m_displayWeaponWheel = false;
+	private bool m_postWave;
 
 	// Use this for initialization
 	void Start () {
@@ -119,7 +120,7 @@ public class GameManager : MonoBehaviour {
             m_enemiesLeftToSpawn--;
         }
 
-        if (m_enemies.transform.childCount == 0 && !m_currentWaveFinished)
+        if (m_enemies.transform.childCount == 0 && !m_currentWaveFinished && !m_postWave)
         {
             m_currentWaveFinished = true;
             m_currentWaveNumber++;
@@ -133,10 +134,20 @@ public class GameManager : MonoBehaviour {
             m_timeUntilNextWave -= Time.deltaTime;
         }
 
-        if (m_currentWaveFinished && m_timeUntilNextWave <= 0.0f)
-        {
-            StartWave();
-        }
+       	if (m_currentWaveFinished) {
+			m_currentWaveFinished = false;
+			StartPostWave();					
+		}
+	 
+		if (m_postWave) {
+			if (Store.CheckStoreClosed()) {
+				m_postWave = false; 
+				StartWave();
+				Debug.Log ("Got here.");	
+			}
+		}
+			
+			
 
         if (Random.value > .99)
         {
@@ -145,7 +156,12 @@ public class GameManager : MonoBehaviour {
 
         
 	}
-
+	
+	private void StartPostWave() {
+		Store.DisplayStore();
+		m_postWave = true;
+	}
+	
     private bool SlowMo() {
         if (m_slowMoTime <= k_maxSlowMoTime) {
             m_slowMoTime += Time.deltaTime;
@@ -156,7 +172,12 @@ public class GameManager : MonoBehaviour {
             return false;
         }
     }
-
+	
+		
+	private bool RoundBreak() {
+		return Store.CheckStoreClosed();
+	}
+	
     private void StartWave()
     {
 
@@ -174,7 +195,6 @@ public class GameManager : MonoBehaviour {
         //    Spawn(m_enemiesList[random]);
         //}
         m_enemiesLeftToSpawn = NumberOfEnemies();//Mathf.Max(NumberOfEnemies() - MAX_ENEMIES_ON_SCREEN, 0);
-        m_currentWaveFinished = false;
     }
     
     private GameObject Spawn(GameObject prefab)
