@@ -120,15 +120,7 @@ public class GameManager : MonoBehaviour {
             m_enemiesLeftToSpawn--;
         }
 
-        if (m_enemies.transform.childCount == 0 && !m_currentWaveFinished && !m_postWave)
-        {
-            m_currentWaveFinished = true;
-            m_currentWaveNumber++;
-            GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
-            notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
-            m_timeUntilNextWave = 3.0F;
-        }
-
+        
         if (m_timeUntilNextWave > 0)
         {
             m_timeUntilNextWave -= Time.deltaTime;
@@ -138,10 +130,20 @@ public class GameManager : MonoBehaviour {
 			m_currentWaveFinished = false;
 			StartPostWave();					
 		}
-	 
+
+	    if (m_enemies.transform.childCount == 0 && !m_currentWaveFinished && !m_postWave)
+        {
+            m_currentWaveFinished = true;
+            m_currentWaveNumber++;
+
+        }
+
 		if (m_postWave) {
 			if (Store.CheckStoreClosed()) {
-				m_postWave = false; 
+				m_postWave = false;             
+                GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
+                notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+                m_timeUntilNextWave = 3.0F;
 				StartWave();
 				Debug.Log ("Got here.");	
 			}
@@ -260,10 +262,10 @@ public class GameManager : MonoBehaviour {
         {
             PlayerCharacter.s_singleton.StartPlayer();
             m_timeUntilNextWave = 5.0f;
-            GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
-            notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
-            GameObject getJacked = (GameObject)Instantiate(HudController.s_singleton.PowerupNotification);
-            getJacked.GetComponent<PowerupNotification>().DisplayMedium("GET JACKED!", 3.0f);
+            //GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
+            //notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+            //GameObject getJacked = (GameObject)Instantiate(HudController.s_singleton.PowerupNotification);
+            //getJacked.GetComponent<PowerupNotification>().DisplayMedium("GET JACKED!", 3.0f);
         }
         m_enabled = enable;
     }
