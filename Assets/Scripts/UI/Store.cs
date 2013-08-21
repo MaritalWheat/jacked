@@ -16,13 +16,16 @@ public class Store : MonoBehaviour {
 
     public GUIStyle m_boxStyle;
     public GUIStyle m_buttonStyle;
+    public GUIStyle m_listStyle;
+
+    private Vector2 m_scrollPos = Vector2.zero;
 	
 	void Start() {
 		if (m_singleton == null) {
 			m_singleton = this;
 		}
 		
-		m_storeBounds = new Rect(Screen.width * .10f, Screen.width * .10f, Screen.width * .8f, Screen.height * .8f);
+		m_storeBounds = new Rect(Screen.width * .10f, Screen.height * .10f, Screen.width * .8f, Screen.height * .8f);
         m_bottomButtonLeftBounds = new Rect(m_storeBounds.width * .01f, m_storeBounds.height - m_storeBounds.height * .01f - m_storeBounds.height * .1f, m_storeBounds.width * .97f / 2, m_storeBounds.height * .1f);
         m_bottomButtonRightBounds = new Rect(m_bottomButtonLeftBounds.xMax + m_storeBounds.width * .01f, m_bottomButtonLeftBounds.y, m_bottomButtonLeftBounds.width, m_bottomButtonLeftBounds.height);
 		m_headerBounds = new Rect (m_storeBounds.width * .01f, m_storeBounds.height * .015f, m_storeBounds.width * .98f, m_storeBounds.height * .15f);
@@ -43,7 +46,28 @@ public class Store : MonoBehaviour {
         GUI.Button(m_bottomButtonRightBounds, "Button", m_buttonStyle);
 		GUI.Box(m_itemListBounds, "", m_boxStyle);
 		GUI.Box(m_selectedItemBounds, "", m_boxStyle);
-		GUI.EndGroup();
+
+        GUI.BeginGroup(m_itemListBounds);
+        GUI.Button(new Rect(0, 10, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 40, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 70, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 100, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 130, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 160, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 190, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 220, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 250, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 280, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.Button(new Rect(0, 310, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        GUI.EndGroup();
+
+        m_scrollPos = GUI.BeginScrollView(new Rect(m_itemListBounds.left, m_itemListBounds.top, m_itemListBounds.width, m_itemListBounds.height + 500), m_scrollPos, m_itemListBounds);
+        GUI.Button(new Rect(0, 0, 100, 100), "", m_buttonStyle);
+        GUI.EndScrollView();
+        
+        GUI.EndGroup();
+
+        
 	}
 	
 	public static void DisplayStore() {
