@@ -12,7 +12,7 @@ public class SkillManager : MonoBehaviour {
     ///////////////////////////////////////
 
     public bool display { get; set; }
-    private Dictionary<string, Skill> purchasedSkills;
+    private Dictionary<string, Skill> purchasedSkills =  new Dictionary<string,Skill>();
     public List<Skill> skills;
 
 	// Use this for initialization
@@ -22,7 +22,11 @@ public class SkillManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(PurchaseSkill(skills[0]));
+        }
 	}
 
     void OnGUI()
@@ -32,9 +36,21 @@ public class SkillManager : MonoBehaviour {
         }
     }
 
-    public bool IsUnlocked(Skill skillToCheck)
+    /// <summary>
+    /// This function will return true only if the Player has already purchased the prequisites for the skill and has enough XP to purchase the skill
+    /// </summary>
+    /// <param name="skillToCheck"></param>
+    /// <returns></returns>
+    public bool CanPurchase(Skill skillToCheck)
     {
-        return IsPurchased(skillToCheck.preReq.skillName);
+        if (skillToCheck.preReq != null)
+        {
+            return IsPurchased(skillToCheck.preReq.skillName) && skillToCheck.cost <= PlayerCharacter.s_singleton.experiencePoints;
+        }
+        else
+        {
+            return skillToCheck.cost <= PlayerCharacter.s_singleton.experiencePoints;
+        }
     }
 
     public bool IsPurchased(string skillName)
@@ -42,8 +58,14 @@ public class SkillManager : MonoBehaviour {
         return purchasedSkills.ContainsKey(skillName);
     }
 
-    public void PurchaseSkill(Skill skillToPurchase)
+    public bool PurchaseSkill(Skill skillToPurchase)
     {
-        purchasedSkills.Add(skillToPurchase.skillName, skillToPurchase);
+        if (CanPurchase(skillToPurchase))
+        {
+            PlayerCharacter.s_singleton.experiencePoints -= skillToPurchase.cost;
+            purchasedSkills.Add(skillToPurchase.skillName, skillToPurchase);
+            return true;
+        }
+        return false;
     }
 }

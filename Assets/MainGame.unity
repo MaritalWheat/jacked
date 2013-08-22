@@ -4197,6 +4197,7 @@ GameObject:
   - 114: {fileID: 1160615469}
   - 82: {fileID: 1160615470}
   - 114: {fileID: 1160615471}
+  - 114: {fileID: 1160615472}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4333,6 +4334,18 @@ MonoBehaviour:
   m_creaturesKilled: 0
   m_catsKilled: 0
   m_score: 0
+--- !u!114 &1160615472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1160615466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b121ab248f89747b7bf3ac8865e385, type: 3}
+  m_Name: 
+  skills:
+  - {fileID: 11400000, guid: 8b6bdb0ef765cfd4f899e79eded298c7, type: 2}
 --- !u!1 &1185994811
 GameObject:
   m_ObjectHideFlags: 0
