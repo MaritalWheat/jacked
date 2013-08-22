@@ -28,7 +28,7 @@ public class Powerup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameManager.s_singleton.IsPaused())
+        if (GameManager.IsPaused())
         {
             return;
         }

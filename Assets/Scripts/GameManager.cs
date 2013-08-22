@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour {
     private const float k_maxSlowMoTime = .2f;
 	
 	private bool m_displayWeaponWheel = false;
+	private bool m_postWave;
 
 	// Use this for initialization
 	void Start () {
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (m_paused) {
+        if (m_paused  || !Store.CheckStoreClosed()) {
             Time.timeScale = 0f;
         } else if (m_slowMoOn) {
             Time.timeScale = 0.1f;
@@ -119,24 +120,37 @@ public class GameManager : MonoBehaviour {
             m_enemiesLeftToSpawn--;
         }
 
-        if (m_enemies.transform.childCount == 0 && !m_currentWaveFinished)
-        {
-            m_currentWaveFinished = true;
-            m_currentWaveNumber++;
-            GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
-            notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
-            m_timeUntilNextWave = 3.0F;
-        }
-
+        
         if (m_timeUntilNextWave > 0)
         {
             m_timeUntilNextWave -= Time.deltaTime;
         }
 
-        if (m_currentWaveFinished && m_timeUntilNextWave <= 0.0f)
+       	if (m_currentWaveFinished) {
+			m_currentWaveFinished = false;
+			StartPostWave();					
+		}
+
+	    if (m_enemies.transform.childCount == 0 && !m_currentWaveFinished && !m_postWave)
         {
-            StartWave();
+            m_currentWaveFinished = true;
+            m_currentWaveNumber++;
+
         }
+
+		if (m_postWave) {
+			if (Store.CheckStoreClosed()) {
+                HudController.s_singleton.Display(true);
+				m_postWave = false;             
+                GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
+                notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+                m_timeUntilNextWave = 3.0F;
+				StartWave();
+				Debug.Log ("Got here.");	
+			}
+		}
+			
+			
 
         if (Random.value > .99)
         {
@@ -145,7 +159,13 @@ public class GameManager : MonoBehaviour {
 
         
 	}
-
+	
+	private void StartPostWave() {
+        HudController.s_singleton.Display(false);
+		Store.DisplayStore();
+		m_postWave = true;
+	}
+	
     private bool SlowMo() {
         if (m_slowMoTime <= k_maxSlowMoTime) {
             m_slowMoTime += Time.deltaTime;
@@ -156,7 +176,12 @@ public class GameManager : MonoBehaviour {
             return false;
         }
     }
-
+	
+		
+	private bool RoundBreak() {
+		return Store.CheckStoreClosed();
+	}
+	
     private void StartWave()
     {
 
@@ -174,7 +199,6 @@ public class GameManager : MonoBehaviour {
         //    Spawn(m_enemiesList[random]);
         //}
         m_enemiesLeftToSpawn = NumberOfEnemies();//Mathf.Max(NumberOfEnemies() - MAX_ENEMIES_ON_SCREEN, 0);
-        m_currentWaveFinished = false;
     }
     
     private GameObject Spawn(GameObject prefab)
@@ -240,10 +264,10 @@ public class GameManager : MonoBehaviour {
         {
             PlayerCharacter.s_singleton.StartPlayer();
             m_timeUntilNextWave = 5.0f;
-            GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
-            notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
-            GameObject getJacked = (GameObject)Instantiate(HudController.s_singleton.PowerupNotification);
-            getJacked.GetComponent<PowerupNotification>().DisplayMedium("GET JACKED!", 3.0f);
+            //GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
+            //notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+            //GameObject getJacked = (GameObject)Instantiate(HudController.s_singleton.PowerupNotification);
+            //getJacked.GetComponent<PowerupNotification>().DisplayMedium("GET JACKED!", 3.0f);
         }
         m_enabled = enable;
     }
@@ -253,18 +277,18 @@ public class GameManager : MonoBehaviour {
         return m_currentWaveNumber;
     }
 
-    public bool IsPaused()
+    public static bool IsPaused()
     {
-        return m_paused;
+        return GameManager.s_singleton.m_paused;
     }
 
-    public void Pause(bool enable)
+    public static void Pause(bool enable)
     {
         MainMenu.DisplayMainMenu(enable);
-        m_paused = enable;
+        GameManager.s_singleton.m_paused = enable;
     }
 
-    public void Resume()
+    public static void Resume()
     {
         MainMenu.DisplayMainMenu(false);
     }

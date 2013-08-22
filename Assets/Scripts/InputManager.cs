@@ -5,17 +5,16 @@ public class InputManager : MonoBehaviour
 {
     private CharacterController m_characterController;
     private PlayerCharacter m_playerCharacter;
-	public static InputManager s_singleton;
+	
+	private float m_timeOfLastBullet;
     private Vector2 m_inputVelocity;
-
     private Vector3 m_lastMouseWorldPos = new Vector3(0, 0, 0);
 
     private static bool m_enabled = false;
+	public static InputManager s_singleton;   
+    private const float k_bulletDelay = .25f;
 
-    private float timeOfLastBullet;
-    private const float BULLET_DELAY = .25f;
-
-	// Use this for initialization
+	
 	void Start ()
     {
 		if (s_singleton == null) {
@@ -25,19 +24,19 @@ public class InputManager : MonoBehaviour
         m_playerCharacter = gameObject.GetComponent<PlayerCharacter>();
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
         GetMouseWorldPosition();
-
+		
+		if (!m_enabled) {
+            return;
+        }
+		
+		// MOVE THIS TO GUI MANAGER
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
 			WeaponWheel.DisplayWeaponWheel(!WeaponWheel.GetWeaponWheelDisplayStatus());
 		}
-
-        if (!m_enabled) {
-            return;
-        }
-
+		
         m_inputVelocity = Vector2.zero;
 
         if (m_playerCharacter.gamePad) {
@@ -47,28 +46,28 @@ public class InputManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) {
-            if (!GameManager.s_singleton.IsPaused()) {
-                GameManager.s_singleton.Pause(!(GameManager.s_singleton.IsPaused()));
+            if (!GameManager.IsPaused()) {
+                GameManager.Pause(!(GameManager.IsPaused()));
             } else {
-                GameManager.s_singleton.Resume();
+                GameManager.Resume();
             }
         }
         
         //Check to see if the player fired
         bool fire = false;
         if (m_playerCharacter.gamePad) {
-            if (Input.GetAxis("Fire1") < -.5 && Time.time - timeOfLastBullet > BULLET_DELAY) {
+            if (Input.GetAxis("Fire1") < -.5 && Time.time - m_timeOfLastBullet > k_bulletDelay) {
                 fire = true;
             }
         } else {
-            if (Input.GetAxis("Fire1") > 0 && Time.time - timeOfLastBullet > BULLET_DELAY) {
+            if (Input.GetAxis("Fire1") > 0 && Time.time - m_timeOfLastBullet > k_bulletDelay) {
                 fire = true;
             }
         }
 
         if (fire) {
             PlayerCharacter.s_singleton.FireWeapon();
-            timeOfLastBullet = Time.time;
+            m_timeOfLastBullet = Time.time;
         }
         
 

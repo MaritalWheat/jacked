@@ -7,6 +7,7 @@ public class HudController : MonoBehaviour {
 
     public GUIStyle m_textStyle;
     public GUIStyle m_largeFightingSpirit;
+	public GUIStyle m_topGUIBar;
     public Texture2D m_heartTexture;
    
 
@@ -60,7 +61,7 @@ public class HudController : MonoBehaviour {
         }
 
         //Everything after this will not be executed if the game is paused
-        if (GameManager.s_singleton.IsPaused())
+        if (GameManager.IsPaused())
         {
             return;
         }
@@ -78,7 +79,7 @@ public class HudController : MonoBehaviour {
     {
         if (m_display)
         {
-            GUI.Box(new Rect(0, 0, screenWidth, 100),"");
+            GUI.Box(new Rect(0, 0, screenWidth, 100),"", m_topGUIBar);
             GUI.BeginGroup(m_heartRateRect);
             GUI.DrawTexture(m_heartRect, m_heartTexture);
             GUI.Label(m_rateRect, heartRate.ToString() + " BPM", m_textStyle);

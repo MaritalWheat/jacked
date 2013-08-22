@@ -28,7 +28,7 @@ public class EnemyBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected void Update () {
-        if (GameManager.s_singleton.IsPaused()) {
+        if (GameManager.IsPaused()) {
             return;
         }
         OnUpdate();
