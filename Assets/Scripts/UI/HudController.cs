@@ -23,6 +23,7 @@ public class HudController : MonoBehaviour {
     //These will be inside a GUI group, namely m_hearRateRect
     private Rect m_heartRect= new Rect(0,0,100,100);
     private Rect m_rateRect = new Rect(100,20,150,80);
+	private Rect m_controllerBounds;
     
     //Placeholders for real values
     private int heartRate = 100;
@@ -48,6 +49,7 @@ public class HudController : MonoBehaviour {
         m_scoreRect = new Rect(Screen.width - 100, 0, 100, 100);
         screenHeight = Screen.height;
         screenWidth = Screen.width;
+		m_controllerBounds = new Rect(0, Screen.height - 100, Screen.width, 100);
 	}
 	
 	// Update is called once per frame
@@ -79,13 +81,12 @@ public class HudController : MonoBehaviour {
     {
         if (m_display)
         {
-            GUI.Box(new Rect(0, 0, screenWidth, 100),"", m_topGUIBar);
-            GUI.BeginGroup(m_heartRateRect);
+            GUI.Box(m_controllerBounds,"", m_topGUIBar);
+            GUI.BeginGroup(m_controllerBounds);
             GUI.DrawTexture(m_heartRect, m_heartTexture);
             GUI.Label(m_rateRect, heartRate.ToString() + " BPM", m_textStyle);
-            GUI.EndGroup();
-
             GUI.Label(m_scoreRect, score.ToString(), m_textStyle);
+			GUI.EndGroup();  
         }
     }
 

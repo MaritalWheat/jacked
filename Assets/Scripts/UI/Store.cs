@@ -19,6 +19,7 @@ public class Store : MonoBehaviour {
     public GUIStyle m_listStyle;
 
     private Vector2 m_scrollPos = Vector2.zero;
+	private bool showRight;
 	
 	void Start() {
 		if (m_singleton == null) {
@@ -43,12 +44,16 @@ public class Store : MonoBehaviour {
 			m_storeClosed = true;
 			m_display = false;
 		}
-        GUI.Button(m_bottomButtonRightBounds, "Button", m_buttonStyle);
+        GUI.Button(m_bottomButtonRightBounds, "Money: " + GameManager.s_singleton.m_score, m_buttonStyle);
 		GUI.Box(m_itemListBounds, "", m_boxStyle);
 		GUI.Box(m_selectedItemBounds, "", m_boxStyle);
 
         GUI.BeginGroup(m_itemListBounds);
-        GUI.Button(new Rect(0, 10, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+
+        if (GUI.Button(new Rect(0, 10, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle)) {
+			Debug.Log("Item Selected");
+			showRight = true;
+		}
         GUI.Button(new Rect(0, 40, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
         GUI.Button(new Rect(0, 70, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
         GUI.Button(new Rect(0, 100, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
@@ -60,10 +65,17 @@ public class Store : MonoBehaviour {
         GUI.Button(new Rect(0, 280, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
         GUI.Button(new Rect(0, 310, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
         GUI.EndGroup();
+		
+		if (showRight) { 
+			if (GUI.Button(m_selectedItemBounds, "Buy", m_buttonStyle) && GameManager.s_singleton.m_score >= 100) {
+				WeaponManager.m_singleton.m_ownedWeapons.Add(WeaponManager.GetWeapon("TriShot"));
+				GameManager.s_singleton.m_score -= 100;
+			}
+		}
 
-        m_scrollPos = GUI.BeginScrollView(new Rect(m_itemListBounds.left, m_itemListBounds.top, m_itemListBounds.width, m_itemListBounds.height + 500), m_scrollPos, m_itemListBounds);
-        GUI.Button(new Rect(0, 0, 100, 100), "", m_buttonStyle);
-        GUI.EndScrollView();
+        //m_scrollPos = GUI.BeginScrollView(new Rect(m_itemListBounds.left, m_itemListBounds.top, m_itemListBounds.width, m_itemListBounds.height + 500), m_scrollPos, m_itemListBounds);
+        //GUI.Button(new Rect(0, 0, 100, 100), "", m_buttonStyle);
+        //GUI.EndScrollView();
         
         GUI.EndGroup();
 

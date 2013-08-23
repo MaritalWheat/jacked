@@ -76,7 +76,7 @@ public class EnemyBehavior : MonoBehaviour {
         m_health -= damage;
         GameObject notification = (GameObject)Instantiate(HudController.s_singleton.NotificationPrefab);
         Vector3 notificationPos = Camera.main.WorldToScreenPoint(transform.position);
-        notification.GetComponent<FloatingText>().Display(damage.ToString(), new Vector2(notificationPos.x, Screen.height - notificationPos.y), 3.0f);
+        notification.GetComponent<FloatingText>().Display("+" + damage.ToString(), new Vector2(notificationPos.x, Screen.height - notificationPos.y), 3.0f);
         if (m_health <= 0) {
             m_playerCharacter.experiencePoints += m_experiencePoints;
             GameManager.s_singleton.m_creaturesKilled++;

@@ -6,6 +6,7 @@ public class WeaponManager : MonoBehaviour {
 	
 	public static WeaponManager m_singleton;	
 	public List<Weapon> m_weapons;
+	public List<Weapon> m_ownedWeapons;
 	public Weapon m_noWeapon;
 	private Dictionary<string, Weapon> m_weaponsDict;
 	
