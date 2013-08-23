@@ -4292,7 +4292,7 @@ MonoBehaviour:
   m_powerups:
   - {fileID: 100000, guid: 40c111911d9462c4bafc455a5ce0c69a, type: 2}
   m_deathDecalPrefab: {fileID: 100000, guid: b4b4126f44a0b9840a94308908b0d7dd, type: 2}
-  m_creaturesKilled: 0
+  m_creaturesKilled: .379999995
   m_catsKilled: 0
   m_score: 0
 --- !u!1 &1185994811
@@ -5018,6 +5018,7 @@ MonoBehaviour:
   m_weapons:
   - {fileID: 11400000, guid: 3f883740327434e1c96d96868e4f91b8, type: 2}
   - {fileID: 11400000, guid: 34f433b36bcda44939e745667a15128d, type: 2}
+  m_ownedWeapons: []
   m_noWeapon: {fileID: 11400000, guid: fce46b79c86694315b17497b2eb2f521, type: 2}
 --- !u!1 &1334230081
 GameObject:
