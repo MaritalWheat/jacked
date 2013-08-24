@@ -15,6 +15,8 @@ public class HudController : MonoBehaviour {
     public GameObject ScrollingNotificationPrefab;
     public GameObject PowerupNotification;
 
+    public Texture progressTexture;
+
     private bool m_display = false;
 
     private Rect m_heartRateRect = new Rect(0,0,300,100);
@@ -24,6 +26,10 @@ public class HudController : MonoBehaviour {
     //These will be inside a GUI group, namely m_hearRateRect
     private Rect m_heartRect= new Rect(0,0,100,100);
     private Rect m_rateRect = new Rect(100,20,150,80);
+	private Rect m_controllerBounds,m_controllerBoundsUpper;
+    private Rect m_progressBarBox;
+    private Rect m_progressBarFill;
+    private Rect m_xpLabelRect, m_levelRect;
     
     //Placeholders for real values
     private int heartRate = 100;
@@ -51,10 +57,18 @@ public class HudController : MonoBehaviour {
         m_xpRect = new Rect(Screen.width - 225, 0, 100, 100);
         screenHeight = Screen.height;
         screenWidth = Screen.width;
+		m_controllerBounds = new Rect(0, Screen.height - 100, Screen.width, 100);
+        m_controllerBoundsUpper = new Rect(screenWidth/4.0f, 0, screenWidth/2.0f, 100);
+        m_progressBarFill = m_progressBarBox = new Rect(50, 5, (screenWidth / 4.0f) - 10, 20);
+        m_xpLabelRect = new Rect(10, 5, 30, 20);
+        m_levelRect = new Rect((screenWidth / 4.0f) + 50, 5, (screenWidth / 4.0f) - 55, 20);
+        m_progressBarFill.width = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        
         //Things to execute even if the game is paused
         if (screenHeight != Screen.height || screenWidth != Screen.width)
         {
@@ -63,6 +77,8 @@ public class HudController : MonoBehaviour {
             screenHeight = Screen.height;
             screenWidth = Screen.width;
         }
+
+        m_progressBarFill.width = ((PlayerCharacter.s_singleton.experiencePoints * 1.0f) / (PlayerCharacter.s_singleton.PointsToNextLevel() * 1.0f)) * ((screenWidth / 4.0f) - 10);
 
         //Everything after this will not be executed if the game is paused
         if (GameManager.IsPaused())
@@ -84,15 +100,29 @@ public class HudController : MonoBehaviour {
     {
         if (m_display)
         {
-            GUI.Box(new Rect(0, 0, screenWidth, 100),"", m_topGUIBar);
-            GUI.BeginGroup(m_heartRateRect);
+            GUI.Box(m_controllerBounds,"", m_topGUIBar);
+            GUI.BeginGroup(m_controllerBounds);
             GUI.DrawTexture(m_heartRect, m_heartTexture);
             GUI.Label(m_rateRect, heartRate.ToString() + " BPM", m_textStyle);
+/*
            
             GUI.EndGroup();
 
             GUI.Label(m_scoreRect, score.ToString(), m_textStyle);
+            
+*/
             GUI.Label(m_xpRect, playerXP.ToString() + " XP", m_textStyle);
+            GUI.Label(m_scoreRect, score.ToString(), m_textStyle);
+			GUI.EndGroup();
+
+            //Skill Box
+            GUI.Box(m_controllerBoundsUpper, "", m_topGUIBar);
+            GUI.BeginGroup(m_controllerBoundsUpper);
+            GUI.Box(m_progressBarBox, "");
+            GUI.DrawTexture(m_progressBarFill, progressTexture);
+            GUI.Label(m_xpLabelRect, "XP: ");
+            GUI.Label(m_levelRect, "Level: " + PlayerCharacter.s_singleton.currentlevel);
+            GUI.EndGroup();
         }
     }
 
