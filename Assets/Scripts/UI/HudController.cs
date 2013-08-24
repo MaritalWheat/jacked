@@ -19,6 +19,7 @@ public class HudController : MonoBehaviour {
 
     private Rect m_heartRateRect = new Rect(0,0,300,100);
     private Rect m_scoreRect;
+    private Rect m_xpRect;
     private float screenWidth, screenHeight;
     //These will be inside a GUI group, namely m_hearRateRect
     private Rect m_heartRect= new Rect(0,0,100,100);
@@ -26,6 +27,7 @@ public class HudController : MonoBehaviour {
     
     //Placeholders for real values
     private int heartRate = 100;
+    private int playerXP = 0;
     private int score = 100000;
     //private float heartScale = 1f;
 
@@ -46,6 +48,7 @@ public class HudController : MonoBehaviour {
         MAX_HEART_SIZE = (int)m_heartRateRect.height;
         MIN_HEART_SIZE = (int)(m_heartRateRect.height * .75f);
         m_scoreRect = new Rect(Screen.width - 100, 0, 100, 100);
+        m_xpRect = new Rect(Screen.width - 225, 0, 100, 100);
         screenHeight = Screen.height;
         screenWidth = Screen.width;
 	}
@@ -56,6 +59,7 @@ public class HudController : MonoBehaviour {
         if (screenHeight != Screen.height || screenWidth != Screen.width)
         {
             m_scoreRect = new Rect(Screen.width - 100, 0, 100, 100);
+            m_xpRect = new Rect(Screen.width - 225, 0, 100, 100);
             screenHeight = Screen.height;
             screenWidth = Screen.width;
         }
@@ -70,6 +74,7 @@ public class HudController : MonoBehaviour {
         {
             score = (int)GameManager.s_singleton.m_score;
             heartRate = PlayerCharacter.s_singleton.m_heartRate;
+            playerXP = PlayerCharacter.s_singleton.experiencePoints;
             //heartScale = (heartRate * 1.0f) / 300.0f;
             BeatHeart();
         }
@@ -83,9 +88,11 @@ public class HudController : MonoBehaviour {
             GUI.BeginGroup(m_heartRateRect);
             GUI.DrawTexture(m_heartRect, m_heartTexture);
             GUI.Label(m_rateRect, heartRate.ToString() + " BPM", m_textStyle);
+           
             GUI.EndGroup();
 
             GUI.Label(m_scoreRect, score.ToString(), m_textStyle);
+            GUI.Label(m_xpRect, playerXP.ToString() + " XP", m_textStyle);
         }
     }
 

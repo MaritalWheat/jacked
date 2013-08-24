@@ -5,35 +5,30 @@ using System.Collections.Generic;
 public class SkillManager : MonoBehaviour {
 
     ////////////////////////////////////////
-    // What I need to fucking add
-    // -a way to spend points on skills
-    // -skills
-    // -a skill tree
+    //For now I am just making a fucking list of skills with prices, FUCK IT
     ///////////////////////////////////////
 
-    public bool display { get; set; }
-    private Dictionary<string, Skill> purchasedSkills =  new Dictionary<string,Skill>();
-    public List<Skill> skills;
-
+    //public bool display { get; set; }
+    private static Dictionary<string, Skill> purchasedSkills =  new Dictionary<string,Skill>();
+    public List<Skill> skillsList;
+    public static List<Skill> skills;
 	// Use this for initialization
 	void Start () {
-	
+        skills = skillsList;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	    
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(PurchaseSkill(skills[0]));
-        }
+     
 	}
 
     void OnGUI()
     {
+        /* For now the display is handled in the store
         if (!display) {
             return;
-        }
+        }*/
     }
 
     /// <summary>
@@ -41,7 +36,7 @@ public class SkillManager : MonoBehaviour {
     /// </summary>
     /// <param name="skillToCheck"></param>
     /// <returns></returns>
-    public bool CanPurchase(Skill skillToCheck)
+    public static bool CanPurchase(Skill skillToCheck)
     {
         if (skillToCheck.preReq != null)
         {
@@ -53,17 +48,18 @@ public class SkillManager : MonoBehaviour {
         }
     }
 
-    public bool IsPurchased(string skillName)
+    public static bool IsPurchased(string skillName)
     {
         return purchasedSkills.ContainsKey(skillName);
     }
 
-    public bool PurchaseSkill(Skill skillToPurchase)
+    public static bool PurchaseSkill(Skill skillToPurchase)
     {
         if (CanPurchase(skillToPurchase))
         {
             PlayerCharacter.s_singleton.experiencePoints -= skillToPurchase.cost;
             purchasedSkills.Add(skillToPurchase.skillName, skillToPurchase);
+            Debug.Log("Just purchased skill: " + skillToPurchase.skillName);
             return true;
         }
         return false;

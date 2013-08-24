@@ -4306,8 +4306,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3b121ab248f89747b7bf3ac8865e385, type: 3}
   m_Name: 
-  skills:
+  skillsList:
   - {fileID: 11400000, guid: 8b6bdb0ef765cfd4f899e79eded298c7, type: 2}
+  - {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0, type: 2}
+  - {fileID: 11400000, guid: 4da5ad3f8504b3d498478acbc2e98dd6, type: 2}
+  - {fileID: 11400000, guid: 4bac5d9089103144b96edb16bb26d7b1, type: 2}
+  - {fileID: 11400000, guid: 4bd3c133b991c6b4792c114d7f1bc5b0, type: 2}
+  - {fileID: 11400000, guid: 201eaeac57f56ea408143ea2155f0209, type: 2}
 --- !u!1 &1185994811
 GameObject:
   m_ObjectHideFlags: 0

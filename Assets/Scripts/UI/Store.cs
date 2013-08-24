@@ -48,17 +48,24 @@ public class Store : MonoBehaviour {
 		GUI.Box(m_selectedItemBounds, "", m_boxStyle);
 
         GUI.BeginGroup(m_itemListBounds);
-        GUI.Button(new Rect(0, 10, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 40, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 70, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 100, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 130, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 160, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 190, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 220, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 250, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 280, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 310, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
+        int yValue = 10;
+        foreach (Skill s in SkillManager.skills)
+        {
+            if (GUI.Button(new Rect(0, yValue, m_itemListBounds.width, 20), s.skillName, m_listStyle))
+            {
+                GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
+
+                if (SkillManager.PurchaseSkill(s))
+                {
+                    notification.GetComponent<ScrollingText>().Display("Purchased " + s.skillName + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+                }
+                else
+                {
+                    notification.GetComponent<ScrollingText>().Display("You can't afford " + s.skillName + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+                }
+            }
+            yValue += 25;
+        }
         GUI.EndGroup();
 
         m_scrollPos = GUI.BeginScrollView(new Rect(m_itemListBounds.left, m_itemListBounds.top, m_itemListBounds.width, m_itemListBounds.height + 500), m_scrollPos, m_itemListBounds);
