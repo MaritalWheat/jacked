@@ -3666,11 +3666,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -14.0558014
+      value: -9.28821182
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .567314148
+      value: 5.1887188
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3678,7 +3678,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_LocalRotation.y
@@ -3690,8 +3690,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106829
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: progressTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: ccec8b82d9127480ea30549eab548b7d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
   m_RootGameObject: {fileID: 1975723940}
@@ -4159,6 +4163,7 @@ GameObject:
   - 114: {fileID: 1160615469}
   - 82: {fileID: 1160615470}
   - 114: {fileID: 1160615471}
+  - 114: {fileID: 1160615472}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4295,6 +4300,23 @@ MonoBehaviour:
   m_creaturesKilled: .379999995
   m_catsKilled: 0
   m_score: 0
+--- !u!114 &1160615472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1160615466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b121ab248f89747b7bf3ac8865e385, type: 3}
+  m_Name: 
+  skillsList:
+  - {fileID: 11400000, guid: 8b6bdb0ef765cfd4f899e79eded298c7, type: 2}
+  - {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0, type: 2}
+  - {fileID: 11400000, guid: 4da5ad3f8504b3d498478acbc2e98dd6, type: 2}
+  - {fileID: 11400000, guid: 4bac5d9089103144b96edb16bb26d7b1, type: 2}
+  - {fileID: 11400000, guid: 4bd3c133b991c6b4792c114d7f1bc5b0, type: 2}
+  - {fileID: 11400000, guid: 201eaeac57f56ea408143ea2155f0209, type: 2}
 --- !u!1 &1185994811
 GameObject:
   m_ObjectHideFlags: 0
@@ -6938,6 +6960,7 @@ GameObject:
   - 114: {fileID: 1975723946}
   - 111: {fileID: 1975723945}
   - 114: {fileID: 1975723947}
+  - 23: {fileID: 1975723948}
   m_Layer: 0
   m_Name: GUIController
   m_TagString: Untagged
@@ -6951,8 +6974,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
   m_PrefabInternal: {fileID: 1037366642}
   m_GameObject: {fileID: 1975723940}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.0558014, y: .567314148, z: 8.42682076}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: -9.28821182, y: 5.1887188, z: 8.42682076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7149,6 +7172,7 @@ MonoBehaviour:
   ScrollingNotificationPrefab: {fileID: 100000, guid: 96c1674d9614e9747956d610baeea6ae,
     type: 2}
   PowerupNotification: {fileID: 100000, guid: 59741be5ec492a349995dc0b7b397396, type: 2}
+  progressTexture: {fileID: 2800000, guid: ccec8b82d9127480ea30549eab548b7d, type: 3}
 --- !u!114 &1975723943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7633,6 +7657,24 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+--- !u!23 &1975723948
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1975723940}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 571d591a91441804d8ce5899ae23e462, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
 --- !u!1 &1997320115
 GameObject:
   m_ObjectHideFlags: 0

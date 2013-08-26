@@ -20,6 +20,8 @@ public class PlayerCharacter : MonoBehaviour
     public Weapon m_playerWeapon;
 
     public int experiencePoints { set; get; }
+    public int currentlevel { get; set; }
+    private int nextLevelXP;
 
     private float m_damageMod;
     private bool m_enabled = false;
@@ -58,6 +60,15 @@ public class PlayerCharacter : MonoBehaviour
         {
             SlowHeartRate(1);
             m_decreaseHeartRate = .7f;
+        }
+
+        //Definitely a temporary solution
+        nextLevelXP = currentlevel * 10;
+
+        if (experiencePoints >= nextLevelXP)
+        {
+            currentlevel++;
+            experiencePoints -= nextLevelXP;
         }
 
         m_characterSpeed = m_maxCharacterSpeed * (((float)(m_heartRate +  k_minPlayerHeartRate)) / (float)(k_maxPlayerHeartRate - k_minPlayerHeartRate));
@@ -187,4 +198,9 @@ public class PlayerCharacter : MonoBehaviour
 	{
 		PlayerCharacter.s_singleton.m_playerWeapon = weapon;
 	}
+
+    public int PointsToNextLevel()
+    {
+        return nextLevelXP;
+    }
 }

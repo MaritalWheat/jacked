@@ -54,6 +54,26 @@ public class Store : MonoBehaviour {
 		GUI.Box(m_selectedItemBounds, "", m_boxStyle);
 
         GUI.BeginGroup(m_itemListBounds);
+/*
+        int yValue = 10;
+        foreach (Skill s in SkillManager.skills)
+        {
+            if (GUI.Button(new Rect(0, yValue, m_itemListBounds.width, 20), s.skillName, m_listStyle))
+            {
+                GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
+
+                if (SkillManager.PurchaseSkill(s))
+                {
+                    notification.GetComponent<ScrollingText>().Display("Purchased " + s.skillName + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+                }
+                else
+                {
+                    notification.GetComponent<ScrollingText>().Display("You can't afford " + s.skillName + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+                }
+            }
+            yValue += 25;
+        }
+*/
 
         float y = 10;
         foreach (Weapon selected in WeaponManager.m_singleton.m_weapons) {
