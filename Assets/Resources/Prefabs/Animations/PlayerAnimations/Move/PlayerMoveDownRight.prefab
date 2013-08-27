@@ -37,10 +37,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 036de5159e740bb49a53b063ab18af09, type: 3}
   m_Name: 
-  row: 0
+  row: 1
   column: 8
-  numFrames: 5
-  fps: 5
+  numFrames: 4
+  fps: 10
   clamping: 0
 --- !u!1001 &100100000
 Prefab:
