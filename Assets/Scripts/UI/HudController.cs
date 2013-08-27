@@ -6,6 +6,7 @@ public class HudController : MonoBehaviour {
     public static HudController s_singleton;
 
     public GUIStyle m_textStyle;
+    public GUIStyle m_tinyTextStyle;
     public GUIStyle m_largeFightingSpirit;
 	public GUIStyle m_topGUIBar;
     public Texture2D m_heartTexture;
@@ -29,6 +30,9 @@ public class HudController : MonoBehaviour {
 	private Rect m_controllerBounds,m_controllerBoundsUpper;
     private Rect m_progressBarBox;
     private Rect m_progressBarFill;
+    private float m_actualProgressWidth;  //This is used to know how wide the progress bar will be after it stops moving
+    private bool m_fillBarToTop; //If the level has incremented, we still want to fill the bar all the way before going back to 0
+    private int m_mostRecentPlayerLevel = 1;
     private Rect m_xpLabelRect, m_levelRect;
     
     //Placeholders for real values
@@ -78,7 +82,29 @@ public class HudController : MonoBehaviour {
             screenWidth = Screen.width;
         }
 
-        m_progressBarFill.width = ((PlayerCharacter.s_singleton.experiencePoints * 1.0f) / (PlayerCharacter.s_singleton.PointsToNextLevel() * 1.0f)) * ((screenWidth / 4.0f) - 10);
+        if (m_mostRecentPlayerLevel < PlayerCharacter.s_singleton.currentlevel)
+        {
+            m_mostRecentPlayerLevel = PlayerCharacter.s_singleton.currentlevel;
+            m_fillBarToTop = true;
+        }
+
+        m_actualProgressWidth = ((PlayerCharacter.s_singleton.experiencePoints * 1.0f) / (PlayerCharacter.s_singleton.PointsToNextLevel() * 1.0f)) * (m_progressBarBox.width);
+        if (m_actualProgressWidth > m_progressBarFill.width)
+        {
+            m_progressBarFill.width++;
+        }
+        else if (m_fillBarToTop)
+        {
+            m_progressBarFill.width++;
+            if (m_progressBarFill.width >= m_progressBarBox.width)
+            {
+                m_fillBarToTop = false;
+            }
+        }
+        else
+        {
+            m_progressBarFill.width = m_actualProgressWidth;
+        }
 
         //Everything after this will not be executed if the game is paused
         if (GameManager.IsPaused())
@@ -111,7 +137,7 @@ public class HudController : MonoBehaviour {
             GUI.Label(m_scoreRect, score.ToString(), m_textStyle);
             
 */
-            GUI.Label(m_xpRect, playerXP.ToString() + " XP", m_textStyle);
+            //GUI.Label(m_xpRect, playerXP.ToString() + " XP", m_textStyle);
             GUI.Label(m_scoreRect, score.ToString(), m_textStyle);
 			GUI.EndGroup();
 
@@ -120,6 +146,7 @@ public class HudController : MonoBehaviour {
             GUI.BeginGroup(m_controllerBoundsUpper);
             GUI.Box(m_progressBarBox, "");
             GUI.DrawTexture(m_progressBarFill, progressTexture);
+            GUI.Label(m_progressBarBox, PlayerCharacter.s_singleton.experiencePoints.ToString() + "/" + PlayerCharacter.s_singleton.PointsToNextLevel().ToString(), m_tinyTextStyle);
             GUI.Label(m_xpLabelRect, "XP: ");
             GUI.Label(m_levelRect, "Level: " + PlayerCharacter.s_singleton.currentlevel);
             GUI.EndGroup();
