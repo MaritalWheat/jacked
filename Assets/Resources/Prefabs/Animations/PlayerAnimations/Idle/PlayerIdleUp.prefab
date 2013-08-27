@@ -38,9 +38,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036de5159e740bb49a53b063ab18af09, type: 3}
   m_Name: 
   row: 1
-  column: 2
-  numFrames: 1
-  fps: 5
+  column: 8
+  numFrames: 2
+  fps: 3
   clamping: 0
 --- !u!1001 &100100000
 Prefab:

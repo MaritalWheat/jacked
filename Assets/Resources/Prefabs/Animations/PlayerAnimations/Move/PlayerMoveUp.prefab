@@ -39,8 +39,8 @@ MonoBehaviour:
   m_Name: 
   row: 1
   column: 0
-  numFrames: 5
-  fps: 5
+  numFrames: 4
+  fps: 10
   clamping: 0
 --- !u!1001 &100100000
 Prefab:
