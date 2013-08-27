@@ -3695,7 +3695,16 @@ Prefab:
     - target: {fileID: 11400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: progressTexture
       value: 
-      objectReference: {fileID: 2800000, guid: ccec8b82d9127480ea30549eab548b7d, type: 3}
+      objectReference: {fileID: 2800000, guid: 2a0d991a693c1495e8e48a94b26b1e32, type: 3}
+    - target: {fileID: 11400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_tinyTextStyle.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_tinyTextStyle.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 246e4d4986f8a0841b6c36e5a4aef634,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
   m_RootGameObject: {fileID: 1975723940}
@@ -7049,6 +7058,65 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  m_tinyTextStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: 246e4d4986f8a0841b6c36e5a4aef634, type: 3}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 4
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
   m_largeFightingSpirit:
     m_Name: 
     m_Normal:
@@ -7172,7 +7240,7 @@ MonoBehaviour:
   ScrollingNotificationPrefab: {fileID: 100000, guid: 96c1674d9614e9747956d610baeea6ae,
     type: 2}
   PowerupNotification: {fileID: 100000, guid: 59741be5ec492a349995dc0b7b397396, type: 2}
-  progressTexture: {fileID: 2800000, guid: ccec8b82d9127480ea30549eab548b7d, type: 3}
+  progressTexture: {fileID: 2800000, guid: 2a0d991a693c1495e8e48a94b26b1e32, type: 3}
 --- !u!114 &1975723943
 MonoBehaviour:
   m_ObjectHideFlags: 0
