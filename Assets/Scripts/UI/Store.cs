@@ -8,14 +8,17 @@ public class Store : MonoBehaviour {
 	
 	private bool m_storeClosed = true;
 	
-    private Rect m_storeBounds;
-	private Rect m_headerBounds;
-    private Rect m_bottomButtonLeftBounds;
-    private Rect m_bottomButtonRightBounds;
-	private Rect m_itemListBounds;
-	private Rect m_selectedItemBounds;
+    public Rect m_storeBounds;
+	public Rect m_headerBounds;
+    public Rect m_bottomButtonLeftBounds;
+    public Rect m_bottomButtonRightBounds;
+	public Rect m_itemListBounds;
+	public Rect m_selectedItemBounds;
 
     public GUIStyle m_boxStyle;
+	public GUIStyle m_headerStyle;
+	public GUIStyle m_backStyle;
+	public GUIStyle m_windowStyle;
     public GUIStyle m_buttonStyle;
     public GUIStyle m_listStyle;
 
@@ -31,28 +34,28 @@ public class Store : MonoBehaviour {
         //foreach (Weapon selected in WeaponManager.m_singleton.m_weapons) {
         //    m_storeWeapons.Add(selected, false);
         //}
-		m_storeBounds = new Rect(Screen.width * .10f, Screen.height * .10f, Screen.width * .8f, Screen.height * .8f);
+		/*m_storeBounds = new Rect(Screen.width * .10f, Screen.height * .10f, Screen.width * .8f, Screen.height * .8f);
         m_bottomButtonLeftBounds = new Rect(m_storeBounds.width * .01f, m_storeBounds.height - m_storeBounds.height * .01f - m_storeBounds.height * .1f, m_storeBounds.width * .97f / 2, m_storeBounds.height * .1f);
         m_bottomButtonRightBounds = new Rect(m_bottomButtonLeftBounds.xMax + m_storeBounds.width * .01f, m_bottomButtonLeftBounds.y, m_bottomButtonLeftBounds.width, m_bottomButtonLeftBounds.height);
 		m_headerBounds = new Rect (m_storeBounds.width * .01f, m_storeBounds.height * .015f, m_storeBounds.width * .98f, m_storeBounds.height * .15f);
 		m_itemListBounds = new Rect(m_bottomButtonLeftBounds.xMin, m_headerBounds.yMax + m_storeBounds.height * .01f, m_bottomButtonLeftBounds.width, m_bottomButtonLeftBounds.yMin -
 			m_storeBounds.height * .01f - m_headerBounds.yMax - m_storeBounds.height * .01f);
-		m_selectedItemBounds = new Rect(m_bottomButtonRightBounds.xMin, m_itemListBounds.yMin, m_itemListBounds.width, m_itemListBounds.height);
+		m_selectedItemBounds = new Rect(m_bottomButtonRightBounds.xMin, m_itemListBounds.yMin, m_itemListBounds.width, m_itemListBounds.height);*/
 	}
 	
 	void OnGUI() {
 		if (!m_display) return;
-		GUI.Box(m_storeBounds, "", m_boxStyle);
+		GUI.Box(m_storeBounds, "", m_backStyle);
 		GUI.BeginGroup(m_storeBounds);
-        GUI.Box(m_headerBounds, "STORE", m_boxStyle);
+        		GUI.Box(m_itemListBounds, "", m_windowStyle);
+		GUI.Box(m_selectedItemBounds, "", m_windowStyle);
 		if (GUI.Button(m_bottomButtonLeftBounds, "Start Next", m_buttonStyle)) {
 			m_storeClosed = true;
 			m_display = false;
 		}
         GUI.Button(m_bottomButtonRightBounds, "Money: " + GameManager.s_singleton.m_score, m_buttonStyle);
-		GUI.Box(m_itemListBounds, "", m_boxStyle);
-		GUI.Box(m_selectedItemBounds, "", m_boxStyle);
 
+		GUI.Box(m_headerBounds, "STORE", m_headerStyle);
         GUI.BeginGroup(m_itemListBounds);
 /*
         int yValue = 10;
