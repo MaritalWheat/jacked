@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
             Camera.main.fov--;
         }
 
-        m_motionBlur.blurAmount = (float)m_player.m_heartRate / (float)m_player.GetMaxHeartRate();
+        /*m_motionBlur.blurAmount = (float)m_player.m_heartRate / (float)m_player.GetMaxHeartRate();
 
         m_vignette.intensity = (10.0f) * ((float)(90 + m_player.GetMinHeartRate() - m_player.m_heartRate)) / (90 + m_player.GetMinHeartRate());
 
@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
         } else {
             m_motionBlur.enabled = false;
             m_vignette.enabled = false;
-        }
+        }*/
 
         Vector3 pos = this.transform.position;
         if (Mathf.Abs(m_player.transform.position.x - floor.transform.position.x) < maxXFromCenter) {

@@ -36,7 +36,7 @@ public class WeaponWheel : MonoBehaviour {
 			m_itemContainerAngle.Add(i * 45);
 			m_itemContainers.Add (new Rect(0, 0, butW, butH));
 		}
-		origin = new Vector2(Screen.width / 2 - butW / 2, Screen.height / 2 - butW / 2);	
+		origin = new Vector2(Screen.width / 2 - butW / 2, Screen.height / 2.10f - butW / 2);	
 	}
 	
 	void Update () {
@@ -62,6 +62,7 @@ public class WeaponWheel : MonoBehaviour {
 	}
 	
 	private void DrawWeaponSelect() {
+		GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "", HudController.s_singleton.m_overlayStyle);
 		if (radius < .3f * Screen.height) {
 			radius += 7;
 		} else {
@@ -70,7 +71,7 @@ public class WeaponWheel : MonoBehaviour {
 		
 		GUI.skin = m_skin;
 		int index = 0;
-		GUI.DrawTexture(new Rect(Screen.width / 2 - radius, Screen.height / 2 - radius, radius * 2, radius * 2), m_circleBackground);
+		GUI.DrawTexture(new Rect(Screen.width / 2 - radius, Screen.height / 2.10f - radius, radius * 2, radius * 2), m_circleBackground);
 		foreach (float property in m_itemContainerAngle) {
 			Rect currentContainer = m_itemContainers[index];
 			Vector2 pointToMoveTo = PointOnCircle(radius, property, origin);

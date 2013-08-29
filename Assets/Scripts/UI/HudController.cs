@@ -63,6 +63,7 @@ public class HudController : MonoBehaviour {
 	public GUIStyle m_xpStyle;
 	public GUIStyle m_lvlStyle;
 	public GUIStyle m_iconStyle;
+	public GUIStyle m_overlayStyle;
 
 	// Use this for initialization
 	void Start () {
@@ -151,6 +152,7 @@ public class HudController : MonoBehaviour {
     {
         if (m_display)
         {
+			
             GUI.Box(m_controllerBounds,"", m_topGUIBar);
             GUI.BeginGroup(m_controllerBounds);
             GUI.DrawTexture(m_heartRect, m_heartTexture);

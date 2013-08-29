@@ -24,6 +24,8 @@ public class Store : MonoBehaviour {
 
     private Vector2 m_scrollPos = Vector2.zero;
 	private bool showRight;
+	private float m_blurAmount;
+	private Rect m_currStoreBounds;
     //private List<Weapon> m_storeWeapons;
 	
 	void Start() {
@@ -41,15 +43,35 @@ public class Store : MonoBehaviour {
 		m_itemListBounds = new Rect(m_bottomButtonLeftBounds.xMin, m_headerBounds.yMax + m_storeBounds.height * .01f, m_bottomButtonLeftBounds.width, m_bottomButtonLeftBounds.yMin -
 			m_storeBounds.height * .01f - m_headerBounds.yMax - m_storeBounds.height * .01f);
 		m_selectedItemBounds = new Rect(m_bottomButtonRightBounds.xMin, m_itemListBounds.yMin, m_itemListBounds.width, m_itemListBounds.height);*/
+		m_currStoreBounds = new Rect (m_storeBounds.x, -m_storeBounds.height - 10, m_storeBounds.width, m_storeBounds.height);
 	}
 	
 	void OnGUI() {
-		if (!m_display) return;
-		GUI.Box(m_storeBounds, "", m_backStyle);
-		GUI.BeginGroup(m_storeBounds);
+		//if (!m_display) return;
+		if (m_display) {
+			GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "", HudController.s_singleton.m_overlayStyle);
+            if (m_currStoreBounds.y < m_storeBounds.y) {
+                m_currStoreBounds.y += Screen.height / 30;
+            } else if (m_currStoreBounds.y >= m_storeBounds.y) {
+                m_currStoreBounds.y = m_storeBounds.y;
+            }
+        } else {
+            if (m_currStoreBounds.yMax > -10) {
+                m_currStoreBounds.y -= Screen.height / 30;
+            } else if (m_currStoreBounds.yMax <= -10) {
+                m_currStoreBounds.y = -m_storeBounds.height - 10f; 
+                //GameManager.Pause(false);
+            }
+        }
+			//Camera.mainCamera.GetComponent<BlurEffect>().enabled = true;
+			//m_blurAmount = Camera.mainCamera.GetComponent<MotionBlur>().blurAmount;
+			//Camera.mainCamera.GetComponent<MotionBlur>().blurAmount = 1;
+		GUI.Box(m_currStoreBounds, "", m_backStyle);
+		GUI.BeginGroup(m_currStoreBounds);
         		GUI.Box(m_itemListBounds, "", m_windowStyle);
 		GUI.Box(m_selectedItemBounds, "", m_windowStyle);
 		if (GUI.Button(m_bottomButtonLeftBounds, "Start Next", m_buttonStyle)) {
+			//Camera.mainCamera.GetComponent<BlurEffect>().enabled = false;
 			m_storeClosed = true;
 			m_display = false;
 		}
@@ -78,11 +100,10 @@ public class Store : MonoBehaviour {
         }
 */
 
-        float y = 10;
+        float y = 100;
         foreach (Weapon selected in WeaponManager.m_singleton.m_weapons) {
             //bool value = m_storeWeapons.TryGetValue(selected, out value);
             selected.m_selectedInStore = GUI.Toggle(new Rect(0, y, m_itemListBounds.width, 20), selected.m_selectedInStore, selected.name, m_listStyle);
-            Debug.Log("New Value: " + selected.m_selectedInStore);
             y += 30;
             
         }

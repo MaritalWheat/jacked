@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour {
 
 		if (m_postWave) {
 			if (Store.CheckStoreClosed()) {
-                HudController.s_singleton.Display(true);
+                //HudController.s_singleton.Display(true);
 				m_postWave = false;             
                 GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
                 notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	private void StartPostWave() {
-        HudController.s_singleton.Display(false);
+        //HudController.s_singleton.Display(false);
 		Store.DisplayStore();
 		m_postWave = true;
 	}

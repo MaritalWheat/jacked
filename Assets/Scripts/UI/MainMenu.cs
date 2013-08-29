@@ -114,6 +114,7 @@ public class MainMenu : MonoBehaviour {
     {
 		
 		if (m_display) {
+			GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "", HudController.s_singleton.m_overlayStyle);
             if (m_menuBounds.y < m_menuBackgroundBounds.y) {
                 m_menuBounds.y += Screen.width / 35f;
             } else if (m_menuBounds.y >= m_menuBackgroundBounds.y) {
@@ -207,4 +208,9 @@ public class MainMenu : MonoBehaviour {
     {
         MainMenu.m_singleton.m_displayTitleScreen = display;
     }
+	
+	public static bool MainMenuDisplayed() 
+	{
+		return MainMenu.m_singleton.m_display;
+	}
 }
