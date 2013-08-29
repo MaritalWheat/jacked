@@ -140,7 +140,8 @@ public class PlayerCharacter : MonoBehaviour
     	if (m_playerWeapon.m_name.Equals("Default")) {
             AudioManager.m_singleton.DefaultGun();
             Quaternion startingRotation = Quaternion.LookRotation(m_aimDirection);
-            ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_defaultProjectilePrefab, transform.position, startingRotation);
+			Vector3 pos = transform.position;
+            ProjectileManager.s_singleton.SpawnProjectile(ProjectileManager.s_singleton.m_defaultProjectilePrefab, pos, startingRotation);
 		}
 
         if (m_playerWeapon.m_name.Equals("TriShot")) {

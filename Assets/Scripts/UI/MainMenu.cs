@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour {
     public GUIStyle m_buttonStyle;
 
     private GUIStyleState state;
+	public Rect m_menuBackgroundBounds;
     private Rect m_titleRect;
     private Rect m_startRect;
     private Rect m_resumeRect;
@@ -31,6 +32,9 @@ public class MainMenu : MonoBehaviour {
     private const float k_menuButtonMinSwitchTime = 25;
 
     private bool m_isSelectButtonPressed;
+	
+	public GUIStyle m_menuBackgroundStyle;
+	private Rect m_menuBounds;
     
 	void Start () {
         if (m_singleton == null)
@@ -41,16 +45,18 @@ public class MainMenu : MonoBehaviour {
         m_startRect = new Rect(Screen.width + 100, Screen.height / 2 - 25, 200, 50);
         m_titleRect = new Rect(0 - 400, 100, 400, 100);
 
-        m_resumeRect = new Rect(0, 0, 200, 50);
-        m_optionsRect = new Rect(0, 50, 200, 50);
-        m_button3Rect = new Rect(0, 100, 200, 50);
-        m_button4Rect = new Rect(0, 150, 200, 50);
+        m_resumeRect = new Rect(m_menuBackgroundBounds.width / 2 - 100, m_menuBackgroundBounds.yMax - 440, 200, 50);
+        m_optionsRect = new Rect(m_menuBackgroundBounds.width / 2 - 100, m_menuBackgroundBounds.yMax - 355, 200, 50);
+        m_button3Rect = new Rect(m_menuBackgroundBounds.width / 2 - 100, m_menuBackgroundBounds.yMax - 270, 200, 50);
+        m_button4Rect = new Rect(m_menuBackgroundBounds.width / 2 - 100, m_menuBackgroundBounds.yMax - 185, 200, 50);
         
         screenHeight = Screen.height;
         screenWidth = Screen.width;
 
         m_positionButtonsGroupOne = 0 - 200;
         m_positionButtonsGroupTwo = Screen.width;
+		
+		m_menuBounds = new Rect(m_menuBackgroundBounds.x, -m_menuBackgroundBounds.height - 10f, m_menuBackgroundBounds.width, m_menuBackgroundBounds.height);
 
 	}
 	
@@ -106,35 +112,41 @@ public class MainMenu : MonoBehaviour {
 
     void DrawMainMenu()
     {
-        
-        GUI.BeginGroup(new Rect(m_positionButtonsGroupOne, Screen.height / 3, 200, 400));
+		
+		if (m_display) {
+            if (m_menuBounds.y < m_menuBackgroundBounds.y) {
+                m_menuBounds.y += Screen.width / 35f;
+            } else if (m_menuBounds.y >= m_menuBackgroundBounds.y) {
+                m_menuBounds.y = m_menuBackgroundBounds.y;
+            }
+        } else {
+            if (m_menuBounds.yMax > -10) {
+                m_menuBounds.y -= Screen.width / 35f;
+            } else if (m_menuBounds.yMax <= -10) {
+                m_menuBounds.y = -m_menuBackgroundBounds.height - 10f; 
+                GameManager.Pause(false);
+            }
+        }
+		
+        GUI.Box(m_menuBounds, "", m_menuBackgroundStyle);
+		GUI.BeginGroup(m_menuBounds);
+		
+        //GUI.BeginGroup(new Rect(m_positionButtonsGroupOne, Screen.height / 3, 200, 400));
         GUI.SetNextControlName("Resume");
         if (GUI.Button(m_resumeRect, "RESUME", skin.GetStyle("Button"))) GameManager.Resume();
         GUI.SetNextControlName("Button1");
         GUI.Button(m_button3Rect, "BUTTON", skin.GetStyle("Button"));
-        GUI.EndGroup();
-        if (m_display) {
-            if (m_positionButtonsGroupOne < Screen.width / 2 - 100) {
-                m_positionButtonsGroupOne += Screen.width / 35;
-            } else if (m_positionButtonsGroupOne >= Screen.width / 2 - 100) {
-                m_positionButtonsGroupOne = Screen.width / 2 - 100;
-            }
-        } else {
-            if (m_positionButtonsGroupOne > 0 - 200) {
-                m_positionButtonsGroupOne -= Screen.width / 35;
-            } else if (m_positionButtonsGroupOne <= 0 - 200) {
-                m_positionButtonsGroupOne = 0 - 200; 
-                GameManager.Pause(false);
-            }
-        }
+        //GUI.EndGroup();
+        
 
-        GUI.BeginGroup(new Rect(m_positionButtonsGroupTwo, Screen.height / 3, 200, 400));
+        //GUI.BeginGroup(new Rect(m_positionButtonsGroupTwo, Screen.height / 3, 200, 400));
         GUI.SetNextControlName("Options");
         GUI.Button(m_optionsRect, "OPTIONS", skin.GetStyle("Button"));
         GUI.SetNextControlName("Quit");
         if(GUI.Button(m_button4Rect, "QUIT", skin.GetStyle("Button"))) Application.Quit();
-        GUI.EndGroup();
-        if (m_display) {
+		GUI.EndGroup();
+        //GUI.EndGroup();
+        /*if (m_display) {
             if (m_positionButtonsGroupTwo > Screen.width / 2 - 100) {
                 m_positionButtonsGroupTwo -= Screen.width / 35;
             } else if (m_positionButtonsGroupTwo <= Screen.width / 2 - 100) {
@@ -147,7 +159,7 @@ public class MainMenu : MonoBehaviour {
                 m_positionButtonsGroupTwo = Screen.width;
                 GameManager.Pause(false);
             }
-        }
+        }*/
 		
 		if (PlayerCharacter.s_singleton.gamePad) {
 	        GUI.FocusControl(menuButtons[currentButtonIndex]);

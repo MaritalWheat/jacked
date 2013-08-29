@@ -20,14 +20,16 @@ public class HudController : MonoBehaviour {
 
     private bool m_display = false;
 
-    private Rect m_heartRateRect = new Rect(0,0,300,100);
-    private Rect m_scoreRect;
+    public Rect m_heartRateRect;
+    public Rect m_scoreRect;
     private Rect m_xpRect;
     private float screenWidth, screenHeight;
     //These will be inside a GUI group, namely m_hearRateRect
-    private Rect m_heartRect= new Rect(0,0,100,100);
-    private Rect m_rateRect = new Rect(100,20,150,80);
-	private Rect m_controllerBounds,m_controllerBoundsUpper;
+    public Rect m_heartRect;
+	private Rect m_defHeartRect;
+    public Rect m_rateRect;
+	private Rect m_controllerBoundsUpper;
+	public Rect m_controllerBounds;
     private Rect m_progressBarBox;
     private Rect m_progressBarFill;
     private float m_actualProgressWidth;  //This is used to know how wide the progress bar will be after it stops moving
@@ -47,6 +49,20 @@ public class HudController : MonoBehaviour {
 
     private int MIN_HEART_SIZE, MAX_HEART_SIZE;
     private const float SECONDS_PER_MINUTE = 60.0f;
+	
+	public Rect m_progressBarBounds;
+	public Rect m_xpBounds;
+	public Rect m_skillBounds;
+	public Rect m_levelBounds;
+	
+	public Rect m_skill1;
+	public Rect m_skill2;
+	public Rect m_skill3;
+	public Rect m_skill4;
+	
+	public GUIStyle m_xpStyle;
+	public GUIStyle m_lvlStyle;
+	public GUIStyle m_iconStyle;
 
 	// Use this for initialization
 	void Start () {
@@ -54,18 +70,23 @@ public class HudController : MonoBehaviour {
         {
             s_singleton = this;
         }
+		m_defHeartRect = m_heartRect;
         m_lastBeat = Time.time;
         MAX_HEART_SIZE = (int)m_heartRateRect.height;
         MIN_HEART_SIZE = (int)(m_heartRateRect.height * .75f);
-        m_scoreRect = new Rect(Screen.width - 100, 0, 100, 100);
+        
         m_xpRect = new Rect(Screen.width - 225, 0, 100, 100);
         screenHeight = Screen.height;
         screenWidth = Screen.width;
-		m_controllerBounds = new Rect(0, Screen.height - 100, Screen.width, 100);
-        m_controllerBoundsUpper = new Rect(screenWidth/4.0f, 0, screenWidth/2.0f, 100);
-        m_progressBarFill = m_progressBarBox = new Rect(50, 5, (screenWidth / 4.0f) - 10, 20);
-        m_xpLabelRect = new Rect(10, 5, 30, 20);
-        m_levelRect = new Rect((screenWidth / 4.0f) + 50, 5, (screenWidth / 4.0f) - 55, 20);
+		//m_controllerBounds = new Rect(0, Screen.height - 100, Screen.width, 100);
+        //m_controllerBoundsUpper = new Rect(screenWidth/4.0f, 0, screenWidth/2.0f, 100);
+        //m_progressBarFill = m_progressBarBox = new Rect(50, 5, (screenWidth / 4.0f) - 10, 20);
+		m_progressBarFill = m_progressBarBox = m_progressBarBounds;
+		m_xpLabelRect = m_xpBounds;
+		m_levelRect = m_levelBounds;
+		m_controllerBoundsUpper = m_skillBounds;
+        //m_xpLabelRect = new Rect(10, 5, 30, 20);
+        //m_levelRect = new Rect((screenWidth / 4.0f) + 50, 5, (screenWidth / 4.0f) - 55, 20);
         m_progressBarFill.width = 0;
 	}
 	
@@ -77,11 +98,15 @@ public class HudController : MonoBehaviour {
         if (screenHeight != Screen.height || screenWidth != Screen.width)
         {
             m_scoreRect = new Rect(Screen.width - 100, 0, 100, 100);
-            m_xpRect = new Rect(Screen.width - 225, 0, 100, 100);
+            //m_xpRect = new Rect(Screen.width - 225, 0, 100, 100);
             screenHeight = Screen.height;
             screenWidth = Screen.width;
         }
 
+		m_progressBarFill.x = m_progressBarBounds.x;
+		m_progressBarFill.y = m_progressBarBounds.y;
+		m_progressBarFill.height = m_progressBarBounds.height;
+		
         if (m_mostRecentPlayerLevel < PlayerCharacter.s_singleton.currentlevel)
         {
             m_mostRecentPlayerLevel = PlayerCharacter.s_singleton.currentlevel;
@@ -142,14 +167,19 @@ public class HudController : MonoBehaviour {
 			GUI.EndGroup();
 
             //Skill Box
-            GUI.Box(m_controllerBoundsUpper, "", m_topGUIBar);
-            GUI.BeginGroup(m_controllerBoundsUpper);
-            GUI.Box(m_progressBarBox, "");
+            GUI.Box(m_skillBounds, "", m_xpStyle);
+            //GUI.BeginGroup(m_controllerBoundsUpper);
+            GUI.Box(m_progressBarBounds, "");
             GUI.DrawTexture(m_progressBarFill, progressTexture);
-            GUI.Label(m_progressBarBox, PlayerCharacter.s_singleton.experiencePoints.ToString() + "/" + PlayerCharacter.s_singleton.PointsToNextLevel().ToString(), m_tinyTextStyle);
-            GUI.Label(m_xpLabelRect, "XP: ");
-            GUI.Label(m_levelRect, "Level: " + PlayerCharacter.s_singleton.currentlevel);
-            GUI.EndGroup();
+            GUI.Label(m_progressBarBounds, "", m_tinyTextStyle);
+            //GUI.Label(m_xpBounds, "XP: ");
+            GUI.Label(m_levelBounds, "Lvl " + PlayerCharacter.s_singleton.currentlevel, m_lvlStyle);
+            //GUI.EndGroup();
+			
+			GUI.Button(m_skill1, "", m_iconStyle);
+			GUI.Button(m_skill2, "", m_iconStyle);
+			GUI.Button(m_skill3, "", m_iconStyle);
+			GUI.Button(m_skill4, "", m_iconStyle);
         }
     }
 
@@ -201,8 +231,8 @@ public class HudController : MonoBehaviour {
             m_heartRect.height -= ((float)(MAX_HEART_SIZE - MIN_HEART_SIZE)) / heartBeatDuration;
         }
 
-        m_heartRect.y = ((float)(MAX_HEART_SIZE - m_heartRect.height)) / 2.0f;
-        m_heartRect.x = ((float)(MAX_HEART_SIZE - m_heartRect.width)) / 2.0f;
+        m_heartRect.y = m_defHeartRect.y + (m_heartRect.height) / 2.0f;
+        m_heartRect.x = m_defHeartRect.x - (m_heartRect.width) / 2.0f;
     }
 
     public void Display(bool display)
