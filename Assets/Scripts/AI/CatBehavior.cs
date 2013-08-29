@@ -66,7 +66,9 @@ public class CatBehavior : EnemyBehavior {
         {
             GameManager.s_singleton.m_catsKilled++;
             GameManager.s_singleton.m_score += 200;
-            GameManager.s_singleton.SpawnDeathObject(transform.position);
+			Vector3 deathPos = transform.position;
+			deathPos.y = 0.001f;
+            GameManager.s_singleton.SpawnDeathObject(deathPos);
             Destroy(gameObject);
         }
 	}

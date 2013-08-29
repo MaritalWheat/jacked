@@ -55,7 +55,9 @@ public class RabbitBehavior : EnemyBehavior {
 
 
 	void DieandMultiply(){
-        GameManager.s_singleton.SpawnDeathObject(transform.position);
+        Vector3 deathPos = transform.position;
+		deathPos.y = 0.001f;
+        GameManager.s_singleton.SpawnDeathObject(deathPos);
 
 		//Object rabbitChild;
 		for (int i = 0; i < 1; i++){

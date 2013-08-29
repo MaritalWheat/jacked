@@ -25,7 +25,9 @@ public class RabbitChildBehavior : EnemyBehavior {
             MoveTowardsPlayer();
         }
         else {
-            GameManager.s_singleton.SpawnDeathObject(transform.position);
+            Vector3 deathPos = transform.position;
+			deathPos.y = 0.001f;
+            GameManager.s_singleton.SpawnDeathObject(deathPos);
             Destroy(gameObject);
             DamagePlayer();
 
@@ -44,7 +46,9 @@ public class RabbitChildBehavior : EnemyBehavior {
         if (m_health <= 0)
         {
             GameManager.s_singleton.m_score += 50;
-            GameManager.s_singleton.SpawnDeathObject(transform.position);
+            Vector3 deathPos = transform.position;
+			deathPos.y = 0.001f;
+            GameManager.s_singleton.SpawnDeathObject(deathPos);
 			Destroy(gameObject);
         }
 	}
