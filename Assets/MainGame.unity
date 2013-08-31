@@ -4306,10 +4306,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f542e3ac2b59ab4785e12e59a076028, type: 3}
   m_Name: 
-  PenguinPrefab: {fileID: 100000, guid: d52f9f161cafcd749b37b75b621d92de, type: 2}
+  PenguinPrefab: {fileID: 100000, guid: 310cfe2e5f1d8ba49939c25ef0cf3b6b, type: 2}
   SquirrelPrefab: {fileID: 100000, guid: 310cfe2e5f1d8ba49939c25ef0cf3b6b, type: 2}
   RabbitPrefab: {fileID: 100000, guid: c9fa3d7e0649f4742b0a4c2cc380cfe9, type: 2}
-  CatPrefab: {fileID: 100000, guid: aa180d26ccbe59b47a73a45d12f88b03, type: 2}
+  CatPrefab: {fileID: 100000, guid: c9fa3d7e0649f4742b0a4c2cc380cfe9, type: 2}
   m_powerups:
   - {fileID: 100000, guid: 40c111911d9462c4bafc455a5ce0c69a, type: 2}
   m_deathDecalPrefab: {fileID: 100000, guid: b4b4126f44a0b9840a94308908b0d7dd, type: 2}

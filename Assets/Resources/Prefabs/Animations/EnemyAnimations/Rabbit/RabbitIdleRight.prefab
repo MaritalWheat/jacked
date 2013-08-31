@@ -40,7 +40,7 @@ MonoBehaviour:
   row: 1
   column: 0
   numFrames: 2
-  fps: 5
+  fps: 10
   clamping: 0
 --- !u!1001 &100100000
 Prefab:

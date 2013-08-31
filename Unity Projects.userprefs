@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/Store.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/Store.cs" Line="103" Column="22" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="165" Column="15" />
-      <File FileName="Assets/Scripts/Camera Scripts/CameraController.cs" Line="56" Column="12" />
-      <File FileName="Assets/Scripts/UI/HudController.cs" Line="155" Column="4" />
-      <File FileName="Assets/Scripts/UI/MainMenu.cs" Line="117" Column="103" />
-      <File FileName="Assets/Scripts/UI/WeaponWheel.cs" Line="39" Column="73" />
+      <File FileName="Assets/Scripts/UI/Store.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Powerups/Powerup.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/HudController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/PowerupNotification.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/FloatingText.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/ScrollingText.cs" Line="38" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
