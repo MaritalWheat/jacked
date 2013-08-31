@@ -39,9 +39,10 @@ MonoBehaviour:
   m_Name: 
   passive: 0
   preReq: {fileID: 0}
-  skillName: 
+  skillName: asdfsadf
   cost: 5
   mods: []
+  icon: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

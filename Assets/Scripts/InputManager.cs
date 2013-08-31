@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour
 {
@@ -80,6 +81,26 @@ public class InputManager : MonoBehaviour
         }
 
         m_characterController.SimpleMove(new Vector3(m_inputVelocity.x, 0.0f, m_inputVelocity.y));
+		
+		//Check the skill hotkeys, later we should change the hotkeys to be modifiable, for now they are 1 2 3 4
+		List<Skill> skills = PlayerCharacter.s_singleton.getCurrentSkills();
+		if (Input.GetKey(KeyCode.Alpha1)) {
+			if (skills[0] != null) {
+				SkillManager.fireSkill(skills[0].skillName);	
+			}
+		} else if (Input.GetKey(KeyCode.Alpha2)) {
+			if (skills[1] != null) {
+				SkillManager.fireSkill(skills[1].skillName);	
+			}
+		} else if (Input.GetKey(KeyCode.Alpha3)) {
+			if (skills[2] != null) {
+				SkillManager.fireSkill(skills[2].skillName);	
+			}
+		} else if (Input.GetKey(KeyCode.Alpha4)) {
+			if (skills[3] != null) {
+				SkillManager.fireSkill(skills[3].skillName);	
+			}
+		}
 	}
 
     private void UpInput()

@@ -1535,6 +1535,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: .707106829
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_skill3.x
+      value: 536.099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_skill4.x
+      value: 632
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
   m_RootGameObject: {fileID: 1975723940}
@@ -7362,13 +7370,13 @@ MonoBehaviour:
     height: 50
   m_skill3:
     serializedVersion: 2
-    x: 632
+    x: 536.099976
     y: 11.6000004
     width: 50
     height: 50
   m_skill4:
     serializedVersion: 2
-    x: 536.099976
+    x: 632
     y: 11.6000004
     width: 50
     height: 50
@@ -7552,7 +7560,7 @@ MonoBehaviour:
   m_overlayStyle:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 2800000, guid: e5a431713794e4843ba86081a2688ba6, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}

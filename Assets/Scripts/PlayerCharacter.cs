@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public enum PlayerState
 {
@@ -20,6 +22,7 @@ public class PlayerCharacter : MonoBehaviour
     public Weapon m_playerWeapon;
 
     public int experiencePoints { set; get; }
+	public int skillPoints {get; set;}
     public int currentlevel { get; set; }
     private int nextLevelXP;
 
@@ -30,7 +33,9 @@ public class PlayerCharacter : MonoBehaviour
 
     private const int k_maxPlayerHeartRate = 225;
     private const int k_minPlayerHeartRate = 0;
-
+	
+	private List<Skill> currentSkills = new List<Skill>();
+	
     //private SpriteAnimations
     private PlayerAnimations m_playerAnimations;
     private SpriteAnimationManager m_spriteAnimationManager;
@@ -45,6 +50,11 @@ public class PlayerCharacter : MonoBehaviour
             s_singleton = this;
         }
         
+		skillPoints = 10;
+		while (currentSkills.Count < 4) {
+			currentSkills.Add(null);	
+		}
+		
         m_spriteAnimationManager = gameObject.GetComponent<SpriteAnimationManager>();
         m_playerAnimations = gameObject.GetComponent<PlayerAnimations>();
         m_inputManager = gameObject.GetComponent<InputManager>();
@@ -56,10 +66,12 @@ public class PlayerCharacter : MonoBehaviour
         {
             return;
         }
+		
+		//If the timer that tells you to tick down the heart rate has reached zero
         if (m_decreaseHeartRate <= 0)
         {
-            SlowHeartRate(1);
-            m_decreaseHeartRate = .7f;
+            SlowHeartRate(1);  //Slow heart rate by 1 bpm
+            m_decreaseHeartRate = .2f; //Reset the timer
         }
 
         //Definitely a temporary solution
@@ -68,6 +80,7 @@ public class PlayerCharacter : MonoBehaviour
         if (experiencePoints >= nextLevelXP)
         {
             currentlevel++;
+			skillPoints++;
             experiencePoints -= nextLevelXP;
         }
 
@@ -123,7 +136,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Damage(int damageAmount)
     {
-        IncreaseHeartRate(damageAmount);
+        IncreaseHeartRate(damageAmount*4);
         GameManager.s_singleton.SetSpreeStatus(false);
     }
 
@@ -137,6 +150,10 @@ public class PlayerCharacter : MonoBehaviour
 
     public void FireWeapon()
     {
+		
+		//Firing the weapon increases the heart rate, for now we will use a uniform value regardless of the weapon
+		IncreaseHeartRate(3);
+		
     	if (m_playerWeapon.m_name.Equals("Default")) {
             AudioManager.m_singleton.DefaultGun();
             Quaternion startingRotation = Quaternion.LookRotation(m_aimDirection);
@@ -204,4 +221,23 @@ public class PlayerCharacter : MonoBehaviour
     {
         return nextLevelXP;
     }
+	
+	public void newSkillAdded(Skill s) {
+		if (currentSkills.Contains(s)) {
+			return;	
+		}
+		int pos = 0;
+		foreach (Skill curSkill in currentSkills) {
+			if (curSkill == null) {
+				Debug.Log("Should be putting it in spot " + pos);
+				break;
+			}
+			pos ++; 
+		}
+		currentSkills[pos] = s;
+	}
+	
+	public List<Skill> getCurrentSkills() {
+		return currentSkills;	
+	}
 }

@@ -9,12 +9,13 @@ public class SkillManager : MonoBehaviour {
     ///////////////////////////////////////
 
     //public bool display { get; set; }
-    private static Dictionary<string, Skill> purchasedSkills =  new Dictionary<string,Skill>();
-    public List<Skill> skillsList;
-    public static List<Skill> skills;
+    private static Dictionary<string, Skill> skillsDict =  new Dictionary<string,Skill>();
+    public List<Skill> skillsList;  //This is just the class of the skills to use, use the dict for the actual instance
 	// Use this for initialization
 	void Start () {
-        skills = skillsList;
+        foreach (Skill s in skillsList) {
+			skillsDict.Add(s.skillName, s);	
+		}
 	}
 	
 	// Update is called once per frame
@@ -36,32 +37,57 @@ public class SkillManager : MonoBehaviour {
     /// </summary>
     /// <param name="skillToCheck"></param>
     /// <returns></returns>
-    public static bool CanPurchase(Skill skillToCheck)
+    public static bool CanPurchase(string skillToCheck)
     {
-        if (skillToCheck.preReq != null)
-        {
-            return IsPurchased(skillToCheck.preReq.skillName) && skillToCheck.cost <= PlayerCharacter.s_singleton.experiencePoints;
-        }
-        else
-        {
-            return skillToCheck.cost <= PlayerCharacter.s_singleton.experiencePoints;
-        }
+    	return skillsDict[skillToCheck].getNextCost() <= PlayerCharacter.s_singleton.skillPoints;
     }
 
-    public static bool IsPurchased(string skillName)
-    {
-        return purchasedSkills.ContainsKey(skillName);
-    }
-
-    public static bool PurchaseSkill(Skill skillToPurchase)
+	/// <summary>
+	/// Returns the level of the skill provided, or -1 if the skill is not found
+	/// </summary>
+	/// <param name='skillName'>
+	/// Skill name.
+	/// </param>
+	public static int getSkillLevel(string skillName) {
+		Skill skillToCheck = skillsDict[skillName];
+		
+		if (skillToCheck) {
+			return skillToCheck.level;
+		} else {
+			return -1;	
+		}
+	}
+	
+    public static bool PurchaseSkill(string skillToPurchase)
     {
         if (CanPurchase(skillToPurchase))
         {
-            PlayerCharacter.s_singleton.experiencePoints -= skillToPurchase.cost;
-            purchasedSkills.Add(skillToPurchase.skillName, skillToPurchase);
-            Debug.Log("Just purchased skill: " + skillToPurchase.skillName);
+            PlayerCharacter.s_singleton.skillPoints -= skillsDict[skillToPurchase].getNextCost();
+			skillsDict[skillToPurchase].level++;
+			PlayerCharacter.s_singleton.newSkillAdded(skillsDict[skillToPurchase]);
             return true;
         }
         return false;
     }
+	
+	public static List<Skill> getSkills() {
+		return new List<Skill>(skillsDict.Values);
+	}
+	
+	public static void fireSkill(string skillName) {
+	
+		//Check if we have the skill
+		Skill skillToFire = skillsDict[skillName];
+		if (skillToFire == null) {
+			Debug.LogError("Trying to fire a non-existent skill: " + skillName);
+			return;
+		}
+		//Make sure we can use it, is it active, has it cooled down
+		if (skillToFire.passive == true) {
+			return;	
+		}
+		
+		//Do the action
+		skillToFire.Execute();
+	}
 }

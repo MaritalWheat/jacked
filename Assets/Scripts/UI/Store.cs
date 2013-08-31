@@ -79,15 +79,15 @@ public class Store : MonoBehaviour {
 
 		GUI.Box(m_headerBounds, "STORE", m_headerStyle);
         GUI.BeginGroup(m_itemListBounds);
-/*
-        int yValue = 10;
-        foreach (Skill s in SkillManager.skills)
-        {
+
+        int yValue = 100;
+        foreach (Skill s in SkillManager.getSkills())
+		{
             if (GUI.Button(new Rect(0, yValue, m_itemListBounds.width, 20), s.skillName, m_listStyle))
             {
                 GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
 
-                if (SkillManager.PurchaseSkill(s))
+                if (SkillManager.PurchaseSkill(s.skillName))
                 {
                     notification.GetComponent<ScrollingText>().Display("Purchased " + s.skillName + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
                 }
@@ -98,8 +98,8 @@ public class Store : MonoBehaviour {
             }
             yValue += 25;
         }
-*/
 
+/*
         float y = 100;
         foreach (Weapon selected in WeaponManager.m_singleton.m_weapons) {
             //bool value = m_storeWeapons.TryGetValue(selected, out value);
@@ -107,7 +107,7 @@ public class Store : MonoBehaviour {
             y += 30;
             
         }
-
+		 */
         /*if (GUI.Button(new Rect(0, 10, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle)) {
 			Debug.Log("Item Selected");
 			showRight = true;

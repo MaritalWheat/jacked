@@ -40,8 +40,9 @@ MonoBehaviour:
   passive: 0
   preReq: {fileID: 0}
   skillName: Ass
-  cost: 5
+  cost: 1
   mods: []
+  icon: {fileID: 2800000, guid: b0ab78042b31fb64fa5e26eda345d56f, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

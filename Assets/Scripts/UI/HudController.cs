@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HudController : MonoBehaviour {
 
@@ -59,6 +60,7 @@ public class HudController : MonoBehaviour {
 	public Rect m_skill2;
 	public Rect m_skill3;
 	public Rect m_skill4;
+	private List<Rect> skillRects;
 	
 	public GUIStyle m_xpStyle;
 	public GUIStyle m_lvlStyle;
@@ -89,6 +91,12 @@ public class HudController : MonoBehaviour {
         //m_xpLabelRect = new Rect(10, 5, 30, 20);
         //m_levelRect = new Rect((screenWidth / 4.0f) + 50, 5, (screenWidth / 4.0f) - 55, 20);
         m_progressBarFill.width = 0;
+		skillRects = new List<Rect>();
+		skillRects.Add(m_skill1);
+		skillRects.Add(m_skill2);
+		skillRects.Add(m_skill3);
+		skillRects.Add(m_skill4);
+	
 	}
 	
 	// Update is called once per frame
@@ -178,10 +186,21 @@ public class HudController : MonoBehaviour {
             GUI.Label(m_levelBounds, "Lvl " + PlayerCharacter.s_singleton.currentlevel, m_lvlStyle);
             //GUI.EndGroup();
 			
-			GUI.Button(m_skill1, "", m_iconStyle);
-			GUI.Button(m_skill2, "", m_iconStyle);
-			GUI.Button(m_skill3, "", m_iconStyle);
-			GUI.Button(m_skill4, "", m_iconStyle);
+			List<Skill> curSkills = PlayerCharacter.s_singleton.getCurrentSkills();
+			int i = 0;
+			foreach (Skill s in curSkills) {
+				GUI.Button(skillRects[i], "", m_iconStyle);
+				if (s != null) {
+					Rect iconRect = skillRects[i];
+					iconRect.width -=4;
+					iconRect.height -=4;
+					iconRect.x +=2;
+					iconRect.y +=2;
+					GUI.DrawTexture(iconRect, s.icon);
+				} 
+					
+				i++;
+			}
         }
     }
 
