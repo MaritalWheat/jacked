@@ -4335,7 +4335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b121ab248f89747b7bf3ac8865e385, type: 3}
   m_Name: 
   skillsList:
-  - {fileID: 11400000, guid: 8b6bdb0ef765cfd4f899e79eded298c7, type: 2}
+  - {fileID: 11400000, guid: 61b19f8ed08d28d4fa78f03314632151, type: 2}
   - {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0, type: 2}
   - {fileID: 11400000, guid: 4da5ad3f8504b3d498478acbc2e98dd6, type: 2}
   - {fileID: 11400000, guid: 4bac5d9089103144b96edb16bb26d7b1, type: 2}
@@ -7031,6 +7031,7 @@ GameObject:
   - 111: {fileID: 1975723945}
   - 114: {fileID: 1975723947}
   - 23: {fileID: 1975723948}
+  - 114: {fileID: 1975723949}
   m_Layer: 0
   m_Name: GUIController
   m_TagString: Untagged
@@ -7560,7 +7561,7 @@ MonoBehaviour:
   m_overlayStyle:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: e5a431713794e4843ba86081a2688ba6, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -8397,6 +8398,25 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+--- !u!114 &1975723949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1975723940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d82fac53b71b6f4baac2b9c93ba09f5, type: 3}
+  m_Name: 
+  window:
+    serializedVersion: 2
+    x: 256
+    y: -500
+    width: 512
+    height: 384
+  slideSpeed: 25
+  open: 0
+  lockedIcon: {fileID: 2800000, guid: e3b13df2f2b5f194c868b9a764d5fb24, type: 3}
 --- !u!1 &1997320115
 GameObject:
   m_ObjectHideFlags: 0

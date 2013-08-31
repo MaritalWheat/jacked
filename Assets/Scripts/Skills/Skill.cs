@@ -13,15 +13,7 @@ public class Skill : MonoBehaviour {
 	
 	public int level {get; set;}
 	
-	// Use this for initialization
-	void Start () {
-		level = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	//Do not use start and update since this is currently not on a gameobject it will not be called
 	
 	public int getNextCost() {
 	//Maybe this should be based on level later

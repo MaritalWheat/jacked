@@ -281,16 +281,30 @@ public class GameManager : MonoBehaviour {
     {
         return GameManager.s_singleton.m_paused;
     }
-
-    public static void Pause(bool enable)
+	
+	
+	/// <summary>
+	/// Shows the pause menu and pauses the game
+	/// </summary>
+	/// <param name='enable'>
+	/// Enable.
+	/// </param>
+    public static void ShowPauseMenu(bool enable)
     {
-        MainMenu.DisplayMainMenu(enable);
-        GameManager.s_singleton.m_paused = enable;
+		if (MainMenu.MainMenuDisplayed() != enable) {
+        	MainMenu.DisplayMainMenu(enable);
+        	PauseGame(enable);
+		}
     }
+	
+	public static void PauseGame(bool enable) {
+		GameManager.s_singleton.m_paused = enable;
+	}
 
     public static void Resume()
     {
         MainMenu.DisplayMainMenu(false);
+		PauseGame(false);
     }
 
     public void Reset()

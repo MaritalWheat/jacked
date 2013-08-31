@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) {
             if (!GameManager.IsPaused()) {
-                GameManager.Pause(!(GameManager.IsPaused()));
+                GameManager.ShowPauseMenu(!(GameManager.IsPaused()));
             } else {
                 GameManager.Resume();
             }
@@ -65,7 +65,8 @@ public class InputManager : MonoBehaviour
                 fire = true;
             }
         }
-
+		//Don't fire if mouse is over hud
+		fire = fire && !HudController.s_singleton.MouseOverHud();
         if (fire) {
             PlayerCharacter.s_singleton.FireWeapon();
             m_timeOfLastBullet = Time.time;

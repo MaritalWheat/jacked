@@ -124,8 +124,7 @@ public class MainMenu : MonoBehaviour {
             if (m_menuBounds.yMax > -10) {
                 m_menuBounds.y -= Screen.width / 35f;
             } else if (m_menuBounds.yMax <= -10) {
-                m_menuBounds.y = -m_menuBackgroundBounds.height - 10f; 
-                GameManager.Pause(false);
+                m_menuBounds.y = -m_menuBackgroundBounds.height - 10f;
             }
         }
 		

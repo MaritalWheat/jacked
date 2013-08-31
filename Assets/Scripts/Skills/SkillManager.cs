@@ -14,6 +14,7 @@ public class SkillManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         foreach (Skill s in skillsList) {
+			s.level = 0; //This should be changed it we ever mplement a way to save a game.
 			skillsDict.Add(s.skillName, s);	
 		}
 	}
@@ -63,6 +64,7 @@ public class SkillManager : MonoBehaviour {
         if (CanPurchase(skillToPurchase))
         {
             PlayerCharacter.s_singleton.skillPoints -= skillsDict[skillToPurchase].getNextCost();
+			Debug.Log("Pruchaseing skill : " + skillToPurchase);
 			skillsDict[skillToPurchase].level++;
 			PlayerCharacter.s_singleton.newSkillAdded(skillsDict[skillToPurchase]);
             return true;

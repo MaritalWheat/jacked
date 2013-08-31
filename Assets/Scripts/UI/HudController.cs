@@ -66,7 +66,13 @@ public class HudController : MonoBehaviour {
 	public GUIStyle m_lvlStyle;
 	public GUIStyle m_iconStyle;
 	public GUIStyle m_overlayStyle;
-
+	
+	private SkillUI skillUI;
+	
+	//These rectangles more closely aproximate the part of the screen with HUD drawn on it
+	Rect actualSkillRect;
+	Rect actualHudRect;
+	
 	// Use this for initialization
 	void Start () {
         if (!s_singleton)
@@ -97,12 +103,12 @@ public class HudController : MonoBehaviour {
 		skillRects.Add(m_skill3);
 		skillRects.Add(m_skill4);
 	
+		skillUI = gameObject.GetComponent<SkillUI>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        
         //Things to execute even if the game is paused
         if (screenHeight != Screen.height || screenWidth != Screen.width)
         {
@@ -154,13 +160,18 @@ public class HudController : MonoBehaviour {
             //heartScale = (heartRate * 1.0f) / 300.0f;
             BeatHeart();
         }
+		
+		//These are used when deciding if the mouse is currently over the hud
+		actualSkillRect = new Rect(m_skill1.x - 15, 0 ,m_skill4.xMax - (m_skill1.x -30 ), m_progressBarBounds.yMax + 10);
+		actualHudRect = m_controllerBounds;
+		actualHudRect.height -= 75;
+		actualHudRect.y += 75;
 	}
 
     void OnGUI()
     {
         if (m_display)
         {
-			
             GUI.Box(m_controllerBounds,"", m_topGUIBar);
             GUI.BeginGroup(m_controllerBounds);
             GUI.DrawTexture(m_heartRect, m_heartTexture);
@@ -189,7 +200,9 @@ public class HudController : MonoBehaviour {
 			List<Skill> curSkills = PlayerCharacter.s_singleton.getCurrentSkills();
 			int i = 0;
 			foreach (Skill s in curSkills) {
-				GUI.Button(skillRects[i], "", m_iconStyle);
+				if (GUI.Button(skillRects[i], "", m_iconStyle)) {
+					skillUI.slide(!skillUI.open);
+				}
 				if (s != null) {
 					Rect iconRect = skillRects[i];
 					iconRect.width -=4;
@@ -260,4 +273,10 @@ public class HudController : MonoBehaviour {
     {
         m_display = display;
     }
+	
+	public bool MouseOverHud() {
+		Vector2 screenMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+		
+		return actualHudRect.Contains(screenMousePos) || actualSkillRect .Contains(screenMousePos);	
+	}
 }
