@@ -58,7 +58,7 @@ public class Powerup : MonoBehaviour {
         if (other.GetComponent<PlayerCharacter>())
         {
             GameObject notification = (GameObject)Instantiate(HudController.s_singleton.PowerupNotification);
-            notification.GetComponent<PowerupNotification>().DisplayLarge(notificationMessage, 3.0f);
+            notification.GetComponent<PowerupNotification>().DisplayMedium(notificationMessage, 3.0f);
 
             foreach (Modifier mod in Modifiers)
             {

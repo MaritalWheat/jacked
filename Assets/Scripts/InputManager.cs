@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
         }
 		
 		// MOVE THIS TO GUI MANAGER
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (Input.GetKeyDown(KeyCode.LeftControl)) {
 			WeaponWheel.DisplayWeaponWheel(!WeaponWheel.GetWeaponWheelDisplayStatus());
 		}
 		

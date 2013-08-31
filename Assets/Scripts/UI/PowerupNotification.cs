@@ -32,13 +32,14 @@ public class PowerupNotification : MonoBehaviour {
                 Destroy(this.gameObject);
             }
 
-            if (m_notificationRect.y > Screen.height - m_notificationRect.height - 100)
+            if (m_notificationRect.y < HudController.s_singleton.m_progressBarBounds.yMax + 10)
             {
-                m_notificationRect.y -= 5;
+                m_notificationRect.y += 5;
             }
             else
             {
                 m_duration -= Time.deltaTime;
+				m_style.normal.textColor = new Color(m_style.normal.textColor.r, m_style.normal.textColor.g, m_style.normal.textColor.b, m_style.normal.textColor.a - Time.deltaTime * 1.0f);
             }
 
 
@@ -71,7 +72,7 @@ public class PowerupNotification : MonoBehaviour {
         m_message = message;
         m_style.font = m_smallFont;
         Vector2 size = m_style.CalcSize(new GUIContent(message));
-        m_notificationRect = new Rect(Screen.width / 2 - (size.x / 2), Screen.height, size.x, size.y);
+        m_notificationRect = new Rect(Screen.width / 2 - (size.x / 2), Screen.height, size.x, 50);
         m_duration = duration;
         //m_startTime = Time.time;
         m_display = true;
@@ -82,7 +83,7 @@ public class PowerupNotification : MonoBehaviour {
         m_message = message;
         m_style.font = m_mediumFont;
         Vector2 size = m_style.CalcSize(new GUIContent(message));
-        m_notificationRect = new Rect(Screen.width / 2 - (size.x / 2), Screen.height, size.x, size.y);
+        m_notificationRect = new Rect(Screen.width / 2 - (size.x / 2), 0, size.x, size.y);
         m_duration = duration;
         //m_startTime = Time.time;
         m_display = true;

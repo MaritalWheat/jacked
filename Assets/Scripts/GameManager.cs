@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour {
 
         if (Random.value > .99)
         {
-            SpawnPowerup();
+            //SpawnPowerup();
         }
 
         
