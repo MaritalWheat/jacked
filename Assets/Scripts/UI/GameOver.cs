@@ -30,10 +30,11 @@ public class GameOver : MonoBehaviour {
     {
         if (m_display)
         {
-            if (GUI.Button(m_restartRect, "Restart", m_buttonStyle))
+            if (GUI.Button(m_restartRect, "Main Menu", m_buttonStyle))
             {
                 HudController.s_singleton.Display(true);
-                m_display = false; GameManager.s_singleton.Reset();
+                m_display = false;
+                GameManager.s_singleton.Reset();
                 GameManager.s_singleton.Enable(true);
                 InputManager.Enable(true);
             }

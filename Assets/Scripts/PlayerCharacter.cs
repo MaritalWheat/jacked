@@ -15,7 +15,7 @@ public class PlayerCharacter : MonoBehaviour
     public bool gamePad;
     public float m_characterSpeed;
     public float m_maxCharacterSpeed;
-    public int m_heartRate;
+    public int m_heartRate = 100;
     public Vector2 m_orient;
     public Vector3 m_aimDirection;
     public PlayerState m_playerState;
@@ -142,15 +142,21 @@ public class PlayerCharacter : MonoBehaviour
 
     public void PlayerDied()
     {
-        m_enabled = false;
-        HudController.s_singleton.Display(false);
-        InputManager.Enable(false);
-        GameOver.s_singleton.Display();
+        GameManager.s_singleton.EndGame();
+    }
+
+    public void Reset()
+    {
+        experiencePoints = 0;
+        skillPoints = 0;
+        currentlevel = 0;
+        nextLevelXP = 0;
+        m_heartRate = 100;
+        currentSkills.Clear();
     }
 
     public void FireWeapon()
     {
-		
 		//Firing the weapon increases the heart rate, for now we will use a uniform value regardless of the weapon
 		IncreaseHeartRate(3);
 		

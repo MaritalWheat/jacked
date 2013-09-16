@@ -159,6 +159,16 @@ public class GameManager : MonoBehaviour {
 
         
 	}
+
+    public void EndGame()
+    {
+        Enable(false);
+        HudController.s_singleton.Display(false);
+        InputManager.Enable(false);
+        
+        GameOver.s_singleton.Display();
+        PlayerCharacter.s_singleton.Reset();
+    }
 	
 	private void StartPostWave() {
         //HudController.s_singleton.Display(false);
@@ -309,11 +319,13 @@ public class GameManager : MonoBehaviour {
 
     public void Reset()
     {
+        PlayerCharacter.s_singleton.Reset();
+
         foreach (Transform child in m_enemies.transform)
         {
             Destroy(child.gameObject);
         }
-        PlayerCharacter.s_singleton.m_heartRate = 100;
+
         m_currentWaveFinished = true;
         m_currentWaveNumber = 1;
         m_score = 0;

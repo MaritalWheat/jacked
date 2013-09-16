@@ -200,8 +200,8 @@ public class HudController : MonoBehaviour {
 			List<Skill> curSkills = PlayerCharacter.s_singleton.getCurrentSkills();
 			int i = 0;
 			foreach (Skill s in curSkills) {
-				if (GUI.Button(skillRects[i], "", m_iconStyle)) {
-					skillUI.slide(!skillUI.open);
+				if (GUI.Button(skillRects[i], "", m_iconStyle) && !MainMenu.MainMenuDisplayed()) {
+                    skillUI.slide(!skillUI.open);
 				}
 				if (s != null) {
 					Rect iconRect = skillRects[i];

@@ -15,14 +15,36 @@ public class InputManager : MonoBehaviour
 	public static InputManager s_singleton;   
     private const float k_bulletDelay = .25f;
 
+    public static KeyCode LEFT { get; set; }
+    public static KeyCode RIGHT { get; set; }
+    public static KeyCode UP { get; set; }
+    public static KeyCode DOWN { get; set; }
+
+    public const string PREF_UP_KEY = "upKey";
+    public const string PREF_DOWN_KEY = "downKey";
+    public const string PREF_RIGHT_KEY = "rightKey";
+    public const string PREF_LEFT_KEY = "leftKey";
+
+
+
 	
 	void Start ()
     {
+        string tempKey = PlayerPrefs.GetString(PREF_LEFT_KEY);
+        LEFT = (tempKey.Length == 0) ? KeyCode.A : (KeyCode) System.Enum.Parse(typeof(KeyCode), tempKey);
+        tempKey = PlayerPrefs.GetString(PREF_RIGHT_KEY);
+        RIGHT = (tempKey.Length == 0) ? KeyCode.D : (KeyCode)System.Enum.Parse(typeof(KeyCode), tempKey);
+        tempKey = PlayerPrefs.GetString(PREF_UP_KEY);
+        UP = (tempKey.Length == 0) ? KeyCode.W : (KeyCode)System.Enum.Parse(typeof(KeyCode), tempKey);
+        tempKey = PlayerPrefs.GetString(PREF_DOWN_KEY);
+        DOWN = (tempKey.Length == 0) ? KeyCode.S : (KeyCode)System.Enum.Parse(typeof(KeyCode), tempKey);
+
 		if (s_singleton == null) {
 			s_singleton = this;
 		}
         m_characterController = gameObject.GetComponent<CharacterController>();
         m_playerCharacter = gameObject.GetComponent<PlayerCharacter>();
+
 	}
 	
 	void Update ()
@@ -43,7 +65,7 @@ public class InputManager : MonoBehaviour
         if (m_playerCharacter.gamePad) {
             m_inputVelocity = new Vector2(Input.GetAxis("HorizontalGamepad") * 2, Input.GetAxis("VerticalGamepad") * -2);
         } else {
-            m_inputVelocity = new Vector2(Input.GetAxis("Horizontal") * 2, Input.GetAxis("Vertical") * 2);
+            m_inputVelocity = new Vector2(GetHorizontal() * 2, GetVertical() * 2);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) {
@@ -103,6 +125,32 @@ public class InputManager : MonoBehaviour
 			}
 		}
 	}
+
+    private int GetHorizontal()
+    {
+        int horizontalValue = 0;
+
+        if (Input.GetKey(LEFT))
+            horizontalValue--;
+
+        if (Input.GetKey(RIGHT))
+            horizontalValue++;
+
+        return horizontalValue;
+    }
+
+    private int GetVertical()
+    {
+        int verticalValue = 0;
+
+        if (Input.GetKey(UP))
+            verticalValue++;
+
+        if (Input.GetKey(DOWN))
+            verticalValue--;
+
+        return verticalValue;
+    }
 
     private void UpInput()
     {
