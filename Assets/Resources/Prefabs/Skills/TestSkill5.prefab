@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Name: 
   passive: 0
   preReq: {fileID: 0}
-  skillName: Cocksucker
+  skillName: Test 5
   cost: 1
   mods: []
   icon: {fileID: 2800000, guid: 8e8ba9f9a4611ae4fb3404b5554434de, type: 3}

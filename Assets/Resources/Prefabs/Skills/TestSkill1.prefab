@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Name: 
   passive: 0
   preReq: {fileID: 0}
-  skillName: Shit
+  skillName: Test 1
   cost: 1
   mods: []
   icon: {fileID: 2800000, guid: 2adb12818aed8524fa2f7c51298da5f3, type: 3}

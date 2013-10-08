@@ -56,7 +56,6 @@ public class SkillUI : MonoBehaviour {
 
         GUI.depth = int.MinValue;   // draw on top of everything
 		GUI.BeginGroup(window);
-		GUI.Box(new Rect(0,0,window.width,window.height),"ADAM EGGUM IS A FUCKING BITCH");
 		Rect skillRect = new Rect(10, 10, 100, 100);
 		int row = 0, col = 0;
 		foreach (Skill s in SkillManager.getSkills()) {

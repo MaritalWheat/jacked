@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/Store.cs">
     <Files>
       <File FileName="Assets/Scripts/UI/Store.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
@@ -8,7 +8,7 @@
       <File FileName="Assets/Scripts/UI/HudController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/UI/PowerupNotification.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/UI/FloatingText.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/ScrollingText.cs" Line="38" Column="30" />
+      <File FileName="Assets/Scripts/UI/ScrollingText.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
