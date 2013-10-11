@@ -1,25 +1,25 @@
+*******
 Jacked
-======
+*******
 
-6/19 - long term goals
-
--weapons
-  -bought from store/drops
-  -upgrade system for weapons
-  -ammo?
-  -switch in game
--player skill tree
--better system for powerups
--fix and expand killing spree system/add achievement system
--fix scoring system
--get an artist
-
-
-**********
-CHECK-IN STANDARDS
-$3 for error
-$2 for debug
-$1 for warning (in-game)
-**********
+description:
+    Global Game Jam '13 game, with continued development.  Core base developed at GGJ, including AI, animation system,
+    game manager, general UI flow.  Post-jam development has focused on implementing final UI, developing skill and 
+    weapons systems, finalizing game flow, and cleaning up game jam work (that in itself is...a task).
+    
+    Content creation is next big phase.  
+    
+    Desperately in need of an artist!
+*******
+todo:
+    
+    -re-work AI
+    -add enemy types
+    -rework physics / collisions - wait for 2D tools?
+    -camera bounding
+    -make animation system more robust, improve animation workflow - wait for 2D tools?
+    -weapons/skills - content
+    
+*******
 
 
