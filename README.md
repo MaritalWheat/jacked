@@ -2,6 +2,7 @@
 Jacked
 *******
 description:
+
     Crank, minus Jason Statham, plus one confused little boy in a forest full of horrors.  Twin-stick top down 2D action,
     designed to always push players towards that fine knife's edge point of being extremely powerful and not being able
     to be in control - ideally, Jacked is a car pushing its top speed almost all the time.  RPG-lite elements,
