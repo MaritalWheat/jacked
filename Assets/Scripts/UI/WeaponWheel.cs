@@ -40,7 +40,7 @@ public class WeaponWheel : MonoBehaviour {
 	}
 	
 	void Update () {
-		if ( m_itemContainerAngle[0] < nextStopPoint) {
+		if (m_itemContainerAngle[0] < nextStopPoint) {
 			for (int i = 0; i < m_itemContainerAngle.Count; i++) {
 				m_itemContainerAngle[i] += 5;
 			}

@@ -9,10 +9,15 @@ public class SkillManager : MonoBehaviour {
     ///////////////////////////////////////
 
     //public bool display { get; set; }
+	public static SkillManager m_singleton;
     private static Dictionary<string, Skill> skillsDict =  new Dictionary<string,Skill>();
     public List<Skill> skillsList;  //This is just the class of the skills to use, use the dict for the actual instance
 	// Use this for initialization
 	void Start () {
+		if (m_singleton == null) {
+			m_singleton = this;
+		}
+
         foreach (Skill s in skillsList) {
 			s.level = 0; //This should be changed it we ever mplement a way to save a game.
 			skillsDict.Add(s.skillName, s);	
@@ -91,5 +96,12 @@ public class SkillManager : MonoBehaviour {
 		
 		//Do the action
 		skillToFire.Execute();
+	}
+
+	IEnumerator Activated() {
+		while (true) {
+			PlayerCharacter.s_singleton.SlowHeartRate(1);
+			yield return new WaitForSeconds(0.1f);
+		}
 	}
 }

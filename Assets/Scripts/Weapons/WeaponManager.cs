@@ -32,7 +32,10 @@ public class WeaponManager : MonoBehaviour {
 		WeaponManager.m_singleton.m_weaponsDict.TryGetValue(name, out value);
 		return value;
 	}
-	
-	//need a list of active weapons
-	//need to have interface for choosing weapons		
+
+	public static void PurchaseWeapon(string name) 
+	{
+		m_singleton.m_ownedWeapons.Add(WeaponManager.GetWeapon(name));
+		m_singleton.m_weapons.Remove(WeaponManager.GetWeapon(name));
+	}
 }

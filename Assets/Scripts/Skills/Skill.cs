@@ -15,7 +15,8 @@ public class Skill : MonoBehaviour {
 	
 	//Do not use start and update since this is currently not on a gameobject it will not be called
 	
-	public int getNextCost() {
+	public int getNextCost() 
+	{
 	//Maybe this should be based on level later
 		return 1;
 	}
@@ -23,7 +24,8 @@ public class Skill : MonoBehaviour {
 	/// <summary>
 	/// Execute the skill, this can be overriden by children for special skills
 	/// </summary>
-	public virtual void Execute() {
+	public virtual void Execute() 
+	{
 		Debug.Log ("BLAM!!!");
 	}
 }

@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: TestSkill1
+  m_Name: Heartburn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,14 +35,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4e173725d0e7342a30fc6e4ea807b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 785416558eb164fb291f1e87afbe774c, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   passive: 0
   preReq: {fileID: 0}
-  skillName: Test 1
+  skillName: Heartburn
   cost: 1
   mods: []
-  icon: {fileID: 2800000, guid: 2adb12818aed8524fa2f7c51298da5f3, type: 3}
+  icon: {fileID: 2800000, guid: 0b521aeb7158abe4a9cce14b95d0fc1a, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

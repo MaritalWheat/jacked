@@ -8,12 +8,6 @@ public class Weapon : MonoBehaviour {
 	public GUIStyle m_style;
     public bool m_selectedInStore = false;
 	
-    
-	/*public Weapon(string name, GUIStyle style) {
-		m_name = name;
-		m_style = style;
-	}*/
-	
 	private void Start() 
 	{
 	}

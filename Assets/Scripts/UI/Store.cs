@@ -32,22 +32,10 @@ public class Store : MonoBehaviour {
 		if (m_singleton == null) {
 			m_singleton = this;
 		}
-        //m_storeWeapons = new Dictionary<Weapon,bool>();
-        //foreach (Weapon selected in WeaponManager.m_singleton.m_weapons) {
-        //    m_storeWeapons.Add(selected, false);
-        //}
-		/*m_storeBounds = new Rect(Screen.width * .10f, Screen.height * .10f, Screen.width * .8f, Screen.height * .8f);
-        m_bottomButtonLeftBounds = new Rect(m_storeBounds.width * .01f, m_storeBounds.height - m_storeBounds.height * .01f - m_storeBounds.height * .1f, m_storeBounds.width * .97f / 2, m_storeBounds.height * .1f);
-        m_bottomButtonRightBounds = new Rect(m_bottomButtonLeftBounds.xMax + m_storeBounds.width * .01f, m_bottomButtonLeftBounds.y, m_bottomButtonLeftBounds.width, m_bottomButtonLeftBounds.height);
-		m_headerBounds = new Rect (m_storeBounds.width * .01f, m_storeBounds.height * .015f, m_storeBounds.width * .98f, m_storeBounds.height * .15f);
-		m_itemListBounds = new Rect(m_bottomButtonLeftBounds.xMin, m_headerBounds.yMax + m_storeBounds.height * .01f, m_bottomButtonLeftBounds.width, m_bottomButtonLeftBounds.yMin -
-			m_storeBounds.height * .01f - m_headerBounds.yMax - m_storeBounds.height * .01f);
-		m_selectedItemBounds = new Rect(m_bottomButtonRightBounds.xMin, m_itemListBounds.yMin, m_itemListBounds.width, m_itemListBounds.height);*/
 		m_currStoreBounds = new Rect (m_storeBounds.x, -m_storeBounds.height - 10, m_storeBounds.width, m_storeBounds.height);
 	}
 	
 	void OnGUI() {
-		//if (!m_display) return;
 		if (m_display) {
 			GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "", HudController.s_singleton.m_overlayStyle);
             if (m_currStoreBounds.y < m_storeBounds.y) {
@@ -60,25 +48,21 @@ public class Store : MonoBehaviour {
                 m_currStoreBounds.y -= Screen.height / 30;
             } else if (m_currStoreBounds.yMax <= -10) {
                 m_currStoreBounds.y = -m_storeBounds.height - 10f; 
-                //GameManager.Pause(false);
             }
         }
-			//Camera.mainCamera.GetComponent<BlurEffect>().enabled = true;
-			//m_blurAmount = Camera.mainCamera.GetComponent<MotionBlur>().blurAmount;
-			//Camera.mainCamera.GetComponent<MotionBlur>().blurAmount = 1;
 		GUI.Box(m_currStoreBounds, "", m_backStyle);
 		GUI.BeginGroup(m_currStoreBounds);
-        		GUI.Box(m_itemListBounds, "", m_windowStyle);
+        GUI.Box(m_itemListBounds, "", m_windowStyle);
 		GUI.Box(m_selectedItemBounds, "", m_windowStyle);
 		if (GUI.Button(m_bottomButtonLeftBounds, "Start Next", m_buttonStyle)) {
-			//Camera.mainCamera.GetComponent<BlurEffect>().enabled = false;
 			m_storeClosed = true;
 			m_display = false;
 		}
         GUI.Button(m_bottomButtonRightBounds, "Money: " + GameManager.s_singleton.m_score, m_buttonStyle);
 
 		GUI.Box(m_headerBounds, "STORE", m_headerStyle);
-        GUI.BeginGroup(m_itemListBounds);
+        
+		GUI.BeginGroup(m_itemListBounds);
 
         int yValue = 100;
         foreach (Skill s in SkillManager.getSkills())
@@ -99,53 +83,17 @@ public class Store : MonoBehaviour {
             yValue += 25;
         }
 
-/*
-        float y = 100;
-        foreach (Weapon selected in WeaponManager.m_singleton.m_weapons) {
-            //bool value = m_storeWeapons.TryGetValue(selected, out value);
-            selected.m_selectedInStore = GUI.Toggle(new Rect(0, y, m_itemListBounds.width, 20), selected.m_selectedInStore, selected.name, m_listStyle);
-            y += 30;
-            
-        }
-		 */
-        /*if (GUI.Button(new Rect(0, 10, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle)) {
-			Debug.Log("Item Selected");
-			showRight = true;
-		}
-        GUI.Button(new Rect(0, 40, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 70, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 100, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 130, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 160, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 190, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 220, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 250, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 280, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);
-        GUI.Button(new Rect(0, 310, m_itemListBounds.width, 20), "A Really Sick Item", m_listStyle);*/
-        GUI.EndGroup();
-
-        foreach (Weapon selected in WeaponManager.m_singleton.m_weapons) {
-            if (selected.m_selectedInStore) {
-                if (GUI.Button(m_selectedItemBounds, "Buy", m_buttonStyle) && GameManager.s_singleton.m_score >= 100) {
-                    WeaponManager.m_singleton.m_ownedWeapons.Add(WeaponManager.GetWeapon("TriShot"));
-                    GameManager.s_singleton.m_score -= 100;
-                }
+		for(int i = 0; i < WeaponManager.m_singleton.m_weapons.Count; i++) { 
+			Weapon w = WeaponManager.m_singleton.m_weapons[i];
+			if (GUI.Button(new Rect(0, yValue, m_itemListBounds.width, 20), w.m_name, m_listStyle) && GameManager.s_singleton.m_score >= 100) {
+				WeaponManager.PurchaseWeapon(w.m_name);
+                GameManager.s_singleton.m_score -= 100;
             }
+			yValue += 25;
         }
-		if (showRight) { 
-			if (GUI.Button(m_selectedItemBounds, "Buy", m_buttonStyle) && GameManager.s_singleton.m_score >= 100) {
-				WeaponManager.m_singleton.m_ownedWeapons.Add(WeaponManager.GetWeapon("TriShot"));
-				GameManager.s_singleton.m_score -= 100;
-			}
-		}
+		GUI.EndGroup();
 
-        //m_scrollPos = GUI.BeginScrollView(new Rect(m_itemListBounds.left, m_itemListBounds.top, m_itemListBounds.width, m_itemListBounds.height + 500), m_scrollPos, m_itemListBounds);
-        //GUI.Button(new Rect(0, 0, 100, 100), "", m_buttonStyle);
-        //GUI.EndScrollView();
-        
-        GUI.EndGroup();
-
-        
+        GUI.EndGroup();   
 	}
 	
 	public static void DisplayStore() {
