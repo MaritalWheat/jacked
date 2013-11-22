@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Heartburn
+  m_Name: SkillManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,15 +35,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 785416558eb164fb291f1e87afbe774c, type: 3}
+  m_Script: {fileID: 11500000, guid: e3b121ab248f89747b7bf3ac8865e385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_passive: 0
-  m_preReq: {fileID: 0}
-  m_name: Heartburn
-  m_cost: 100
-  m_mods: []
-  m_icon: {fileID: 2800000, guid: 0b521aeb7158abe4a9cce14b95d0fc1a, type: 3}
+  skillsList:
+  - {fileID: 11400000, guid: 61b19f8ed08d28d4fa78f03314632151, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

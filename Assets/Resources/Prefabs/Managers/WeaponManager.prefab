@@ -37,7 +37,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88564a884c4434489ac482fc370a71f5, type: 3}
   m_Name: 
-  m_weaponPrefabs: []
+  m_EditorClassIdentifier: 
+  m_weapons: []
+  m_ownedWeapons: []
+  m_noWeapon: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

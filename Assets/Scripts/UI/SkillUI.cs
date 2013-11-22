@@ -61,8 +61,8 @@ public class SkillUI : MonoBehaviour {
 		foreach (Skill s in SkillManager.getSkills()) {
 			skillRect.x = 10 + (110 * col);
 			skillRect.y = 10 + (110 * row);
-			GUI.DrawTexture(skillRect, s.icon);
-			if (SkillManager.getSkillLevel(s.skillName) == 0) {
+			GUI.DrawTexture(skillRect, s.m_icon);
+			if (SkillManager.getSkillLevel(s.m_name) == 0) {
 				GUI.DrawTexture(skillRect, lockedIcon);	
 			}
 			col ++;

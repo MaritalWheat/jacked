@@ -19,8 +19,8 @@ public class SkillManager : MonoBehaviour {
 		}
 
         foreach (Skill s in skillsList) {
-			s.level = 0; //This should be changed it we ever mplement a way to save a game.
-			skillsDict.Add(s.skillName, s);	
+			s.Level = 0; //This should be changed it we ever mplement a way to save a game.
+			skillsDict.Add(s.m_name, s);	
 		}
 	}
 	
@@ -45,7 +45,7 @@ public class SkillManager : MonoBehaviour {
     /// <returns></returns>
     public static bool CanPurchase(string skillToCheck)
     {
-    	return skillsDict[skillToCheck].getNextCost() <= PlayerCharacter.s_singleton.skillPoints;
+    	return skillsDict[skillToCheck].GetNextCost() <= PlayerCharacter.s_singleton.skillPoints;
     }
 
 	/// <summary>
@@ -58,7 +58,7 @@ public class SkillManager : MonoBehaviour {
 		Skill skillToCheck = skillsDict[skillName];
 		
 		if (skillToCheck) {
-			return skillToCheck.level;
+			return skillToCheck.Level;
 		} else {
 			return -1;	
 		}
@@ -68,9 +68,9 @@ public class SkillManager : MonoBehaviour {
     {
         if (CanPurchase(skillToPurchase))
         {
-            PlayerCharacter.s_singleton.skillPoints -= skillsDict[skillToPurchase].getNextCost();
+            PlayerCharacter.s_singleton.skillPoints -= skillsDict[skillToPurchase].GetNextCost();
 			Debug.Log("Pruchaseing skill : " + skillToPurchase);
-			skillsDict[skillToPurchase].level++;
+			skillsDict[skillToPurchase].Level++;
 			PlayerCharacter.s_singleton.newSkillAdded(skillsDict[skillToPurchase]);
             return true;
         }
@@ -90,7 +90,7 @@ public class SkillManager : MonoBehaviour {
 			return;
 		}
 		//Make sure we can use it, is it active, has it cooled down
-		if (skillToFire.passive == true) {
+		if (skillToFire.m_passive == true) {
 			return;	
 		}
 		

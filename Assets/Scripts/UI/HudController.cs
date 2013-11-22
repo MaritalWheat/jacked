@@ -209,7 +209,7 @@ public class HudController : MonoBehaviour {
 					iconRect.height -=4;
 					iconRect.x +=2;
 					iconRect.y +=2;
-					GUI.DrawTexture(iconRect, s.icon);
+					GUI.DrawTexture(iconRect, s.m_icon);
 				} 
 					
 				i++;

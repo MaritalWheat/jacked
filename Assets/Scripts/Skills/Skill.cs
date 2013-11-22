@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 public class Skill : MonoBehaviour {
 
-    public bool passive;
-    public Skill preReq;
-    public string skillName;
-    public int cost;
-    public List<Modifier> mods;
-	public Texture icon;
+    public bool m_passive;
+    public Skill m_preReq;
+    public string m_name;
+    public int m_cost;
+    public List<Modifier> m_mods;
+	public Texture m_icon;
 	
-	public int level {get; set;}
+	public int Level {get; set;}
 	
 	//Do not use start and update since this is currently not on a gameobject it will not be called
 	
-	public int getNextCost() 
+	public int GetNextCost() 
 	{
 	//Maybe this should be based on level later
 		return 1;

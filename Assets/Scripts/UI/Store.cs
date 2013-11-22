@@ -67,17 +67,17 @@ public class Store : MonoBehaviour {
         int yValue = 100;
         foreach (Skill s in SkillManager.getSkills())
 		{
-            if (GUI.Button(new Rect(0, yValue, m_itemListBounds.width, 20), s.skillName, m_listStyle))
+            if (GUI.Button(new Rect(0, yValue, m_itemListBounds.width, 20), s.m_name, m_listStyle))
             {
                 GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
 
-                if (SkillManager.PurchaseSkill(s.skillName))
+                if (SkillManager.PurchaseSkill(s.m_name))
                 {
-                    notification.GetComponent<ScrollingText>().Display("Purchased " + s.skillName + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+                    notification.GetComponent<ScrollingText>().Display("Purchased " + s.m_name + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
                 }
                 else
                 {
-                    notification.GetComponent<ScrollingText>().Display("You can't afford " + s.skillName + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+                    notification.GetComponent<ScrollingText>().Display("You can't afford " + s.m_name + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
                 }
             }
             yValue += 25;
