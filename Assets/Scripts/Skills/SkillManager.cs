@@ -19,20 +19,6 @@ public class SkillManager : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	    
-     
-	}
-
-    void OnGUI()
-    {
-        /* For now the display is handled in the store
-        if (!display) {
-            return;
-        }*/
-    }
-	
     // This function will return true only if the Player has already purchased the prequisites for the skill and has enough XP to purchase the skill
     public static bool CanPurchase(string skillToCheck)
     {
@@ -82,12 +68,5 @@ public class SkillManager : MonoBehaviour {
 		
 		//Do the action
 		skillToFire.Execute();
-	}
-
-	IEnumerator Activated() {
-		while (true) {
-			PlayerCharacter.s_singleton.SlowHeartRate(1);
-			yield return new WaitForSeconds(0.1f);
-		}
 	}
 }
