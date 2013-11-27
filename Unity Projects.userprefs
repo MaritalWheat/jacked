@@ -1,14 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skills/Heartburn.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Skills/SurvivalInstinct.cs">
     <Files>
-      <File FileName="Assets/Scripts/Skills/Skill.cs" Line="15" Column="2" />
-      <File FileName="Assets/Scripts/Skills/SkillManager.cs" Line="22" Column="11" />
+      <File FileName="Assets/Scripts/Skills/Skill.cs" Line="29" Column="1" />
+      <File FileName="Assets/Scripts/Skills/SkillManager.cs" Line="9" Column="36" />
       <File FileName="Assets/Scripts/PlayerCharacter.cs" Line="186" Column="1" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="48" Column="1" />
       <File FileName="Assets/Scripts/UI/GameOver.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/UI/HudController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Skills/Heartburn.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Skills/Spiritwalker.cs" Line="18" Column="59" />
+      <File FileName="Assets/Scripts/AI/EnemyBehavior.cs" Line="35" Column="34" />
+      <File FileName="Assets/Scripts/AI/EnemyManager.cs" Line="7" Column="17" />
+      <File FileName="Assets/Scripts/Skills/SurvivalInstinct.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

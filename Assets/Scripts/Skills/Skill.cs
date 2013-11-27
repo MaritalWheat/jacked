@@ -26,6 +26,6 @@ public class Skill : MonoBehaviour {
 	/// </summary>
 	public virtual void Execute() 
 	{
-		Debug.Log ("BLAM!!!");
+
 	}
 }

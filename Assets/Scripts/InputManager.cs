@@ -109,19 +109,19 @@ public class InputManager : MonoBehaviour
 		List<Skill> skills = PlayerCharacter.s_singleton.getCurrentSkills();
 		if (Input.GetKey(KeyCode.Alpha1)) {
 			if (skills[0] != null) {
-				SkillManager.fireSkill(skills[0].m_name);	
+				SkillManager.FireSkill(skills[0].m_name);	
 			}
 		} else if (Input.GetKey(KeyCode.Alpha2)) {
 			if (skills[1] != null) {
-				SkillManager.fireSkill(skills[1].m_name);	
+				SkillManager.FireSkill(skills[1].m_name);	
 			}
 		} else if (Input.GetKey(KeyCode.Alpha3)) {
 			if (skills[2] != null) {
-				SkillManager.fireSkill(skills[2].m_name);	
+				SkillManager.FireSkill(skills[2].m_name);	
 			}
 		} else if (Input.GetKey(KeyCode.Alpha4)) {
 			if (skills[3] != null) {
-				SkillManager.fireSkill(skills[3].m_name);	
+				SkillManager.FireSkill(skills[3].m_name);	
 			}
 		}
 	}

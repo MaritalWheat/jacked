@@ -10,6 +10,7 @@ public class EnemyBehavior : MonoBehaviour {
     protected float starting_y;
     protected int m_experiencePoints = 1;
     
+	protected float m_baseSpeed;
     public float m_speed;
     public int m_damage;
     public int m_health;
@@ -20,13 +21,10 @@ public class EnemyBehavior : MonoBehaviour {
     public SpriteAnimation m_walkLeftAnimation;
     public SpriteAnimation m_walkRightAnimation;
     
-
-	// Use this for initialization
 	protected void Start () {
         OnStart();
 	}
-	
-	// Update is called once per frame
+
 	protected void Update () {
         if (GameManager.IsPaused()) {
             return;
@@ -35,12 +33,15 @@ public class EnemyBehavior : MonoBehaviour {
 	}
 
     public virtual void OnStart() {
+		EnemyManager.Enemies.Add(this);
+		m_baseSpeed = m_speed;
         m_playerCharacter = PlayerCharacter.s_singleton;
         m_characterController = gameObject.GetComponent<CharacterController>();
         m_animationManager = GetComponent<SpriteAnimationManager>();
         m_animationManager.SetSpriteAnimation(m_walkLeftAnimation);
         starting_y = transform.position.y;
     }
+
     public virtual void OnUpdate() {
     }
 
@@ -78,6 +79,7 @@ public class EnemyBehavior : MonoBehaviour {
         Vector3 notificationPos = Camera.main.WorldToScreenPoint(transform.position);
         notification.GetComponent<FloatingText>().Display("+" + damage.ToString(), new Vector2(notificationPos.x, Screen.height - notificationPos.y), 3.0f);
         if (m_health <= 0) {
+			EnemyManager.Enemies.Remove(this);
             m_playerCharacter.experiencePoints += m_experiencePoints;
             GameManager.s_singleton.m_creaturesKilled++;
             GameManager.s_singleton.SetSpreeStatus(true);
@@ -87,4 +89,8 @@ public class EnemyBehavior : MonoBehaviour {
     protected void SetHit(bool hit) {
         m_isHit = hit;
     }
+
+	public float GetBaseSpeed() {
+		return m_baseSpeed;
+	}
 }

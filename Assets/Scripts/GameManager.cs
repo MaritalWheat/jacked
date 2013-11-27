@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour {
 	private bool m_displayWeaponWheel = false;
 	private bool m_postWave;
 
-	// Use this for initialization
 	void Start () {
         
         if (!s_singleton)
@@ -59,8 +58,7 @@ public class GameManager : MonoBehaviour {
         m_deathDecalsHolder.transform.parent = transform;
         m_enemiesList = new GameObject[4] { PenguinPrefab, SquirrelPrefab, RabbitPrefab, CatPrefab };
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
         if (m_paused  || !Store.CheckStoreClosed()) {
             Time.timeScale = 0f;
@@ -74,7 +72,6 @@ public class GameManager : MonoBehaviour {
         }
 
         if (onSpree) {
-            //Debug.Log("On Spree");
             if (spreeCount == 0) {
                 startOfSpreeCount = (int)m_creaturesKilled;
                 spreeCount++;
@@ -100,9 +97,7 @@ public class GameManager : MonoBehaviour {
             }
             else {
                 spreeCount = (int)(m_creaturesKilled - startOfSpreeCount);
-                //Debug.Log("Spree Count: " + spreeCount);
             }
-            //Debug.Log("Spree Count End: " + spreeCount);
         }
         if (!m_enabled)
         {
@@ -140,7 +135,6 @@ public class GameManager : MonoBehaviour {
 
 		if (m_postWave) {
 			if (Store.CheckStoreClosed()) {
-                //HudController.s_singleton.Display(true);
 				m_postWave = false;             
                 GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
                 notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
@@ -149,15 +143,6 @@ public class GameManager : MonoBehaviour {
 				Debug.Log ("Got here.");	
 			}
 		}
-			
-			
-
-        if (Random.value > .99)
-        {
-            //SpawnPowerup();
-        }
-
-        
 	}
 
     public void EndGame()
@@ -291,14 +276,8 @@ public class GameManager : MonoBehaviour {
     {
         return GameManager.s_singleton.m_paused;
     }
-	
-	
-	/// <summary>
+
 	/// Shows the pause menu and pauses the game
-	/// </summary>
-	/// <param name='enable'>
-	/// Enable.
-	/// </param>
     public static void ShowPauseMenu(bool enable)
     {
 		if (MainMenu.MainMenuDisplayed() != enable) {

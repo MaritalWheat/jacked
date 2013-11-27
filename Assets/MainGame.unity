@@ -11468,6 +11468,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1738968851}
+  - 114: {fileID: 1738968852}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -11486,6 +11487,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1160615467}
+--- !u!114 &1738968852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1738968850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1655807d2c4414d2991ec2f18db6e42b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752228345
 GameObject:
   m_ObjectHideFlags: 0
@@ -11847,9 +11859,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b121ab248f89747b7bf3ac8865e385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillsList:
+  m_skillsList:
   - {fileID: 11400000, guid: 61b19f8ed08d28d4fa78f03314632151, type: 2}
   - {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0, type: 2}
+  - {fileID: 11400000, guid: 4da5ad3f8504b3d498478acbc2e98dd6, type: 2}
 --- !u!1 &1815690474
 GameObject:
   m_ObjectHideFlags: 0
@@ -14787,6 +14800,10 @@ Prefab:
       propertyPath: skillsList.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
+      propertyPath: m_skillsList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14819,6 +14836,21 @@ Prefab:
       propertyPath: skillsList.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0,
+        type: 2}
+    - target: {fileID: 11400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
+      propertyPath: m_skillsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 61b19f8ed08d28d4fa78f03314632151,
+        type: 2}
+    - target: {fileID: 11400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
+      propertyPath: m_skillsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0,
+        type: 2}
+    - target: {fileID: 11400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
+      propertyPath: m_skillsList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4da5ad3f8504b3d498478acbc2e98dd6,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
