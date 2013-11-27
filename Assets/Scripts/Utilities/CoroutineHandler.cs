@@ -16,7 +16,7 @@ public class CoroutineHandler : MonoBehaviour {
 		}
 	}
 
-	public static void StartCoroutine(Func<int, int> executable) {
+	public static int StartCoroutine(Func<int, int> executable) {
 		GameObject tmp = new GameObject();
 		tmp.transform.parent = m_singleton.transform;
 		tmp.name = "Coroutine Instance";
@@ -27,6 +27,7 @@ public class CoroutineHandler : MonoBehaviour {
 		m_singleton.m_coroutines.Add(instance.m_key, instance);
 		instance.StartCoroutine("DoCoroutine", executable);
 		//m_singleton.StartCoroutine("DoCoroutine", executable);
+		return instance.m_key;
 	}
 
 	public static void TakeDown(int key) {
@@ -37,24 +38,16 @@ public class CoroutineHandler : MonoBehaviour {
 		instance.StopCoroutine("DoCoroutine");
 		Destroy(instance.gameObject);
 	}
-
-	/*IEnumerator DoCoroutine(Func<int, int> executable) {
-		int rc = 0;
-		while (rc != 1) {
-			rc = executable(1);
-			yield return new WaitForSeconds(0.5f);
-		}
-	}*/
 }
 
 public class CoroutineInstance : MonoBehaviour {
 	public int m_key;
 
 	IEnumerator DoCoroutine(Func<int, int> executable) {
-		int rc = 0;
+		int rc = 0; //return code from function
 		while (rc != 1) {
 			rc = executable(1);
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(0.1f);
 		}
 		CoroutineHandler.TakeDown(this.m_key);
 	}
