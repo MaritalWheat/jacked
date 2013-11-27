@@ -11863,6 +11863,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 61b19f8ed08d28d4fa78f03314632151, type: 2}
   - {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0, type: 2}
   - {fileID: 11400000, guid: 4da5ad3f8504b3d498478acbc2e98dd6, type: 2}
+  - {fileID: 11400000, guid: 4bac5d9089103144b96edb16bb26d7b1, type: 2}
 --- !u!1 &1815690474
 GameObject:
   m_ObjectHideFlags: 0
@@ -14802,7 +14803,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
       propertyPath: m_skillsList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
       propertyPath: m_LocalPosition.x
@@ -14851,6 +14852,11 @@ Prefab:
       propertyPath: m_skillsList.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 4da5ad3f8504b3d498478acbc2e98dd6,
+        type: 2}
+    - target: {fileID: 11400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
+      propertyPath: m_skillsList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4bac5d9089103144b96edb16bb26d7b1,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}

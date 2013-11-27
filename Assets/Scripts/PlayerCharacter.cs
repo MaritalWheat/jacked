@@ -43,10 +43,16 @@ public class PlayerCharacter : MonoBehaviour
     //Decrease heart rate when it reaches 0, then reset
     private float m_decreaseHeartRate;
 	private bool m_invulnerable;
+	private bool m_ignoreBeatCycle;
 
 	public static bool Invulnerable {
 		get { return s_singleton.m_invulnerable; }
 		set { s_singleton.m_invulnerable = value; }
+	}
+
+	public static bool IgnoreBeatCycle {
+		get { return s_singleton.m_ignoreBeatCycle; }
+		set { s_singleton.m_ignoreBeatCycle = value; }
 	}
 
 	void Start ()
@@ -122,6 +128,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SlowHeartRate(int amountToSlow)
     {
+		if (m_ignoreBeatCycle) return;
         m_heartRate -= amountToSlow;
 
         if (m_heartRate < k_minPlayerHeartRate)
@@ -132,6 +139,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void IncreaseHeartRate(int amountToIncrease)
     {
+		if (m_ignoreBeatCycle) return;
         m_heartRate += amountToIncrease;
 
         if (m_heartRate > k_maxPlayerHeartRate)
