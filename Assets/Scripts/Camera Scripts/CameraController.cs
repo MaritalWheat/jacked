@@ -34,23 +34,23 @@ public class CameraController : MonoBehaviour
 			Camera.main.fov--;
 		}
 		
-		m_motionBlur.blurAmount = (float)m_player.m_heartRate / (float)m_player.GetMaxHeartRate();
+		m_motionBlur.blurAmount = (m_player.m_characterSpeed) / (m_player.m_maxCharacterSpeed);
 
-        m_vignette.intensity = (10.0f) * ((float)(90 + m_player.GetMinHeartRate() - m_player.m_heartRate)) / (90 + m_player.GetMinHeartRate());
-
+		float fx_intensity = (10.0f) * ((float)(90 + m_player.GetMinHeartRate() - m_player.m_heartRate)) / (90 + m_player.GetMinHeartRate());
+        m_vignette.intensity = Mathf.Clamp(fx_intensity, 0.0f, 20.0f);
+		m_vignette.blur = Mathf.Clamp(-fx_intensity, 0.0f, 1.0f) / 4.0f;
+		m_vignette.chromaticAberration = Mathf.Clamp(-fx_intensity, 0.0f, 10.0f);
 
         //m_vignette.chromaticAberration = m_vignette.intensity / 1.4f;
         //m_vignette.blur = m_vignette.intensity / 10.0f;
 
         if (m_player.m_heartRate > m_player.GetMaxHeartRate() * 6.0f / 13.0f) {
             m_motionBlur.enabled = true;
-            //m_vignette.enabled = false;
         } else if (m_player.m_heartRate < 90) {
             m_motionBlur.enabled = false;
-            m_vignette.enabled = true; ;
+            m_vignette.enabled = true;
         } else {
             m_motionBlur.enabled = false;
-            //m_vignette.enabled = false;
         }
 		
 		Vector3 pos = this.transform.position;

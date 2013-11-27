@@ -5,6 +5,7 @@ using System.Collections;
 public class Spiritwalker : TimedSkill {
 	private bool m_activated;
 	private Vector4 m_originalColor;
+	private GrayscaleEffect m_fx;
 
 	public override void Execute() 
 	{
@@ -15,6 +16,8 @@ public class Spiritwalker : TimedSkill {
 			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", newColor);
 			PlayerCharacter.Invulnerable = true;
 			Physics.IgnoreLayerCollision(8, 10, true);
+			m_fx = Camera.main.GetComponent<GrayscaleEffect>();
+			m_fx.enabled = true;
 
 			StartTimer();
 		} else {
@@ -22,6 +25,7 @@ public class Spiritwalker : TimedSkill {
 			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", m_originalColor);
 			PlayerCharacter.Invulnerable = false;
 			Physics.IgnoreLayerCollision(8, 10, false);
+			m_fx.enabled = false;
 		}
 	}
 }
