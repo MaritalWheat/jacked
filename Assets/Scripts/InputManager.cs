@@ -107,19 +107,19 @@ public class InputManager : MonoBehaviour
 		
 		//Check the skill hotkeys, later we should change the hotkeys to be modifiable, for now they are 1 2 3 4
 		List<Skill> skills = PlayerCharacter.s_singleton.getCurrentSkills();
-		if (Input.GetKey(KeyCode.Alpha1)) {
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
 			if (skills[0] != null) {
 				SkillManager.FireSkill(skills[0].m_name);	
 			}
-		} else if (Input.GetKey(KeyCode.Alpha2)) {
+		} else if (Input.GetKeyDown(KeyCode.Alpha2)) {
 			if (skills[1] != null) {
 				SkillManager.FireSkill(skills[1].m_name);	
 			}
-		} else if (Input.GetKey(KeyCode.Alpha3)) {
+		} else if (Input.GetKeyDown(KeyCode.Alpha3)) {
 			if (skills[2] != null) {
 				SkillManager.FireSkill(skills[2].m_name);	
 			}
-		} else if (Input.GetKey(KeyCode.Alpha4)) {
+		} else if (Input.GetKeyDown(KeyCode.Alpha4)) {
 			if (skills[3] != null) {
 				SkillManager.FireSkill(skills[3].m_name);	
 			}
