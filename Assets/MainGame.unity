@@ -2254,7 +2254,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364618460}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4
   m_Height: 0
@@ -11849,6 +11849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillsList:
   - {fileID: 11400000, guid: 61b19f8ed08d28d4fa78f03314632151, type: 2}
+  - {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0, type: 2}
 --- !u!1 &1815690474
 GameObject:
   m_ObjectHideFlags: 0
@@ -14782,6 +14783,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1160615467}
     m_Modifications:
+    - target: {fileID: 11400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
+      propertyPath: skillsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14810,6 +14815,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
+      propertyPath: skillsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: cb95d838dfd644747ba1f947c3236ce0,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9cc04466e8854ff1b0b2e684622077c, type: 2}
   m_RootGameObject: {fileID: 1813043888}

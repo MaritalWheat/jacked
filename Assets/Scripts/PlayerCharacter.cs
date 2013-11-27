@@ -42,6 +42,12 @@ public class PlayerCharacter : MonoBehaviour
     private InputManager m_inputManager;
     //Decrease heart rate when it reaches 0, then reset
     private float m_decreaseHeartRate;
+	private bool m_invulnerable;
+
+	public static bool Invulnerable {
+		get { return s_singleton.m_invulnerable; }
+		set { s_singleton.m_invulnerable = value; }
+	}
 
 	void Start ()
     {
@@ -136,6 +142,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Damage(int damageAmount)
     {
+		if (PlayerCharacter.Invulnerable) return;
         IncreaseHeartRate(damageAmount*4);
         GameManager.s_singleton.SetSpreeStatus(false);
     }

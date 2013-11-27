@@ -51,6 +51,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -95,6 +98,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79a986f8cdc489b48b12f1b7150327e3, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_speed: 40
   m_damage: 5
   m_health: 10
@@ -117,6 +121,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44959a469b9cdf4196ee23cdb796151, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   m_colCount: 4
   m_rowCount: 3
 --- !u!143 &14300000
