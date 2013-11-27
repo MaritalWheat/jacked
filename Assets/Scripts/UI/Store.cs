@@ -21,12 +21,19 @@ public class Store : MonoBehaviour {
 	public GUIStyle m_windowStyle;
     public GUIStyle m_buttonStyle;
     public GUIStyle m_listStyle;
+	public GUIStyle m_descriptionStyle;
 
     private Vector2 m_scrollPos = Vector2.zero;
 	private bool showRight;
 	private float m_blurAmount;
 	private Rect m_currStoreBounds;
+	private Rect m_descriptionBounds;
     //private List<Weapon> m_storeWeapons;
+
+	class DescriptionRect {
+		public static bool m_valid;
+		public static string m_text;
+	}
 	
 	void Start() {
 		if (m_singleton == null) {
@@ -65,9 +72,16 @@ public class Store : MonoBehaviour {
 		GUI.BeginGroup(m_itemListBounds);
 
         int yValue = 100;
+
+		bool mouseOverDescription = false;
+		Rect descriptionRect = new Rect(0, 0, 0 , 0);
+		Skill hovered = null;
+
         foreach (Skill s in SkillManager.getSkills())
 		{
-            if (GUI.Button(new Rect(0, yValue, m_itemListBounds.width, 20), s.m_name, m_listStyle))
+			Rect tempRect = new Rect(0, yValue, m_itemListBounds.width, 20);
+
+            if (GUI.Button(tempRect, s.m_name, m_listStyle))
             {
                 GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
 
@@ -81,7 +95,20 @@ public class Store : MonoBehaviour {
                 }
             }
             yValue += 25;
+
+			if (tempRect.Contains(Event.current.mousePosition)) {
+				descriptionRect = tempRect;
+				mouseOverDescription = true;
+				hovered = s;
+			}
         }
+
+		if (!mouseOverDescription) {
+			DescriptionRect.m_valid = false;
+		} else {
+			DescriptionRect.m_valid = true;
+			DescriptionRect.m_text = hovered.m_name;
+		}
 
 		for(int i = 0; i < WeaponManager.m_singleton.m_weapons.Count; i++) { 
 			Weapon w = WeaponManager.m_singleton.m_weapons[i];
@@ -91,9 +118,17 @@ public class Store : MonoBehaviour {
             }
 			yValue += 25;
         }
+
+		//Debug.Log(Hello + " is hovered over.");
+
 		GUI.EndGroup();
 
-        GUI.EndGroup();   
+        GUI.EndGroup(); 
+		
+		if (DescriptionRect.m_valid) {
+			float left = descriptionRect.x + m_itemListBounds.x - 100;
+			GUI.Box(new Rect(left, descriptionRect.y + descriptionRect.height + 100, 200, 200), DescriptionRect.m_text, m_descriptionStyle);
+		}
 	}
 	
 	public static void DisplayStore() {

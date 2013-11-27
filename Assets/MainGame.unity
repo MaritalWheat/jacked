@@ -2878,6 +2878,55 @@ Prefab:
       propertyPath: m_listStyle.m_Hover.m_Background
       value: 
       objectReference: {fileID: 2800000, guid: 65ddafed8174b7249a8b1da5c6808213, type: 3}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Normal.m_Background
+      value: 
+      objectReference: {fileID: 2800000, guid: 114ef0d40caab4fa4a9e81edef538ba6, type: 3}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_ContentOffset.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_ContentOffset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 246e4d4986f8a0841b6c36e5a4aef634,
+        type: 3}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Alignment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Padding.m_Left
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Padding.m_Right
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Padding.m_Top
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Padding.m_Bottom
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Normal.m_TextColor.r
+      value: .396078438
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Normal.m_TextColor.g
+      value: .254901975
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_Normal.m_TextColor.b
+      value: .203921571
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
     - {fileID: 11100000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
@@ -14148,6 +14197,65 @@ MonoBehaviour:
     m_TextClipping: 0
     m_ImagePosition: 0
     m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  m_descriptionStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 2800000, guid: 114ef0d40caab4fa4a9e81edef538ba6, type: 3}
+      m_TextColor: {r: .396078438, g: .254901975, b: .203921571, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 15
+      m_Right: 15
+      m_Top: 15
+      m_Bottom: 15
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: 246e4d4986f8a0841b6c36e5a4aef634, type: 3}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 2, y: 2}
     m_FixedWidth: 0
     m_FixedHeight: 0
     m_StretchWidth: 1
