@@ -14,7 +14,6 @@ public class Spiritwalker : Skill {
 			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", newColor);
 			PlayerCharacter.Invulnerable = true;
 			Physics.IgnoreLayerCollision(8, 10, true);
-			Debug.Log (newColor);
 			//SkillManager.m_singleton.StartCoroutine("Activated");
 		} else {
 			m_activated = false;
