@@ -107,7 +107,7 @@ public class Store : MonoBehaviour {
 			DescriptionRect.m_valid = false;
 		} else {
 			DescriptionRect.m_valid = true;
-			DescriptionRect.m_text = hovered.m_name;
+			DescriptionRect.m_text = hovered.m_description;
 		}
 
 		for(int i = 0; i < WeaponManager.m_singleton.m_weapons.Count; i++) { 

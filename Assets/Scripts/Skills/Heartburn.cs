@@ -8,15 +8,17 @@ public class Heartburn : Skill {
 
 	public override void Execute() 
 	{
-		if (!m_activated) {
+		if (!m_activated && !Locked) {
 			m_activated = true;
 			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", Color.red);
 			Func<int, int> executable = SlowHeartRate;
 			m_routineHandle = CoroutineHandler.StartCoroutine(executable);
+			Locked = true;
 		} else {
 			m_activated = false;
 			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", Color.white);
 			CoroutineHandler.TakeDown(m_routineHandle);
+			Locked = false;
 		}
 	}
 

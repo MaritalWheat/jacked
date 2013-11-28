@@ -44,6 +44,10 @@ MonoBehaviour:
   m_cost: 100
   m_mods: []
   m_icon: {fileID: 2800000, guid: 0b521aeb7158abe4a9cce14b95d0fc1a, type: 3}
+  m_description: 'Burns down your heart rate while activated.
+
+
+    [Active]'
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

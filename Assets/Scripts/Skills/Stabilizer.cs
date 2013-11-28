@@ -7,10 +7,12 @@ public class Stabilizer : TimedSkill {
 	
 	public override void Execute() 
 	{
+		if (Locked) return;
 		if (!m_activated) {
 			m_activated = true;
 			PlayerCharacter.IgnoreBeatCycle = true;
 			StartTimer();
+			Locked = true;
 		} else {
 			m_activated = false;
 			PlayerCharacter.IgnoreBeatCycle = false;

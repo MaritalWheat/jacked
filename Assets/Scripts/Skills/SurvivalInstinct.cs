@@ -9,6 +9,7 @@ public class SurvivalInstinct : TimedSkill {
 	
 	public override void Execute() 
 	{
+		if (Locked) return;
 		if (!m_activated) {
 			m_activated = true;
 			for (int i = 0; i < EnemyManager.Enemies.Count; i++) {
@@ -17,6 +18,7 @@ public class SurvivalInstinct : TimedSkill {
 			PlayerCharacter.s_singleton.m_maxCharacterSpeed += 50.0f;
 
 			StartTimer();
+			Locked = true;
 		} else {
 			m_activated = false;
 			for (int i = 0; i < EnemyManager.Enemies.Count; i++) {

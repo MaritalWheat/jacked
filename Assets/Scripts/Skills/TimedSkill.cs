@@ -11,6 +11,7 @@ public class TimedSkill : Skill {
 		m_timer += Time.deltaTime;
 		Debug.Log(m_timer);
 		if (m_timer > m_duration) {
+			Locked = false;
 			Execute();
 			return 1;
 		}

@@ -2943,7 +2943,7 @@ Prefab:
     - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_descriptionStyle.m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: 246e4d4986f8a0841b6c36e5a4aef634,
+      objectReference: {fileID: 12800000, guid: bad60112bb6744e5fb8a2c275c65d3ed,
         type: 3}
     - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_descriptionStyle.m_Alignment
@@ -2955,7 +2955,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_descriptionStyle.m_Padding.m_Right
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_descriptionStyle.m_Padding.m_Top
@@ -2976,6 +2976,10 @@ Prefab:
     - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
       propertyPath: m_descriptionStyle.m_Normal.m_TextColor.b
       value: .203921571
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
+      propertyPath: m_descriptionStyle.m_WordWrap
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2300000, guid: 9a389284dfbdcf44b9a8b958ca7b743b, type: 2}
@@ -14289,7 +14293,7 @@ MonoBehaviour:
       m_Bottom: 0
     m_Padding:
       m_Left: 15
-      m_Right: 15
+      m_Right: 17
       m_Top: 15
       m_Bottom: 15
     m_Overflow:
@@ -14297,11 +14301,11 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 246e4d4986f8a0841b6c36e5a4aef634, type: 3}
+    m_Font: {fileID: 12800000, guid: bad60112bb6744e5fb8a2c275c65d3ed, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
     m_Alignment: 0
-    m_WordWrap: 0
+    m_WordWrap: 1
     m_RichText: 1
     m_TextClipping: 0
     m_ImagePosition: 0

@@ -4,13 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Skill : MonoBehaviour {
-
     public bool m_passive;
     public Skill m_preReq;
     public string m_name;
     public int m_cost;
     public List<Modifier> m_mods;
 	public Texture m_icon;
+	public string m_description;
+
+	public virtual bool Locked {
+		get; set;
+	}
 	
 	public int Level {get; set;}
 	

@@ -9,6 +9,7 @@ public class Spiritwalker : TimedSkill {
 
 	public override void Execute() 
 	{
+		if (Locked) return;
 		if (!m_activated) {
 			m_activated = true;
 			m_originalColor = PlayerCharacter.s_singleton.gameObject.renderer.material.GetColor("_Color");
@@ -20,6 +21,7 @@ public class Spiritwalker : TimedSkill {
 			m_fx.enabled = true;
 
 			StartTimer();
+			Locked = true;
 		} else {
 			m_activated = false;
 			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", m_originalColor);
