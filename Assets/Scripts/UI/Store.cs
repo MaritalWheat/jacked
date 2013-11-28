@@ -126,8 +126,11 @@ public class Store : MonoBehaviour {
         GUI.EndGroup(); 
 		
 		if (DescriptionRect.m_valid) {
+			GUIContent content = new GUIContent(DescriptionRect.m_text);
+			float height = m_descriptionStyle.CalcHeight(content, 200.0f);
 			float left = descriptionRect.x + m_itemListBounds.x - 100;
-			GUI.Box(new Rect(left, descriptionRect.y + descriptionRect.height + 100, 200, 200), DescriptionRect.m_text, m_descriptionStyle);
+			float top = descriptionRect.y + m_itemListBounds.y - height / 2;
+			GUI.Box(new Rect(left, top, 200, height), DescriptionRect.m_text, m_descriptionStyle);
 		}
 	}
 	
