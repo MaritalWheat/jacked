@@ -12,6 +12,8 @@ public class TimedSkill : Skill {
 		Debug.Log(m_timer);
 		if (m_timer > m_duration) {
 			StartCooldownTimer();
+			Locked = false;
+			Finish();
 			return 1;
 		}
 		return 0;
@@ -26,9 +28,7 @@ public class TimedSkill : Skill {
 	public override int CooldownTimer(int arg) {
 		m_cooldownTimer += Time.deltaTime;
 		if (m_cooldownTimer > m_cooldownTime) {
-			Locked = false;
 			Cooldown = false;
-			Execute();
 			return 1;
 		}
 		return 0;

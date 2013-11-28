@@ -7,7 +7,7 @@ public class Spiritwalker : TimedSkill {
 
 	public override void Execute() 
 	{
-		if (Locked) return;
+		if (Locked || Cooldown) return;
 		if (!Activated) {
 			Activated = true;
 			Color tmp = PlayerCharacter.GetColor();
@@ -20,14 +20,18 @@ public class Spiritwalker : TimedSkill {
 
 			StartTimer();
 			Locked = true;
-		} else {
-			Activated = false;
-			Color tmp = PlayerCharacter.GetColor();
-			tmp.a = 1.0f;
-			PlayerCharacter.ChangeColor(tmp);
-			PlayerCharacter.Invulnerable = false;
-			Physics.IgnoreLayerCollision(8, 10, false);
-			m_fx.enabled = false;
 		}
+	}
+
+	public override void Finish() 
+	{
+		if (Locked) return;
+		Activated = false;
+		Color tmp = PlayerCharacter.GetColor();
+		tmp.a = 1.0f;
+		PlayerCharacter.ChangeColor(tmp);
+		PlayerCharacter.Invulnerable = false;
+		Physics.IgnoreLayerCollision(8, 10, false);
+		m_fx.enabled = false;
 	}
 }

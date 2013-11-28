@@ -209,7 +209,7 @@ public class HudController : MonoBehaviour {
 					iconRect.x +=2;
 					iconRect.y +=2;
 					GUI.DrawTexture(iconRect, s.m_icon);
-					if (s.Locked) {
+					if (s.Locked || s.Cooldown) {
 						GUI.DrawTexture(iconRect, m_skillCoolDownTexture);
 						if (s.Cooldown) {
 							float timeRemaining = (s.m_cooldownTime - s.GetCooldownTime()) * 10;

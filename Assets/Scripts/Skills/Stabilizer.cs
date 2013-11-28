@@ -6,15 +6,19 @@ public class Stabilizer : TimedSkill {
 	
 	public override void Execute() 
 	{
-		if (Locked) return;
+		if (Locked || Cooldown) return;
 		if (!Activated) {
 			Activated = true;
 			PlayerCharacter.IgnoreBeatCycle = true;
 			StartTimer();
 			Locked = true;
-		} else {
-			Activated = false;
-			PlayerCharacter.IgnoreBeatCycle = false;
 		}
+	}
+
+	public override void Finish() 
+	{
+		if (Locked) return;
+		Activated = false;
+		PlayerCharacter.IgnoreBeatCycle = false;
 	}
 }

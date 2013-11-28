@@ -46,7 +46,13 @@ public class Skill : MonoBehaviour {
 
 	}
 
-	public virtual int CooldownTimer(int arg) {
+	public virtual void Finish() 
+	{
+
+	}
+
+	public virtual int CooldownTimer(int arg) 
+	{
 		m_cooldownTimer += Time.deltaTime;
 		if (m_cooldownTimer > m_cooldownTime) {
 			Locked = false;
@@ -56,7 +62,8 @@ public class Skill : MonoBehaviour {
 		return 0;
 	}
 
-	public virtual void StartCooldownTimer() {
+	public virtual void StartCooldownTimer() 
+	{
 		if (!Cooldown) {
 			Cooldown = true;
 		} else {
@@ -68,7 +75,8 @@ public class Skill : MonoBehaviour {
 		CoroutineHandler.StartCoroutine(executable);
 	}
 
-	public float GetCooldownTime() {
+	public float GetCooldownTime() 
+	{
 		return m_cooldownTimer;
 	}
 }
