@@ -3,18 +3,17 @@ using System.Collections;
 
 //temporarily freezes heart rate to current
 public class Stabilizer : TimedSkill {
-	private bool m_activated;
 	
 	public override void Execute() 
 	{
 		if (Locked) return;
-		if (!m_activated) {
-			m_activated = true;
+		if (!Activated) {
+			Activated = true;
 			PlayerCharacter.IgnoreBeatCycle = true;
 			StartTimer();
 			Locked = true;
 		} else {
-			m_activated = false;
+			Activated = false;
 			PlayerCharacter.IgnoreBeatCycle = false;
 		}
 	}

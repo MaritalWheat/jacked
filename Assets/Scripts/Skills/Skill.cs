@@ -23,7 +23,11 @@ public class Skill : MonoBehaviour {
 	public virtual bool Cooldown {
 		get; set;
 	}
-	
+
+	public virtual bool Activated {
+		get; set;
+	}
+
 	public int Level {get; set;}
 	
 	//Do not use start and update since this is currently not on a gameobject it will not be called

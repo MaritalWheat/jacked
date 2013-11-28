@@ -3,20 +3,23 @@ using System;
 using System.Collections;
 
 public class Heartburn : Skill {
-	private bool m_activated;
 	private int m_routineHandle;
 
 	public override void Execute() 
 	{
-		if (!m_activated && !Locked) {
-			m_activated = true;
-			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", Color.red);
+		if (!Activated && !Locked) {
+			Activated = true;
+			Color tmp = PlayerCharacter.GetColor();
+			tmp = new Color(1.0f, 0.0f, 0.0f, tmp.a);
+			PlayerCharacter.ChangeColor(tmp);
 			Func<int, int> executable = SlowHeartRate;
 			m_routineHandle = CoroutineHandler.StartCoroutine(executable);
 			Locked = true;
 		} else {
-			m_activated = false;
-			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", Color.white);
+			Activated = false;
+			Color tmp = Color.white;
+			tmp.a = PlayerCharacter.GetColor().a;
+			PlayerCharacter.ChangeColor(tmp);
 			CoroutineHandler.TakeDown(m_routineHandle);
 			StartCooldownTimer();
 		}

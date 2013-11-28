@@ -33,6 +33,9 @@ public class PlayerCharacter : MonoBehaviour
 
     private const int k_maxPlayerHeartRate = 225;
     private const int k_minPlayerHeartRate = 0;
+
+	private Color m_currentColor = Color.white;
+	private Material m_material;
 	
 	private List<Skill> currentSkills = new List<Skill>();
 	
@@ -70,6 +73,7 @@ public class PlayerCharacter : MonoBehaviour
         m_spriteAnimationManager = gameObject.GetComponent<SpriteAnimationManager>();
         m_playerAnimations = gameObject.GetComponent<PlayerAnimations>();
         m_inputManager = gameObject.GetComponent<InputManager>();
+		m_material = s_singleton.gameObject.renderer.material;
         SetAnimation(m_playerAnimations.m_playerMoveDown);
 	}
 
@@ -78,6 +82,10 @@ public class PlayerCharacter : MonoBehaviour
         {
             return;
         }
+
+		if (m_material.GetColor("_Color") != m_currentColor) {
+			m_material.SetColor("_Color", m_currentColor);
+		}
 		
 		//If the timer that tells you to tick down the heart rate has reached zero
         if (m_decreaseHeartRate <= 0)
@@ -260,5 +268,13 @@ public class PlayerCharacter : MonoBehaviour
 	
 	public List<Skill> getCurrentSkills() {
 		return currentSkills;	
+	}
+
+	public static void ChangeColor(Color color) {
+		s_singleton.m_currentColor = color;
+	}
+
+	public static Color GetColor() {
+		return s_singleton.m_currentColor;
 	}
 }

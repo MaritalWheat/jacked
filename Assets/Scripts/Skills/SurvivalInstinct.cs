@@ -5,13 +5,12 @@ using System.Collections;
 //slowing down enemies
 
 public class SurvivalInstinct : TimedSkill {
-	private bool m_activated;
 	
 	public override void Execute() 
 	{
 		if (Locked) return;
-		if (!m_activated) {
-			m_activated = true;
+		if (!Activated) {
+			Activated = true;
 			for (int i = 0; i < EnemyManager.Enemies.Count; i++) {
 				EnemyManager.Enemies[i].m_speed = EnemyManager.Enemies[i].GetBaseSpeed() / 3;
 			}
@@ -20,7 +19,7 @@ public class SurvivalInstinct : TimedSkill {
 			StartTimer();
 			Locked = true;
 		} else {
-			m_activated = false;
+			Activated = false;
 			for (int i = 0; i < EnemyManager.Enemies.Count; i++) {
 				EnemyManager.Enemies[i].m_speed = EnemyManager.Enemies[i].GetBaseSpeed();
 			}
