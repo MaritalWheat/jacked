@@ -18,7 +18,7 @@ public class Heartburn : Skill {
 			m_activated = false;
 			PlayerCharacter.s_singleton.gameObject.renderer.material.SetColor("_Color", Color.white);
 			CoroutineHandler.TakeDown(m_routineHandle);
-			Locked = false;
+			StartCooldownTimer();
 		}
 	}
 

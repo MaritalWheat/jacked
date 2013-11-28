@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: 6c4e173725d0e7342a30fc6e4ea807b4
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_preReq: {instanceID: 0}
+  - m_icon: {instanceID: 0}
+  - m_cooldownIcon: {fileID: 2800000, guid: 4c7d33752634ca24c8fedc93f08457a0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

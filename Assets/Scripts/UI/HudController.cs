@@ -10,7 +10,9 @@ public class HudController : MonoBehaviour {
     public GUIStyle m_tinyTextStyle;
     public GUIStyle m_largeFightingSpirit;
 	public GUIStyle m_topGUIBar;
+	public GUIStyle m_cooldownStyle;
     public Texture2D m_heartTexture;
+	public Texture2D m_skillCoolDownTexture;
    
 
     public GameObject NotificationPrefab;
@@ -189,13 +191,10 @@ public class HudController : MonoBehaviour {
 
             //Skill Box
             GUI.Box(m_skillBounds, "", m_xpStyle);
-            //GUI.BeginGroup(m_controllerBoundsUpper);
             GUI.Box(m_progressBarBounds, "");
             GUI.DrawTexture(m_progressBarFill, progressTexture);
             GUI.Label(m_progressBarBounds, "", m_tinyTextStyle);
-            //GUI.Label(m_xpBounds, "XP: ");
             GUI.Label(m_levelBounds, "Lvl " + PlayerCharacter.s_singleton.currentlevel, m_lvlStyle);
-            //GUI.EndGroup();
 			
 			List<Skill> curSkills = PlayerCharacter.s_singleton.getCurrentSkills();
 			int i = 0;
@@ -210,6 +209,14 @@ public class HudController : MonoBehaviour {
 					iconRect.x +=2;
 					iconRect.y +=2;
 					GUI.DrawTexture(iconRect, s.m_icon);
+					if (s.Locked) {
+						GUI.DrawTexture(iconRect, m_skillCoolDownTexture);
+						if (s.Cooldown) {
+							float timeRemaining = (s.m_cooldownTime - s.GetCooldownTime()) * 10;
+							string label = timeRemaining.ToString("0");
+							GUI.Label(iconRect, label, m_cooldownStyle);
+						}
+					}
 				} 
 					
 				i++;

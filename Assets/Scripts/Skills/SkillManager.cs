@@ -15,6 +15,8 @@ public class SkillManager : MonoBehaviour {
 
         foreach (Skill s in m_skillsList) {
 			s.Level = 0; //This should be changed it we ever mplement a way to save a game.
+			s.Locked = false; //Unity bug that saves property values, make sure we reset all properties at start of game
+			s.Cooldown = false;
 			m_skillsDict.Add(s.m_name, s);	
 		}
 	}
