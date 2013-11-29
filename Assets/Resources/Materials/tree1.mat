@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: tree1
-  m_Shader: {fileID: 10800, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10512, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -23,6 +23,13 @@ Material:
       data:
         first:
           name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -55,7 +62,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .768345058, g: .79411763, b: .326989591, a: 1}
+        second: {r: .708693802, g: .83088237, b: .7196486, a: 1}
       data:
         first:
           name: _SpecColor

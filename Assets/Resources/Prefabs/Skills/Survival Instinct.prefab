@@ -43,14 +43,14 @@ MonoBehaviour:
   m_name: Survival Instinct
   m_cost: 0
   m_mods: []
-  m_icon: {fileID: 2800000, guid: f614c7cd4a8ef45b382fd2561663ea5c, type: 3}
+  m_icon: {fileID: 2800000, guid: e79a98b0160cd46bd890453fde57d396, type: 3}
   m_description: 'Need a quick escape?  Give yourself an edge with a temporary burst
     of speed while slowing down your enemies.
 
 
     [Active]'
   m_cooldownTime: 1
-  m_timer: .501852989
+  m_timer: .506532073
   m_duration: .5
 --- !u!1001 &100100000
 Prefab:

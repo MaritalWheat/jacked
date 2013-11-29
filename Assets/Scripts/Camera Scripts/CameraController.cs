@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
 		m_motionBlur = gameObject.GetComponent<MotionBlur>();
 		m_vignette = gameObject.GetComponent<Vignetting>();
 		floor = GameObject.Find("Level").transform.FindChild("Floor").gameObject;
-		maxXFromCenter = floor.transform.GetComponent<BoxCollider>().bounds.extents.x * .575f;
+		maxXFromCenter = floor.transform.GetComponent<BoxCollider>().bounds.extents.x * .520f;
 		maxYFromCenter = floor.transform.GetComponent<BoxCollider>().bounds.extents.z * .505f;
 		//Debug.Log(floor.transform.GetComponent<BoxCollider>().bounds.extents);
 	}
