@@ -270,6 +270,19 @@ public class PlayerCharacter : MonoBehaviour
 		}
 		currentSkills[pos] = s;
 	}
+
+	public static void SwapSkills(Skill sNew, Skill sOld) {
+		if (s_singleton.currentSkills.Contains(sNew) && sNew != null) {
+			SwapSkills(null, sNew);
+		}
+		for(int itr = 0; itr < s_singleton.currentSkills.Count; itr++) {
+			if (s_singleton.currentSkills[itr] == sOld) {
+				s_singleton.currentSkills[itr] = sNew;
+				return;
+			}
+		}
+		return;
+	}
 	
 	public List<Skill> getCurrentSkills() {
 		return currentSkills;	

@@ -15,6 +15,7 @@ public class SkillUI : MonoBehaviour {
 	public Texture lockedIcon;
 	
 	private bool isVisible;
+	private Skill m_skillToSwap;
 	
 	// Use this for initialization
 	void Start () {
@@ -62,6 +63,9 @@ public class SkillUI : MonoBehaviour {
 			skillRect.x = 10 + (110 * col);
 			skillRect.y = 10 + (110 * row);
 			GUI.DrawTexture(skillRect, s.m_icon);
+			if(GUI.Button(skillRect, "")) {
+				PlayerCharacter.SwapSkills(s, m_skillToSwap);
+			}
 			if (SkillManager.GetSkillLevel(s.m_name) == 0) {
 				GUI.DrawTexture(skillRect, lockedIcon);	
 			}
@@ -74,7 +78,7 @@ public class SkillUI : MonoBehaviour {
 		GUI.EndGroup();
 	}
 	
-	public void slide(bool slideOpen) {
+	public void OpenSkillSwap(bool slideOpen, Skill toSwap) {
 		if (slideOpen == open || sliding == true) {
 			return;	
 		}
@@ -85,5 +89,6 @@ public class SkillUI : MonoBehaviour {
 		} else {
 			destination = closeY;	
 		}
+		m_skillToSwap = toSwap;
 	}
 }

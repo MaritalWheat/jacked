@@ -200,7 +200,7 @@ public class HudController : MonoBehaviour {
 			int i = 0;
 			foreach (Skill s in curSkills) {
 				if (GUI.Button(skillRects[i], "", m_iconStyle) && !MainMenu.MainMenuDisplayed()) {
-                    skillUI.slide(!skillUI.open);
+                    skillUI.OpenSkillSwap(!skillUI.open, s);
 				}
 				if (s != null) {
 					Rect iconRect = skillRects[i];
