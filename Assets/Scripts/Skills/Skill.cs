@@ -15,6 +15,7 @@ public class Skill : MonoBehaviour {
 	
 	public float m_cooldownTime;
 	protected float m_cooldownTimer;
+	protected bool m_purchased;
 
 	public virtual bool Locked {
 		get; set;
@@ -78,5 +79,15 @@ public class Skill : MonoBehaviour {
 	public float GetCooldownTime() 
 	{
 		return m_cooldownTimer;
+	}
+
+	public bool GetPurchasedStatus() 
+	{
+		return m_purchased;
+	}
+
+	public void SetPurchasedStatus(bool status)
+	{
+		m_purchased = status;
 	}
 }

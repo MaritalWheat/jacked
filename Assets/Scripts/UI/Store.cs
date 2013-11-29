@@ -79,27 +79,29 @@ public class Store : MonoBehaviour {
 
         foreach (Skill s in SkillManager.getSkills())
 		{
-			Rect tempRect = new Rect(0, yValue, m_itemListBounds.width, 20);
+			if (!s.GetPurchasedStatus()) {
+				Rect tempRect = new Rect(0, yValue, m_itemListBounds.width, 20);
 
-            if (GUI.Button(tempRect, s.m_name, m_listStyle))
-            {
-                GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
+	            if (GUI.Button(tempRect, s.m_name, m_listStyle))
+	            {
+	                GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
 
-                if (SkillManager.PurchaseSkill(s.m_name))
-                {
-                    notification.GetComponent<ScrollingText>().Display("Purchased " + s.m_name + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
-                }
-                else
-                {
-                    notification.GetComponent<ScrollingText>().Display("You can't afford " + s.m_name + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
-                }
-            }
-            yValue += 25;
+	                if (SkillManager.PurchaseSkill(s.m_name))
+	                {
+	                    notification.GetComponent<ScrollingText>().Display("Purchased " + s.m_name + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+	                }
+	                else
+	                {
+	                    notification.GetComponent<ScrollingText>().Display("You can't afford " + s.m_name + ".", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
+	                }
+	            }
+	            yValue += 25;
 
-			if (tempRect.Contains(Event.current.mousePosition)) {
-				descriptionRect = tempRect;
-				mouseOverDescription = true;
-				hovered = s;
+				if (tempRect.Contains(Event.current.mousePosition)) {
+					descriptionRect = tempRect;
+					mouseOverDescription = true;
+					hovered = s;
+				}
 			}
         }
 

@@ -24,6 +24,7 @@ public class SkillManager : MonoBehaviour {
 		m_skillsDict.Clear();
 
 		foreach (Skill s in m_skillsList) {
+			s.SetPurchasedStatus(false);
 			s.Level = 0; //This should be changed it we ever mplement a way to save a game.
 			s.Locked = false; //Unity bug that saves property values, make sure we reset all properties at start of game
 			s.Cooldown = false;
@@ -57,6 +58,7 @@ public class SkillManager : MonoBehaviour {
 			Debug.Log("Pruchaseing skill : " + skillToPurchase);
 			m_skillsDict[skillToPurchase].Level++;
 			PlayerCharacter.s_singleton.newSkillAdded(m_skillsDict[skillToPurchase]);
+			m_skillsDict[skillToPurchase].SetPurchasedStatus(true);
             return true;
         }
         return false;
