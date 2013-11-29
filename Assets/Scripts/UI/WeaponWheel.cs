@@ -79,7 +79,7 @@ public class WeaponWheel : MonoBehaviour {
 			currentContainer.y = pointToMoveTo.y;
 			if (index < WeaponManager.m_singleton.m_ownedWeapons.Count) {
 				if (GUI.Button(currentContainer, "", WeaponManager.m_singleton.m_ownedWeapons[index].m_style)) {
-					PlayerCharacter.SetPlayerWeapon(WeaponManager.GetWeapon(WeaponManager.m_singleton.m_weapons[index].m_name));
+					PlayerCharacter.SetPlayerWeapon(WeaponManager.GetWeapon(WeaponManager.m_singleton.m_ownedWeapons[index].m_name));
 					WeaponWheel.DisplayWeaponWheel(false);
 					//nextStopPoint += 45f; //ROTATION IMPLEMENTATION
 				}

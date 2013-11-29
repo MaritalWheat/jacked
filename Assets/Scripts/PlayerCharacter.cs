@@ -188,7 +188,6 @@ public class PlayerCharacter : MonoBehaviour
     {
 		//Firing the weapon increases the heart rate, for now we will use a uniform value regardless of the weapon
 		IncreaseHeartRate(3);
-		
     	if (m_playerWeapon.m_name.Equals("Default")) {
             AudioManager.m_singleton.DefaultGun();
             Quaternion startingRotation = Quaternion.LookRotation(m_aimDirection);
