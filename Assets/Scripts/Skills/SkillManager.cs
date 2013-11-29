@@ -9,11 +9,21 @@ public class SkillManager : MonoBehaviour {
     public List<Skill> m_skillsList;  //This is just the class of the skills to use, use the dict for the actual instance
 
 	void Start () {
+		OnStart();
+	}
+
+	public static void Reset() {
+		m_singleton.OnStart();
+	}
+
+	void OnStart() {
 		if (m_singleton == null) {
 			m_singleton = this;
 		}
 
-        foreach (Skill s in m_skillsList) {
+		m_skillsDict.Clear();
+
+		foreach (Skill s in m_skillsList) {
 			s.Level = 0; //This should be changed it we ever mplement a way to save a game.
 			s.Locked = false; //Unity bug that saves property values, make sure we reset all properties at start of game
 			s.Cooldown = false;
@@ -21,7 +31,7 @@ public class SkillManager : MonoBehaviour {
 			m_skillsDict.Add(s.m_name, s);	
 		}
 	}
-	
+
     // This function will return true only if the Player has already purchased the prequisites for the skill and has enough XP to purchase the skill
     public static bool CanPurchase(string skillToCheck)
     {

@@ -156,7 +156,6 @@ public class GameManager : MonoBehaviour {
     }
 	
 	private void StartPostWave() {
-        //HudController.s_singleton.Display(false);
 		Store.DisplayStore();
 		m_postWave = true;
 	}
@@ -188,12 +187,7 @@ public class GameManager : MonoBehaviour {
             childGameObject.GetComponent<DeathAnimationScript>().FadeOutToDestroy();
         }
 
-        //for (int i = 0; i < Mathf.Min(NumberOfEnemies(), MAX_ENEMIES_ON_SCREEN); i++)
-        //{
-        //    int random = Random.Range(0, m_enemiesList.Length);
-        //    Spawn(m_enemiesList[random]);
-        //}
-        m_enemiesLeftToSpawn = NumberOfEnemies();//Mathf.Max(NumberOfEnemies() - MAX_ENEMIES_ON_SCREEN, 0);
+        m_enemiesLeftToSpawn = NumberOfEnemies();
     }
     
     private GameObject Spawn(GameObject prefab)
@@ -259,10 +253,6 @@ public class GameManager : MonoBehaviour {
         {
             PlayerCharacter.s_singleton.StartPlayer();
             m_timeUntilNextWave = 5.0f;
-            //GameObject notification = (GameObject)Instantiate(HudController.s_singleton.ScrollingNotificationPrefab);
-            //notification.GetComponent<ScrollingText>().Display("Begin Wave " + m_currentWaveNumber + " !", 10.0f, HudController.s_singleton.m_largeFightingSpirit);
-            //GameObject getJacked = (GameObject)Instantiate(HudController.s_singleton.PowerupNotification);
-            //getJacked.GetComponent<PowerupNotification>().DisplayMedium("GET JACKED!", 3.0f);
         }
         m_enabled = enable;
     }
@@ -299,6 +289,8 @@ public class GameManager : MonoBehaviour {
     public void Reset()
     {
         PlayerCharacter.s_singleton.Reset();
+		SkillManager.Reset();
+		CoroutineHandler.Reset();
 
         foreach (Transform child in m_enemies.transform)
         {

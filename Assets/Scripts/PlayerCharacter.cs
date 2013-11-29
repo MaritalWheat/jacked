@@ -171,11 +171,17 @@ public class PlayerCharacter : MonoBehaviour
     public void Reset()
     {
         experiencePoints = 0;
-        skillPoints = 0;
+        skillPoints = 5000;
         currentlevel = 0;
         nextLevelXP = 0;
         m_heartRate = 100;
         currentSkills.Clear();
+		while (currentSkills.Count < 4) {
+			currentSkills.Add(null);	
+		}
+		PlayerCharacter.Invulnerable = false;
+		PlayerCharacter.IgnoreBeatCycle = false;
+		PlayerCharacter.ChangeColor(Color.white);
     }
 
     public void FireWeapon()

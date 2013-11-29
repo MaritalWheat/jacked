@@ -16,6 +16,13 @@ public class CoroutineHandler : MonoBehaviour {
 		}
 	}
 
+	public static void Reset() {
+		for (int i = 0; i < m_singleton.m_coroutines.Count; i++) {
+			TakeDown(m_singleton.m_coroutines[i].m_key);
+		}
+		m_singleton.m_coroutines = new Dictionary<int, CoroutineInstance>();
+	}
+
 	public static int StartCoroutine(Func<int, int> executable) {
 		GameObject tmp = new GameObject();
 		tmp.transform.parent = m_singleton.transform;
